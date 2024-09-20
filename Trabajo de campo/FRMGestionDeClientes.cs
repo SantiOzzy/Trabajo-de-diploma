@@ -493,6 +493,8 @@ namespace Trabajo_de_campo
                 {
                     SerializarXML(saveFileDialog1.FileName);
 
+                    MostrarXmlEnListbox(saveFileDialog1.FileName);
+
                     NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Clientes", "Serialización XML de clientes", 5));
 
                     MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.DatosSerializados"));
@@ -570,6 +572,18 @@ namespace Trabajo_de_campo
                 dt.Rows.Add(dr);
             }
             return dt;
+        }
+
+        private void MostrarXmlEnListbox(string path)
+        {
+            listBox1.Items.Clear();
+
+            string[] lineas = File.ReadAllLines(path);
+
+            foreach (string linea in lineas)
+            {
+                listBox1.Items.Add(linea);
+            }
         }
 
         private void BTNLimpiar_Click(object sender, EventArgs e)
