@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32F534B4-91B5-4A94-9557-FC7C11BC8707}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Trabajo_de_campo</RootNamespace>
+    <AssemblyName>Trabajo de campo</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>system_applications_thesource_thebook_13028.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13.4\lib\net461\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Text.Json, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FRMBitacoraCambios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMBitacoraCambios.Designer.cs">
+      <DependentUpon>FRMBitacoraCambios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMBitacoraEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMBitacoraEventos.Designer.cs">
+      <DependentUpon>FRMBitacoraEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMCambiarContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMCambiarContraseña.Designer.cs">
+      <DependentUpon>FRMCambiarContraseña.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMCambiarIdioma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMCambiarIdioma.Designer.cs">
+      <DependentUpon>FRMCambiarIdioma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMCerrarSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMCerrarSesion.Designer.cs">
+      <DependentUpon>FRMCerrarSesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMCobrarVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMCobrarVenta.Designer.cs">
+      <DependentUpon>FRMCobrarVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMGenerarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMGenerarFactura.Designer.cs">
+      <DependentUpon>FRMGenerarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMGestionDeClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMGestionDeClientes.Designer.cs">
+      <DependentUpon>FRMGestionDeClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMGestionDeFamilias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMGestionDeFamilias.Designer.cs">
+      <DependentUpon>FRMGestionDeFamilias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMGestionDeLibros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMGestionDeLibros.Designer.cs">
+      <DependentUpon>FRMGestionDeLibros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMGestionDePerfiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMGestionDePerfiles.Designer.cs">
+      <DependentUpon>FRMGestionDePerfiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMGestionDeUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMGestionDeUsuarios.Designer.cs">
+      <DependentUpon>FRMGestionDeUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMIniciarSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMIniciarSesion.Designer.cs">
+      <DependentUpon>FRMIniciarSesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMOrdenCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMOrdenCompra.Designer.cs">
+      <DependentUpon>FRMOrdenCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMPagarCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMPagarCompra.Designer.cs">
+      <DependentUpon>FRMPagarCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMPreRegistrarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMPreRegistrarProveedor.Designer.cs">
+      <DependentUpon>FRMPreRegistrarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMRecepcionProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMRecepcionProductos.Designer.cs">
+      <DependentUpon>FRMRecepcionProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMRegistrarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMRegistrarCliente.Designer.cs">
+      <DependentUpon>FRMRegistrarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMRegistrarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMRegistrarProveedor.Designer.cs">
+      <DependentUpon>FRMRegistrarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMRespaldos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMRespaldos.Designer.cs">
+      <DependentUpon>FRMRespaldos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMSeleccionarLibros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMSeleccionarLibros.Designer.cs">
+      <DependentUpon>FRMSeleccionarLibros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMSolicitudCotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMSolicitudCotizacion.Designer.cs">
+      <DependentUpon>FRMSolicitudCotizacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMUI.Designer.cs">
+      <DependentUpon>FRMUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMGenerarReporteFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMGenerarReporteFactura.Designer.cs">
+      <DependentUpon>FRMGenerarReporteFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FRMBitacoraCambios.resx">
+      <DependentUpon>FRMBitacoraCambios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMBitacoraEventos.resx">
+      <DependentUpon>FRMBitacoraEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMCambiarContraseña.resx">
+      <DependentUpon>FRMCambiarContraseña.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMCambiarIdioma.resx">
+      <DependentUpon>FRMCambiarIdioma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMCerrarSesion.resx">
+      <DependentUpon>FRMCerrarSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMCobrarVenta.resx">
+      <DependentUpon>FRMCobrarVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMGenerarFactura.resx">
+      <DependentUpon>FRMGenerarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMGenerarReporteFactura.resx">
+      <DependentUpon>FRMGenerarReporteFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMGestionDeClientes.resx">
+      <DependentUpon>FRMGestionDeClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMGestionDeFamilias.resx">
+      <DependentUpon>FRMGestionDeFamilias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMGestionDeLibros.resx">
+      <DependentUpon>FRMGestionDeLibros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMGestionDePerfiles.resx">
+      <DependentUpon>FRMGestionDePerfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMGestionDeUsuarios.resx">
+      <DependentUpon>FRMGestionDeUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMIniciarSesion.resx">
+      <DependentUpon>FRMIniciarSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMOrdenCompra.resx">
+      <DependentUpon>FRMOrdenCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMPagarCompra.resx">
+      <DependentUpon>FRMPagarCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMPreRegistrarProveedor.resx">
+      <DependentUpon>FRMPreRegistrarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMRecepcionProductos.resx">
+      <DependentUpon>FRMRecepcionProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMRegistrarCliente.resx">
+      <DependentUpon>FRMRegistrarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMRegistrarProveedor.resx">
+      <DependentUpon>FRMRegistrarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMRespaldos.resx">
+      <DependentUpon>FRMRespaldos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMSeleccionarLibros.resx">
+      <DependentUpon>FRMSeleccionarLibros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMSolicitudCotizacion.resx">
+      <DependentUpon>FRMSolicitudCotizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMUI.resx">
+      <DependentUpon>FRMUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{f8135ece-2aaa-41bf-85c7-176330f71e85}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{8772a85d-ba70-4979-ba3a-87681117841c}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{84231ff2-6092-40bf-9823-651533bad56d}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libros-usados-y-antiguos.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3844476-eye-see-show-view-watch_110339.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3844477-disable-eye-inactive-see-show-view-watch_110343.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plantilla.html" />
+    <None Include="Resources\uai.png" />
+    <None Include="Resources\ReporteEvento.html" />
+    <None Include="Resources\8316630.png" />
+    <Content Include="system_applications_thesource_thebook_13028.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
