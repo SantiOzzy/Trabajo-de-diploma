@@ -31,13 +31,13 @@ namespace Trabajo_de_campo
 
             if (ObtenerCondicionesQuery().Length > 5)
             {
-                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo", "Libro", ObtenerCondicionesQuery()); ;
+                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro", ObtenerCondicionesQuery()); ;
                 dt = TraducirTabla(dt);
                 dataGridView1.DataSource = dt;
             }
             else
             {
-                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo", "Libro"); ;
+                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro"); ;
                 dt = TraducirTabla(dt);
                 dataGridView1.DataSource = dt;
             }
@@ -72,14 +72,14 @@ namespace Trabajo_de_campo
 
             LimpiarCampos();
 
-            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo", "Libro"); ;
+            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro"); ;
             dt = TraducirTabla(dt);
             dataGridView1.DataSource = dt;
         }
 
         private void FRMGestionDeLibros_VisibleChanged(object sender, EventArgs e)
         {
-            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo", "Libro"); ;
+            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro"); ;
             dt = TraducirTabla(dt);
             dataGridView1.DataSource = dt;
 
@@ -113,7 +113,7 @@ namespace Trabajo_de_campo
             {
                 if (ValidarCampos() == true)
                 {
-                    Libro book = new Libro(textBox1.Text, textBox2.Text, textBox3.Text, Convert.ToInt32(numericUpDown1.Value), Convert.ToInt32(numericUpDown2.Value));
+                    Libro book = new Libro(textBox1.Text, textBox2.Text, textBox3.Text, Convert.ToInt32(numericUpDown1.Value), Convert.ToInt32(numericUpDown2.Value), Convert.ToInt32(numericUpDown3.Value), Convert.ToInt32(numericUpDown4.Value));
 
                     NegociosLibro.RegistrarLibro(book);
 
@@ -131,7 +131,7 @@ namespace Trabajo_de_campo
             {
                 if (ValidarCampos() == true)
                 {
-                    Libro book = new Libro(textBox1.Text, textBox2.Text, textBox3.Text, Convert.ToInt32(numericUpDown1.Value), Convert.ToInt32(numericUpDown2.Value));
+                    Libro book = new Libro(textBox1.Text, textBox2.Text, textBox3.Text, Convert.ToInt32(numericUpDown1.Value), Convert.ToInt32(numericUpDown2.Value), Convert.ToInt32(numericUpDown3.Value), Convert.ToInt32(numericUpDown4.Value));
 
                     NegociosLibro.ModificarLibro(book);
 
@@ -183,13 +183,13 @@ namespace Trabajo_de_campo
 
             if (ObtenerCondicionesQuery().Length > 5)
             {
-                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo", "Libro", ObtenerCondicionesQuery()); ;
+                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro", ObtenerCondicionesQuery()); ;
                 dt = TraducirTabla(dt);
                 dataGridView1.DataSource = dt;
             }
             else
             {
-                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo", "Libro"); ;
+                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro"); ;
                 dt = TraducirTabla(dt);
                 dataGridView1.DataSource = dt;
             }
@@ -234,6 +234,16 @@ namespace Trabajo_de_campo
             }
 
             if (checkBox6.Checked == true)
+            {
+                c += "MaxStock = " + numericUpDown3.Value.ToString() + " AND ";
+            }
+
+            if (checkBox7.Checked == true)
+            {
+                c += "MinStock = " + numericUpDown4.Value.ToString() + " AND ";
+            }
+
+            if (checkBox8.Checked == true)
             {
                 c += "Activo = '" + checkBox12.Checked.ToString() + "' AND ";
             }
@@ -281,6 +291,8 @@ namespace Trabajo_de_campo
                 textBox3.Enabled = false;
                 numericUpDown1.Enabled = false;
                 numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = false;
             }
             else
             {
@@ -288,6 +300,8 @@ namespace Trabajo_de_campo
                 textBox3.Enabled = true;
                 numericUpDown1.Enabled = true;
                 numericUpDown2.Enabled = true;
+                numericUpDown3.Enabled = true;
+                numericUpDown4.Enabled = true;
             }
         }
 
@@ -300,6 +314,8 @@ namespace Trabajo_de_campo
             textBox3.Text = "";
             numericUpDown1.Value = numericUpDown1.Minimum;
             numericUpDown2.Value = numericUpDown2.Minimum;
+            numericUpDown3.Value = numericUpDown3.Minimum;
+            numericUpDown4.Value = numericUpDown4.Minimum;
 
             foreach (CheckBox cb in this.Controls.OfType<CheckBox>())
             {
@@ -331,6 +347,10 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeLibros.Etiquetas.IsbnNoExiste"));
             }
+            else if (numericUpDown3.Value < numericUpDown4.Value)
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeLibros.Etiquetas.StockMaxInvalido"));
+            }
             else
             {
                 return true;
@@ -348,6 +368,8 @@ namespace Trabajo_de_campo
                 textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                 numericUpDown1.Value = Convert.ToDecimal(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
                 numericUpDown2.Value = Convert.ToDecimal(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
+                numericUpDown3.Value = Convert.ToDecimal(dataGridView1.Rows[e.RowIndex].Cells[6].Value);
+                numericUpDown4.Value = Convert.ToDecimal(dataGridView1.Rows[e.RowIndex].Cells[7].Value);
 
                 dataGridView1.Rows[e.RowIndex].Selected = true;
             }
@@ -388,6 +410,8 @@ namespace Trabajo_de_campo
             dt.Columns[3].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Precio");
             dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Stock");
             dt.Columns[5].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Activo");
+            dt.Columns[6].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MaxStock");
+            dt.Columns[7].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MinStock");
 
             return dt;
         }

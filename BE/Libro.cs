@@ -13,14 +13,18 @@ namespace BE
         public string Nombre;
         public int Precio;
         public int Stock;
+        public int StockMaximo;
+        public int StockMinimo;
 
-        public Libro(string iSBN, string autor, string nombre, int precio, int stock)
+        public Libro(string iSBN, string autor, string nombre, int precio, int stock, int stockMaximo, int stockMinimo)
         {
             ISBN = iSBN;
             Autor = autor;
             Nombre = nombre;
             Precio = precio;
             Stock = stock;
+            StockMaximo = stockMaximo;
+            StockMinimo = stockMinimo;
         }
     }
 }

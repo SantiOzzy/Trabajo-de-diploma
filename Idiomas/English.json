@@ -42,6 +42,8 @@
     "FRMUI.ayudaToolStripMenuItem": "Help",
 
     "FRMUI.Etiquetas.SesionOcupada": "There is already a session started",
+    "FRMUI.Etiquetas.CerrarVenta": "You can't enter book management while performing a sale.",
+    "FRMUI.Etiquetas.CerrarLibros": "You can't perform a sale while book management is open.",
     "FRMUI.Etiquetas.Ayuda": "To log in or select the language option, go to User\nFor adding, removing, and modifying users, go to User Management\nFor adding, removing, and modifying books, go to Book Management\nFor adding, removing, and modifying clients, go to Client Management\nFor creating, modifying, or deleting profiles and families, go to Profile Management\nTo charge sales to clients, go to Register Sale\nTo purchase products, go to Register Purchase\nTo export invoice details in .PDF format, go to Generate Report\nFor more information, go to Help",
 
     "FRMSeleccionarLibros.Text": "Select books",
@@ -200,6 +202,7 @@
     "FRMGestionDeLibros.Etiquetas.13Digitos": "The ISBN must have 13 digits",
     "FRMGestionDeLibros.Etiquetas.YaRegistrado": "ISBN is already registered",
     "FRMGestionDeLibros.Etiquetas.ErrorConteo": "Error in book count",
+    "FRMGestionDeLibros.Etiquetas.StockMaxInvalido": "Maximum stock must be higher than minimum stock",
 
     "FRMGestionDePerfiles.Text": "Role Management",
     "FRMGestionDePerfiles.label1": "Profiles",
@@ -356,6 +359,8 @@
     "dgv.Autor": "Author",
     "dgv.Precio": "Price",
     "dgv.Stock": "Stock",
+    "dgv.MaxStock": "Maximum stock",
+    "dgv.MinStock": "Minimum stock",
     "dgv.Cantidad": "Quantity",
     "dgv.Direccion": "Address",
     "dgv.CodFactura": "Invoice code",

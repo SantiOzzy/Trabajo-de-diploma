@@ -110,8 +110,15 @@ namespace Trabajo_de_campo
 
         private void gestionDeLibrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormGestionLibros.MdiParent = this;
-            FormGestionLibros.Show();
+            if (FormGenerarFactura.Visible == false)
+            {
+                FormGestionLibros.MdiParent = this;
+                FormGestionLibros.Show();
+            }
+            else
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMUI.Etiquetas.CerrarVenta"));
+            }
         }
 
         private void gestionDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,11 +135,18 @@ namespace Trabajo_de_campo
 
         private void registrarVentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCobrarVenta.MdiParent = this;
-            FormSeleccionarLibros.MdiParent = this;
-            FormRegistrarCliente.MdiParent = this;
-            FormGenerarFactura.MdiParent = this;
-            FormGenerarFactura.Show();
+            if (FormGestionLibros.Visible == false)
+            {
+                FormCobrarVenta.MdiParent = this;
+                FormSeleccionarLibros.MdiParent = this;
+                FormRegistrarCliente.MdiParent = this;
+                FormGenerarFactura.MdiParent = this;
+                FormGenerarFactura.Show();
+            }
+            else
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMUI.Etiquetas.CerrarLibros"));
+            }
         }
 
         private void generarSolicitudDeCotizacionToolStripMenuItem_Click(object sender, EventArgs e)

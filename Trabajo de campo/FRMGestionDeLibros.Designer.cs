@@ -58,15 +58,23 @@ namespace Trabajo_de_campo
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 337);
+            this.label2.Location = new System.Drawing.Point(40, 336);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 154;
@@ -207,7 +215,7 @@ namespace Trabajo_de_campo
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(54, 363);
+            this.label8.Location = new System.Drawing.Point(40, 362);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 129;
@@ -216,7 +224,7 @@ namespace Trabajo_de_campo
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(54, 286);
+            this.label7.Location = new System.Drawing.Point(40, 285);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 128;
@@ -225,7 +233,7 @@ namespace Trabajo_de_campo
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(54, 312);
+            this.label6.Location = new System.Drawing.Point(40, 311);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 127;
@@ -234,7 +242,7 @@ namespace Trabajo_de_campo
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(54, 260);
+            this.label5.Location = new System.Drawing.Point(40, 259);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 126;
@@ -307,7 +315,7 @@ namespace Trabajo_de_campo
             // checkBox12
             // 
             this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(118, 391);
+            this.checkBox12.Location = new System.Drawing.Point(118, 438);
             this.checkBox12.Name = "checkBox12";
             this.checkBox12.Size = new System.Drawing.Size(15, 14);
             this.checkBox12.TabIndex = 159;
@@ -316,7 +324,7 @@ namespace Trabajo_de_campo
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(319, 391);
+            this.checkBox6.Location = new System.Drawing.Point(319, 390);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(15, 14);
             this.checkBox6.TabIndex = 158;
@@ -325,18 +333,84 @@ namespace Trabajo_de_campo
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(54, 391);
+            this.label11.Location = new System.Drawing.Point(40, 437);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(37, 13);
             this.label11.TabIndex = 157;
             this.label11.Text = "Activo";
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(118, 386);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(195, 20);
+            this.numericUpDown3.TabIndex = 162;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(319, 416);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(15, 14);
+            this.checkBox7.TabIndex = 161;
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(40, 416);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.TabIndex = 160;
+            this.label9.Text = "Stock mínimo";
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(118, 412);
+            this.numericUpDown4.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(195, 20);
+            this.numericUpDown4.TabIndex = 165;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(319, 438);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(15, 14);
+            this.checkBox8.TabIndex = 164;
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(39, 390);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(73, 13);
+            this.label10.TabIndex = 163;
+            this.label10.Text = "Stock máximo";
             // 
             // FRMGestionDeLibros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(700, 413);
+            this.ClientSize = new System.Drawing.Size(700, 458);
+            this.Controls.Add(this.numericUpDown4);
+            this.Controls.Add(this.checkBox8);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.numericUpDown3);
+            this.Controls.Add(this.checkBox7);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.checkBox12);
             this.Controls.Add(this.checkBox6);
             this.Controls.Add(this.label11);
@@ -375,6 +449,8 @@ namespace Trabajo_de_campo
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,5 +485,11 @@ namespace Trabajo_de_campo
         private System.Windows.Forms.CheckBox checkBox12;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.Label label10;
     }
 }

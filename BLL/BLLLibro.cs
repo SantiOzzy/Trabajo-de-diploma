@@ -15,12 +15,12 @@ namespace BLL
 
         public void RegistrarLibro(Libro book)
         {
-            Data.EjecutarComando("InsertarLibro", $"'{book.ISBN}', '{book.Autor}', '{book.Nombre}', {book.Precio}, {book.Stock}");
+            Data.EjecutarComando("InsertarLibro", $"'{book.ISBN}', '{book.Autor}', '{book.Nombre}', {book.Precio}, {book.Stock}, {book.StockMaximo}, {book.StockMinimo}");
         }
 
         public void ModificarLibro(Libro book)
         {
-            Data.EjecutarComando("ModificarLibro", $"'{book.ISBN}', '{book.Autor}', '{book.Nombre}', {book.Precio}, {book.Stock}");
+            Data.EjecutarComando("ModificarLibro", $"'{book.ISBN}', '{book.Autor}', '{book.Nombre}', {book.Precio}, {book.Stock}, {book.StockMaximo}, {book.StockMinimo}");
         }
 
         public void DesactivarLibro(string ISBN)

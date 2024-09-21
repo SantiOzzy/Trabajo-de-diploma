@@ -23,6 +23,8 @@
     "FRMUI.generarReporteToolStripMenuItem": "Generar reporte",
     "FRMUI.ayudaToolStripMenuItem": "Ayuda",
     "FRMUI.Etiquetas.SesionOcupada": "Ya hay una sesión iniciada",
+    "FRMUI.Etiquetas.CerrarVenta": "No se puede entrar al maestro de libros mientras se realiza una venta.",
+    "FRMUI.Etiquetas.CerrarLibros": "No se puede realizar una venta mientras el maestro de libros está abierto.",
     "FRMUI.Etiquetas.Ayuda": "Para iniciar sesión o idioma seleccione la opción Usuario\nPara alta, baja y modificación de usuarios dirijase a Gestión de usuarios\nPara alta, baja y modificación de libros dirijase a Gestión de libros\nPara alta, baja y modificación de clientes dirijase a Gestión de clientes\nPara crear, modificar o eliminar perfiles y familias dirijase a Gestión de perfiles\nPara cobrar ventas a los clientes dirijase a Registrar venta\nPara compra de productos dirijase a Registrar compra\nPara exportar los detalles de una factura en formato .PDF dirijase a Generar reporte\nPara más información dirijase a ayuda.",
 
     "FRMSeleccionarLibros.Text": "Seleccionar libros",
@@ -181,6 +183,7 @@
     "FRMGestionDeLibros.Etiquetas.13Digitos": "El ISBN debe tener 13 dígitos",
     "FRMGestionDeLibros.Etiquetas.YaRegistrado": "ISBN ya se encuentra registrado",
     "FRMGestionDeLibros.Etiquetas.ErrorConteo": "Error en el conteo de libros",
+    "FRMGestionDeLibros.Etiquetas.StockMaxInvalido": "El máximo stock no puede ser menor al mínimo stock",
 
     "FRMGestionDePerfiles.Text": "Gestión de roles",
     "FRMGestionDePerfiles.label1": "Perfiles",
@@ -337,6 +340,8 @@
     "dgv.Autor": "Autor",
     "dgv.Precio": "Precio",
     "dgv.Stock": "Stock",
+    "dgv.MaxStock": "Máximo stock",
+    "dgv.MinStock": "Mínimo stock",
     "dgv.Cantidad": "Cantidad",
     "dgv.Direccion": "Dirección",
     "dgv.CodFactura": "Código de factura",
