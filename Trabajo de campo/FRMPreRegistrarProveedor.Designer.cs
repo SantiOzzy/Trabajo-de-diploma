@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRMPreRegistrarProveedor));
-            this.BTNRegistrarCliente = new System.Windows.Forms.Button();
+            this.BTNPreRegistrarProveedor = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -42,14 +42,14 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // BTNRegistrarCliente
+            // BTNPreRegistrarProveedor
             // 
-            this.BTNRegistrarCliente.Location = new System.Drawing.Point(67, 155);
-            this.BTNRegistrarCliente.Name = "BTNRegistrarCliente";
-            this.BTNRegistrarCliente.Size = new System.Drawing.Size(136, 23);
-            this.BTNRegistrarCliente.TabIndex = 25;
-            this.BTNRegistrarCliente.Text = "Pre-registrar proveedor";
-            this.BTNRegistrarCliente.UseVisualStyleBackColor = true;
+            this.BTNPreRegistrarProveedor.Location = new System.Drawing.Point(67, 155);
+            this.BTNPreRegistrarProveedor.Name = "BTNPreRegistrarProveedor";
+            this.BTNPreRegistrarProveedor.Size = new System.Drawing.Size(136, 23);
+            this.BTNPreRegistrarProveedor.TabIndex = 25;
+            this.BTNPreRegistrarProveedor.Text = "Pre-registrar proveedor";
+            this.BTNPreRegistrarProveedor.UseVisualStyleBackColor = true;
             // 
             // textBox4
             // 
@@ -142,7 +142,7 @@
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(263, 184);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.BTNRegistrarCliente);
+            this.Controls.Add(this.BTNPreRegistrarProveedor);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -157,6 +157,7 @@
             this.Name = "FRMPreRegistrarProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pre-registrar proveedor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMPreRegistrarProveedor_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,7 +165,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BTNRegistrarCliente;
+        private System.Windows.Forms.Button BTNPreRegistrarProveedor;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;

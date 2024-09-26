@@ -7,14 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Services;
+using BLL;
+using BE;
 
 namespace Trabajo_de_campo
 {
-    public partial class FRMRegistrarProveedor : Form
+    public partial class FRMRegistrarProveedor : Form, IObserver
     {
         public FRMRegistrarProveedor()
         {
             InitializeComponent();
+            LanguageManager.ObtenerInstancia().Agregar(this);
+        }
+
+        public void ActualizarIdioma()
+        {
+            LanguageManager.ObtenerInstancia().CambiarIdiomaControles(this);
+        }
+
+        private void FRMRegistrarProveedor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
         }
     }
 }

@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRMRegistrarProveedor));
-            this.BTNRegistrarCliente = new System.Windows.Forms.Button();
+            this.BTNRegistrarProveedor = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // BTNRegistrarCliente
+            // BTNRegistrarProveedor
             // 
-            this.BTNRegistrarCliente.Location = new System.Drawing.Point(62, 65);
-            this.BTNRegistrarCliente.Name = "BTNRegistrarCliente";
-            this.BTNRegistrarCliente.Size = new System.Drawing.Size(136, 23);
-            this.BTNRegistrarCliente.TabIndex = 30;
-            this.BTNRegistrarCliente.Text = "Registrar proveedor";
-            this.BTNRegistrarCliente.UseVisualStyleBackColor = true;
+            this.BTNRegistrarProveedor.Location = new System.Drawing.Point(62, 65);
+            this.BTNRegistrarProveedor.Name = "BTNRegistrarProveedor";
+            this.BTNRegistrarProveedor.Size = new System.Drawing.Size(136, 23);
+            this.BTNRegistrarProveedor.TabIndex = 30;
+            this.BTNRegistrarProveedor.Text = "Registrar proveedor";
+            this.BTNRegistrarProveedor.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -86,7 +86,7 @@
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(262, 98);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.BTNRegistrarCliente);
+            this.Controls.Add(this.BTNRegistrarProveedor);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -95,6 +95,7 @@
             this.Name = "FRMRegistrarProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar proveedor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMRegistrarProveedor_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,7 +103,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BTNRegistrarCliente;
+        private System.Windows.Forms.Button BTNRegistrarProveedor;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

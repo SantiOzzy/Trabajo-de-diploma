@@ -33,7 +33,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BTNPagar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,14 +69,14 @@
             this.textBox2.Size = new System.Drawing.Size(160, 20);
             this.textBox2.TabIndex = 3;
             // 
-            // button1
+            // BTNPagar
             // 
-            this.button1.Location = new System.Drawing.Point(84, 74);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Registrar pago";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BTNPagar.Location = new System.Drawing.Point(84, 74);
+            this.BTNPagar.Name = "BTNPagar";
+            this.BTNPagar.Size = new System.Drawing.Size(111, 23);
+            this.BTNPagar.TabIndex = 4;
+            this.BTNPagar.Text = "Registrar pago";
+            this.BTNPagar.UseVisualStyleBackColor = true;
             // 
             // FRMPagarCompra
             // 
@@ -84,7 +84,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(279, 102);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BTNPagar);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
@@ -94,6 +94,7 @@
             this.Name = "FRMPagarCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pagar producto";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMPagarCompra_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,6 +106,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BTNPagar;
     }
 }

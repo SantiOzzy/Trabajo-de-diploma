@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BTNGuardarCambios = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -73,14 +73,14 @@
             this.dataGridView1.Size = new System.Drawing.Size(510, 242);
             this.dataGridView1.TabIndex = 2;
             // 
-            // button1
+            // BTNGuardarCambios
             // 
-            this.button1.Location = new System.Drawing.Point(220, 294);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 46);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Guardar cambios";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BTNGuardarCambios.Location = new System.Drawing.Point(220, 294);
+            this.BTNGuardarCambios.Name = "BTNGuardarCambios";
+            this.BTNGuardarCambios.Size = new System.Drawing.Size(115, 46);
+            this.BTNGuardarCambios.TabIndex = 3;
+            this.BTNGuardarCambios.Text = "Guardar cambios";
+            this.BTNGuardarCambios.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -174,7 +174,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BTNGuardarCambios);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
@@ -183,6 +183,7 @@
             this.Name = "FRMRecepcionProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recepcion de productos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMRecepcionProductos_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -194,7 +195,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BTNGuardarCambios;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

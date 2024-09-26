@@ -31,7 +31,7 @@ namespace Trabajo_de_campo
         public FRMBitacoraEventos FormBitacoraEventos = new FRMBitacoraEventos();
         public FRMBitacoraCambios FormBitacoraCambios = new FRMBitacoraCambios();
         public FRMRespaldos FormRespaldos = new FRMRespaldos();
-        public BTNGenerarSolicitudCotizacion FormSolicitudCotizacion = new BTNGenerarSolicitudCotizacion();
+        public FRMSolicitudCotizacion FormSolicitudCotizacion = new FRMSolicitudCotizacion();
         public FRMPreRegistrarProveedor FormPreRegistrarProveedor = new FRMPreRegistrarProveedor();
         public FRMOrdenCompra FormOrdenCompra = new FRMOrdenCompra();
         public FRMRegistrarProveedor FormRegistrarProveedor = new FRMRegistrarProveedor();
@@ -151,17 +151,23 @@ namespace Trabajo_de_campo
 
         private void generarSolicitudDeCotizacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FormSolicitudCotizacion.MdiParent = this;
+            FormPreRegistrarProveedor.MdiParent = this;
+            FormSolicitudCotizacion.Show();
         }
 
         private void generarOrdenDeCompraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FormOrdenCompra.MdiParent = this;
+            FormRegistrarProveedor.MdiParent = this;
+            FormPagarCompra.MdiParent = this;
+            FormOrdenCompra.Show();
         }
 
         private void verificarRecepciónDeProductosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FormRecepcionProductos.MdiParent = this;
+            FormRecepcionProductos.Show();
         }
 
         private void generarReporteToolStripMenuItem_Click(object sender, EventArgs e)

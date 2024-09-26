@@ -105,6 +105,11 @@ namespace Services
                         }
                     }
 
+                    if(c is Form)
+                    {
+                        break;
+                    }
+
                     if (c.Controls.Count > 0)
                     {
                         CambiarIdiomaControles(c);

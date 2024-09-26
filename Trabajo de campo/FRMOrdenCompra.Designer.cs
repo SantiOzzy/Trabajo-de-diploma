@@ -43,9 +43,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.BTNSeleccionarLibros = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BTNRegistrarOrden = new System.Windows.Forms.Button();
+            this.BTNRegistrarProveedor = new System.Windows.Forms.Button();
+            this.BTNRegistrarPago = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -170,33 +170,35 @@
             this.label4.TabIndex = 24;
             this.label4.Text = "Precio total: $";
             // 
-            // BTNSeleccionarLibros
+            // BTNRegistrarOrden
             // 
-            this.BTNSeleccionarLibros.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTNSeleccionarLibros.Location = new System.Drawing.Point(615, 417);
-            this.BTNSeleccionarLibros.Name = "BTNSeleccionarLibros";
-            this.BTNSeleccionarLibros.Size = new System.Drawing.Size(152, 59);
-            this.BTNSeleccionarLibros.TabIndex = 23;
-            this.BTNSeleccionarLibros.Text = "Generar orden de compra";
-            this.BTNSeleccionarLibros.UseVisualStyleBackColor = true;
+            this.BTNRegistrarOrden.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTNRegistrarOrden.Location = new System.Drawing.Point(615, 417);
+            this.BTNRegistrarOrden.Name = "BTNRegistrarOrden";
+            this.BTNRegistrarOrden.Size = new System.Drawing.Size(152, 59);
+            this.BTNRegistrarOrden.TabIndex = 23;
+            this.BTNRegistrarOrden.Text = "Generar orden de compra";
+            this.BTNRegistrarOrden.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BTNRegistrarProveedor
             // 
-            this.button1.Location = new System.Drawing.Point(615, 359);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Registrar proveedor";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BTNRegistrarProveedor.Location = new System.Drawing.Point(615, 359);
+            this.BTNRegistrarProveedor.Name = "BTNRegistrarProveedor";
+            this.BTNRegistrarProveedor.Size = new System.Drawing.Size(152, 23);
+            this.BTNRegistrarProveedor.TabIndex = 25;
+            this.BTNRegistrarProveedor.Text = "Registrar proveedor";
+            this.BTNRegistrarProveedor.UseVisualStyleBackColor = true;
+            this.BTNRegistrarProveedor.Click += new System.EventHandler(this.BTNRegistrarProveedor_Click);
             // 
-            // button2
+            // BTNRegistrarPago
             // 
-            this.button2.Location = new System.Drawing.Point(615, 388);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(152, 23);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "Registrar pago";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BTNRegistrarPago.Location = new System.Drawing.Point(615, 388);
+            this.BTNRegistrarPago.Name = "BTNRegistrarPago";
+            this.BTNRegistrarPago.Size = new System.Drawing.Size(152, 23);
+            this.BTNRegistrarPago.TabIndex = 26;
+            this.BTNRegistrarPago.Text = "Registrar pago";
+            this.BTNRegistrarPago.UseVisualStyleBackColor = true;
+            this.BTNRegistrarPago.Click += new System.EventHandler(this.BTNRegistrarPago_Click);
             // 
             // FRMOrdenCompra
             // 
@@ -204,10 +206,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(833, 483);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BTNRegistrarPago);
+            this.Controls.Add(this.BTNRegistrarProveedor);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.BTNSeleccionarLibros);
+            this.Controls.Add(this.BTNRegistrarOrden);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
@@ -221,6 +223,8 @@
             this.Name = "FRMOrdenCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generar orden de compra";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMOrdenCompra_FormClosing);
+            this.Load += new System.EventHandler(this.FRMOrdenCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -244,8 +248,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button BTNSeleccionarLibros;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BTNRegistrarOrden;
+        private System.Windows.Forms.Button BTNRegistrarProveedor;
+        private System.Windows.Forms.Button BTNRegistrarPago;
     }
 }
