@@ -61,6 +61,10 @@ namespace Trabajo_de_campo
             CBFamilias.DisplayMember = "Nombre";
             CBFamilias.ValueMember = "CodFamilia";
 
+            CBFamilias2.DataSource = NegociosFamilia.ObtenerFamilias();
+            CBFamilias2.DisplayMember = "Nombre";
+            CBFamilias2.ValueMember = "CodFamilia";
+
             CambioManual = true;
         }
 
@@ -137,6 +141,16 @@ namespace Trabajo_de_campo
                 {
                     treeView1.Nodes[0].Nodes.Add(dr[0].ToString());
                 }
+
+                foreach (DataRow dr in NegociosFamilia.ObtenerFamiliasPerfil(r.Row[0].ToString()).Rows)
+                {
+                    TreeNode nodo = treeView1.Nodes[0].Nodes.Add(dr[0].ToString());
+
+                    foreach (DataRow dr2 in NegociosFamilia.ObtenerPermisosPorNombreFamilia(dr[0].ToString()).Rows)
+                    {
+                        nodo.Nodes.Add(dr2[0].ToString());
+                    }
+                }
             }
             else
             {
@@ -149,9 +163,21 @@ namespace Trabajo_de_campo
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Parent != null)
+            TreeViewHitTestInfo hitTest = treeView1.HitTest(e.Location);
+
+            if (hitTest.Location != TreeViewHitTestLocations.PlusMinus)
             {
-                treeView1.Nodes.Remove(e.Node);
+                if (e.Node.Parent != null)
+                {
+                    if (e.Node.Parent != treeView1.Nodes[0])
+                    {
+                        treeView1.Nodes.Remove(e.Node.Parent);
+                    }
+                    else
+                    {
+                        treeView1.Nodes.Remove(e.Node);
+                    }
+                }
             }
         }
 
@@ -159,7 +185,7 @@ namespace Trabajo_de_campo
         {
             try
             {
-                NegociosFamilia.ActualizarFamilia(treeView1.Nodes[0], CBPermisos, CBFamilias);
+                NegociosFamilia.ActualizarFamilia(treeView1.Nodes[0], CBPermisos, CBFamilias, CBFamilias2);
 
                 NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Perfiles", "Modificación de familia", 2));
                 FRMUI parent = this.MdiParent as FRMUI;
@@ -207,6 +233,76 @@ namespace Trabajo_de_campo
             CambioManual = false;
             LlenarCombobox();
             CambioManual = true;
+        }
+
+        private void BTNAgregarFamilia_Click(object sender, EventArgs e)
+        {
+            if (CBFamilias.Text != CBFamilias2.Text)
+            {
+                bool FamiliaYaAgregada = false;
+                bool PermisoYaAgregado = false;
+
+                try
+                {
+                    foreach (TreeNode n in treeView1.Nodes[0].Nodes)
+                    {
+                        if (n.Text == CBFamilias2.Text)
+                        {
+                            FamiliaYaAgregada = true;
+                        }
+                    }
+
+                    if (FamiliaYaAgregada == false)
+                    {
+                        TreeNode nodo = treeView1.Nodes[0].Nodes.Add(CBFamilias2.Text);
+
+                        foreach (DataRow dr2 in NegociosFamilia.ObtenerPermisosPorNombreFamilia(CBFamilias2.Text).Rows)
+                        {
+                            foreach (TreeNode n in treeView1.Nodes[0].Nodes)
+                            {
+                                if (n.Text == dr2[0].ToString())
+                                {
+                                    PermisoYaAgregado = true;
+                                }
+                                else if (n.Nodes.Count != 0)
+                                {
+                                    foreach (TreeNode n1 in n.Nodes)
+                                    {
+                                        if (n1.Text == dr2[0].ToString())
+                                        {
+                                            PermisoYaAgregado = true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            nodo.Nodes.Add(dr2[0].ToString());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeFamilias.Etiquetas.FamiliaYaIngresada"));
+                    }
+
+                    if (PermisoYaAgregado == true)
+                    {
+                        foreach (TreeNode n in treeView1.Nodes[0].Nodes)
+                        {
+                            if (n.Text == CBFamilias2.Text)
+                            {
+                                treeView1.Nodes.Remove(n);
+                            }
+                        }
+
+                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeFamilias.Etiquetas.PermisoDeFamiliaRepetido"));
+                    }
+                }
+                catch (Exception) { }
+            }
+            else
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeFamilias.Etiquetas.FamiliasIguales"));
+            }
         }
     }
 }

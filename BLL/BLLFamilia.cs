@@ -71,7 +71,7 @@ namespace BLL
             return cont;
         }
 
-        public void ActualizarFamilia(TreeNode familia, ComboBox permisos, ComboBox familias)
+        public void ActualizarFamilia(TreeNode familia, ComboBox permisos, ComboBox familias, ComboBox familias2)
         {
             string CodFamilia = "";
             string NombreFamilia = "";
@@ -92,6 +92,7 @@ namespace BLL
             }
 
             dt = permisos.DataSource as DataTable;
+            DataTable dt2 = familias2.DataSource as DataTable;
 
             foreach (TreeNode n in familia.Nodes)
             {
@@ -102,6 +103,18 @@ namespace BLL
                         string CodPermiso = row.ItemArray[0].ToString();
 
                         Data.EjecutarComando("RegistrarFamilia", $"{CodFamilia}, '{NombreFamilia}', 0, {CodPermiso}, null");
+
+                        TienePermisos = true;
+                    }
+                }
+
+                foreach (DataRow row in dt2.Rows)
+                {
+                    if (n.Text == row.ItemArray[1].ToString())
+                    {
+                        string CodFamilia1 = row.ItemArray[0].ToString();
+
+                        Data.EjecutarComando("RegistrarFamilia", $"{CodFamilia}, '{NombreFamilia}', 0, null, {CodFamilia1}");
 
                         TienePermisos = true;
                     }
