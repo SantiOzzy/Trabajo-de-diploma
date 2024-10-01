@@ -150,6 +150,8 @@ namespace Trabajo_de_campo
                     {
                         nodo.Nodes.Add(dr2[0].ToString());
                     }
+
+                    AgregarSubnodos(nodo);
                 }
             }
             else
@@ -158,6 +160,21 @@ namespace Trabajo_de_campo
                 {
                     MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeFamilias.Etiquetas.FamiliaYaSeleccionada"));
                 }
+            }
+        }
+
+        private void AgregarSubnodos(TreeNode nodo)
+        {
+            foreach (DataRow dr in NegociosFamilia.ObtenerFamiliasPerfilPorNombre(nodo.Text).Rows)
+            {
+                TreeNode nodo1 = nodo.Nodes.Add(dr[0].ToString());
+
+                foreach (DataRow dr2 in NegociosFamilia.ObtenerPermisosPorNombreFamilia(dr[0].ToString()).Rows)
+                {
+                    nodo1.Nodes.Add(dr2[0].ToString());
+                }
+
+                AgregarSubnodos(nodo1);
             }
         }
 

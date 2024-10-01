@@ -138,9 +138,26 @@ namespace Trabajo_de_campo
                 {
                     OtorgarVisibilidad(parent.menuStrip1.Items, dr2[0].ToString(), parent);
                 }
+
+                MostrarPermisosSubFamilias(dr);
             }
 
             parent.nombreToolStripMenuItem.Text = nombre;
+        }
+
+        private void MostrarPermisosSubFamilias(DataRow dr1)
+        {
+            FRMUI parent = this.MdiParent as FRMUI;
+
+            foreach (DataRow dr in NegociosFamilia.ObtenerFamiliasPerfilPorNombre(dr1[0].ToString()).Rows)
+            {
+                foreach (DataRow dr2 in NegociosFamilia.ObtenerPermisosPorNombreFamilia(dr[0].ToString()).Rows)
+                {
+                    OtorgarVisibilidad(parent.menuStrip1.Items, dr2[0].ToString(), parent);
+                }
+
+                MostrarPermisosSubFamilias(dr);
+            }
         }
 
         public void OtorgarVisibilidad(ToolStripItemCollection items, string NombrePermiso, FRMUI parent)
