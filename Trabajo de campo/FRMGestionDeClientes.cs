@@ -515,6 +515,9 @@ namespace Trabajo_de_campo
                 {
                     DataTable dt = DeserializarXML(openFileDialog1.FileName);
 
+                    dataGridView1.DataSource = dt;
+                    ContarClientes();
+
                     listBox1.Items.Clear();
 
                     foreach(DataRow dr in dt.Rows)
