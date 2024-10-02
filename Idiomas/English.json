@@ -1,46 +1,28 @@
 ﻿{
 
     "FRMUI.Text": "UAI Library",
-
     "FRMUI.nombreToolStripMenuItem": "No session started",
-
     "FRMUI.usuarioToolStripMenuItem": "User",
-
     "FRMUI.iniciarSesiónToolStripMenuItem": "Log in",
-
     "FRMUI.cerrarSesiónToolStripMenuItem": "Log out",
-
     "FRMUI.cambiarContraseñaToolStripMenuItem": "Change password",
-
     "FRMUI.cambiarIdiomaToolStripMenuItem": "Change language",
-
     "FRMUI.administradorToolStripMenuItem": "Administrator",
-
     "FRMUI.gestionDeUsuariosToolStripMenuItem": "User management",
-            "FRMUI.gestionDePerfilesToolStripMenuItem": "Profile management",
-
+    "FRMUI.gestionDePerfilesToolStripMenuItem": "Profile management",
     "FRMUI.bitacoraDeEventosToolStripMenuItem": "Event binnacle",
     "FRMUI.bitacoraDeCambiosToolStripMenuItem": "Change binnacle",
     "FRMUI.maestrosToolStripMenuItem": "Masters",
-
     "FRMUI.gestionDeLibrosToolStripMenuItem": "Book management",
     "FRMUI.gestionDeClientesToolStripMenuItem": "Client management",
-
     "FRMUI.ventaToolStripMenuItem": "Sales",
-
     "FRMUI.facturarToolStripMenuItem": "Bill",
-
     "FRMUI.comprasToolStripMenuItem": "Purchases",
-
     "FRMUI.registrarCompraToolStripMenuItem": "Register purchase",
-
     "FRMUI.respaldosToolStripMenuItem": "Backups",
     "FRMUI.reportesToolStripMenuItem": "Reports",
-
     "FRMUI.generarReporteToolStripMenuItem": "Generate report",
-
     "FRMUI.ayudaToolStripMenuItem": "Help",
-
     "FRMUI.Etiquetas.SesionOcupada": "There is already a session started",
     "FRMUI.Etiquetas.CerrarVenta": "You can't enter book management while performing a sale.",
     "FRMUI.Etiquetas.CerrarLibros": "You can't perform a sale while book management is open.",
@@ -383,6 +365,55 @@
     "dgv.Evento": "Event",
     "dgv.Criticidad": "Criticality",
     "dgv.Activo": "Activated",
+
+    "Modulos.Sesiones": "Sessions",
+    "Modulos.Usuarios": "Users",
+    "Modulos.Perfiles": "Profiles",
+    "Modulos.Libros": "Books",
+    "Modulos.Clientes": "Customers",
+    "Modulos.Ventas": "Sales",
+    "Modulos.BaseDeDatos": "Database",
+
+    "Eventos.LogIn": "Login",
+    "Eventos.LogOut": "Logout",
+    "Eventos.CambioContra": "Password change",
+
+    "Eventos.RegistroUsuario": "User registration",
+    "Eventos.ModificacionUsuario": "User modification",
+    "Eventos.BorradoUsuario": "Logical deletion of user",
+    "Eventos.RestauracionUsuario": "User restoration",
+    "Eventos.BloqueoUsuario": "Manual user blocking",
+    "Eventos.DesbloqueoUsuario": "User unblocking",
+    "Eventos.ConsultaUsuarios": "User consultation",
+    "Eventos.ReporteEvento": "Event report generation",
+
+    "Eventos.CreacionPerfil": "Profile creation",
+    "Eventos.ModificacionPerfil": "Profile modification",
+    "Eventos.BorradoPerfil": "Profile deletion",
+    "Eventos.CreacionFamilia": "Family creation",
+    "Eventos.ModificacionFamilia": "Family modification",
+    "Eventos.BorradoFamilia": "Family deletion",
+
+    "Eventos.RegistroLibro": "Book registration",
+    "Eventos.ModificacionLibro": "Book modification",
+    "Eventos.BorradoLibro": "Logical deletion of book",
+    "Eventos.RestauracionLibro": "Book restoration",
+    "Eventos.ActualizacionEstadoLibro": "Book status update",
+    "Eventos.ConsultaLibros": "Book consultation",
+
+    "Eventos.RegistroCliente": "Customer registration",
+    "Eventos.ModificacionCliente": "Customer modification",
+    "Eventos.BorradoCliente": "Logical deletion of customer",
+    "Eventos.RestauracionCliente": "Customer restoration",
+    "Eventos.ConsultaClientes": "Customer consultation",
+    "Eventos.SerializacionXMLClientes": "Customer XML serialization",
+    "Eventos.DeserializacionXMLClientes": "Customer XML deserialization",
+
+    "Eventos.GeneracionFactura": "Invoice generation",
+
+    "Eventos.Respaldo": "Backup",
+    "Eventos.Restauracion": "Restoration",
+
 
     "Reporte.ReporteFactura": "INVOICE REPORT",
     "Reporte.ReporteVenta": "SALE REPORT",

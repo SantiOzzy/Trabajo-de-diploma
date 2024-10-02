@@ -172,15 +172,6 @@ namespace Trabajo_de_campo
             // 
             this.CBModulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBModulo.FormattingEnabled = true;
-            this.CBModulo.Items.AddRange(new object[] {
-            "",
-            "Sesiones",
-            "Usuarios",
-            "Perfiles",
-            "Libros",
-            "Clientes",
-            "Ventas",
-            "Base de datos"});
             this.CBModulo.Location = new System.Drawing.Point(84, 391);
             this.CBModulo.MaxLength = 50;
             this.CBModulo.Name = "CBModulo";
