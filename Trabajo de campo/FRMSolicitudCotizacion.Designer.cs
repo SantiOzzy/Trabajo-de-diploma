@@ -75,6 +75,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(467, 186);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // dataGridView2
             // 
@@ -86,21 +87,25 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(467, 199);
             this.dataGridView2.TabIndex = 3;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.Location = new System.Drawing.Point(488, 26);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(187, 186);
+            this.listBox1.Size = new System.Drawing.Size(339, 186);
             this.listBox1.TabIndex = 4;
+            this.listBox1.SelectedValueChanged += new System.EventHandler(this.listBox1_SelectedValueChanged);
             // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
+            this.listBox2.HorizontalScrollbar = true;
             this.listBox2.Location = new System.Drawing.Point(488, 261);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(186, 199);
+            this.listBox2.Size = new System.Drawing.Size(338, 199);
             this.listBox2.TabIndex = 5;
             // 
             // label3
@@ -177,7 +182,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(680, 519);
+            this.ClientSize = new System.Drawing.Size(838, 519);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox1);
@@ -199,6 +204,7 @@
             this.Text = "Generar solicitud de cotización";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BTNGenerarSolicitudCotizacion_FormClosing);
             this.Load += new System.EventHandler(this.FRMSolicitudCotizacion_Load);
+            this.VisibleChanged += new System.EventHandler(this.FRMSolicitudCotizacion_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);

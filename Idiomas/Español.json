@@ -325,6 +325,9 @@
     "FRMRespaldos.Etiquetas.RestoreError": "No se pudo restaurar la base de datos",
     "FRMRespaldos.Etiquetas.RestoreVacio": "Por favor seleccione la ruta del archivo .bak que se quiere restaurar",
 
+    "FRMOrdenCompra.Etiquetas.SuperaMaxStock": "La cantidad ingresada para solicitar supera el stock máximo del producto",
+    "FRMOrdenCompra.Etiquetas.IngresarCotizacion": "Ingrese la cotización recibida para este producto",
+
     "Etiquetas.ModoAñadir": "Modo añadir",
     "Etiquetas.ModoModificar": "Modo modificar",
     "Etiquetas.ModoEliminar": "Modo eliminar",
@@ -364,6 +367,7 @@
     "dgv.Evento": "Evento",
     "dgv.Criticidad": "Criticidad",
     "dgv.Activo": "Activo",
+    "dgv.Cotizacion": "Cotización",
 
     "Modulos.Sesiones": "Sesiones",
     "Modulos.Usuarios": "Usuarios",

@@ -326,6 +326,9 @@
     "FRMRespaldos.Etiquetas.RestoreError": "There was a problem when restoring database",
     "FRMRespaldos.Etiquetas.RestoreVacio": "Please select path of the .bak file you want to restore",
 
+    "FRMOrdenCompra.Etiquetas.SuperaMaxStock": "The selected amount would be above this product's maximum stock",
+    "FRMOrdenCompra.Etiquetas.IngresarCotizacion": "Insert received price for buying this product",
+
     "Etiquetas.ModoAñadir": "Add Mode",
     "Etiquetas.ModoModificar": "Modify Mode",
     "Etiquetas.ModoEliminar": "Delete Mode",
@@ -365,6 +368,7 @@
     "dgv.Evento": "Event",
     "dgv.Criticidad": "Criticality",
     "dgv.Activo": "Activated",
+    "dgv.Cotizacion": "Selling price",
 
     "Modulos.Sesiones": "Sessions",
     "Modulos.Usuarios": "Users",

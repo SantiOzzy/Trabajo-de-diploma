@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Services;
 using BLL;
 using BE;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Trabajo_de_campo
 {
@@ -32,6 +33,18 @@ namespace Trabajo_de_campo
             {
                 e.Cancel = true;
                 Hide();
+            }
+        }
+
+        private void BTNRegistrarProveedor_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
+            }
+            else
+            {
+
             }
         }
     }

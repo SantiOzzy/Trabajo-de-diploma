@@ -127,7 +127,7 @@ namespace Trabajo_de_campo
                 dataGridView2.Rows.Remove(dataGridView2.Rows[e.RowIndex]);
                 ActualizarPrecioTotal();
 
-                dataGridView1.Rows[e.RowIndex].Selected = true;
+                dataGridView2.Rows[e.RowIndex].Selected = true;
             }
             catch (Exception)
             {

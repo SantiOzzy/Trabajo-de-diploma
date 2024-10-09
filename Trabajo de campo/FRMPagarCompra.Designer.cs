@@ -77,6 +77,7 @@
             this.BTNPagar.TabIndex = 4;
             this.BTNPagar.Text = "Registrar pago";
             this.BTNPagar.UseVisualStyleBackColor = true;
+            this.BTNPagar.Click += new System.EventHandler(this.BTNPagar_Click);
             // 
             // FRMPagarCompra
             // 

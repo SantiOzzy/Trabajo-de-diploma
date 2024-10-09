@@ -50,6 +50,7 @@
             this.BTNPreRegistrarProveedor.TabIndex = 25;
             this.BTNPreRegistrarProveedor.Text = "Pre-registrar proveedor";
             this.BTNPreRegistrarProveedor.UseVisualStyleBackColor = true;
+            this.BTNPreRegistrarProveedor.Click += new System.EventHandler(this.BTNPreRegistrarProveedor_Click);
             // 
             // textBox4
             // 

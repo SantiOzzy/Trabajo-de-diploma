@@ -34,5 +34,17 @@ namespace Trabajo_de_campo
                 Hide();
             }
         }
+
+        private void BTNPagar_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
+            }
+            else
+            {
+
+            }
+        }
     }
 }
