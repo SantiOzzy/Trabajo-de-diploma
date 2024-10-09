@@ -182,5 +182,11 @@ namespace Trabajo_de_campo
 
             return dt;
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dt = negocios.ObtenerTabla("*", "Libro", $"Activo = 1 AND ISBN LIKE '{textBox1.Text}%'");
+            dataGridView1.DataSource = dt;
+        }
     }
 }

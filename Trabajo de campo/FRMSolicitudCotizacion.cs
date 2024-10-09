@@ -41,6 +41,8 @@ namespace Trabajo_de_campo
                 e.Cancel = true;
                 Hide();
             }
+            textBox1.Text = "";
+            textBox2.Text = "";
 
             parent.FormPreRegistrarProveedor.Hide();
         }
@@ -95,6 +97,18 @@ namespace Trabajo_de_campo
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             listBox1.Items.Remove(listBox1.SelectedItem);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", $"Stock < MinStock AND ISBN LIKE '{textBox1.Text}%'");
+            dataGridView1.DataSource = dt;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            //DataTable dt = negocios.ObtenerTabla("*", "Proveedor", $"CUIT LIKE '{textBox2.Text}%'");
+            //dataGridView1.DataSource = dt;
         }
     }
 }
