@@ -56,6 +56,7 @@
     <Compile Include="LanguageManager.cs" />
     <Compile Include="Libro_C.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializacion.cs" />
     <Compile Include="SessionManager.cs" />
   </ItemGroup>
   <ItemGroup>

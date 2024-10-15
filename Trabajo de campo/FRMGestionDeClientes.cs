@@ -27,6 +27,7 @@ namespace Trabajo_de_campo
         BLLCliente NegociosCliente = new BLLCliente();
         BLLEvento NegociosEvento = new BLLEvento();
         CryptoManager Encriptacion = new CryptoManager();
+        Serializacion serializacion = new Serializacion();
 
         public FRMGestionDeClientes()
         {
@@ -491,7 +492,7 @@ namespace Trabajo_de_campo
                 saveFileDialog1.Filter = $"XML Files|*.xml";
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    SerializarXML(saveFileDialog1.FileName);
+                    serializacion.SerializarXML(saveFileDialog1.FileName, dataGridView1);
 
                     MostrarXmlEnListbox(saveFileDialog1.FileName);
 
@@ -513,7 +514,7 @@ namespace Trabajo_de_campo
                 openFileDialog1.Filter = $"XML Files|*.xml";
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    DataTable dt = DeserializarXML(openFileDialog1.FileName);
+                    DataTable dt = serializacion.DeserializarXML(openFileDialog1.FileName);
 
                     dataGridView1.DataSource = dt;
                     ContarClientes();
@@ -534,47 +535,6 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show($"{"FRMGestionDeClientes.Etiquetas.ErrorDeserializacion"}: {ex.Message}\n{"FRMGestionDeClientes.Etiquetas.Detalles"}: {ex.InnerException?.Message}");
             }
-        }
-
-        private void SerializarXML(string path)
-        {
-            DataTable dt = ConvertirGrillaEnDataTable();
-
-            using (FileStream fs = new FileStream(path, FileMode.Create))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(DataTable));
-                serializer.Serialize(fs, dt);
-            }
-        }
-
-        private DataTable DeserializarXML(string path)
-        {
-            using (FileStream fs = new FileStream(path, FileMode.Open))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(DataTable));
-                return (DataTable)serializer.Deserialize(fs);
-            }
-        }
-
-        private DataTable ConvertirGrillaEnDataTable()
-        {
-            DataTable dt = new DataTable("Clientes");
-
-            foreach (DataGridViewColumn c in dataGridView1.Columns)
-            {
-                dt.Columns.Add(c.Name, c.ValueType);
-            }
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                DataRow dr = dt.NewRow();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    dr[cell.ColumnIndex] = cell.Value;
-                }
-                dt.Rows.Add(dr);
-            }
-            return dt;
         }
 
         private void MostrarXmlEnListbox(string path)
