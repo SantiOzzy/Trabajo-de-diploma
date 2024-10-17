@@ -54,11 +54,16 @@ namespace Trabajo_de_campo
 
         private void FRMSolicitudCotizacion_VisibleChanged(object sender, EventArgs e)
         {
+            RefrescarGrillas();
+        }
+
+        public void RefrescarGrillas()
+        {
             DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", "Stock < MinStock");
             dataGridView1.DataSource = dt;
 
-            //dt = negocios.ObtenerTabla("*", "Proveedor");
-            //dataGridView2.DataSource = dt;
+            dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor");
+            dataGridView2.DataSource = dt;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -87,8 +92,23 @@ namespace Trabajo_de_campo
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            bool ProveedorSeleccionado = false;
             try
             {
+                foreach (var item in listBox2.Items)
+                {
+                    if (item.ToString().Substring(0, item.ToString().IndexOf(' ')) == dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString())
+                    {
+                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSolicitudCotizacion.Etiquetas.ProveedorYaSeleccionado"));
+                        ProveedorSeleccionado = true;
+                    }
+                }
+
+                if (ProveedorSeleccionado == false)
+                {
+                    listBox2.Items.Add(dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString() + " - " + dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString() + " - " + dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString() + " - " + dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString() + " - " + dataGridView2.Rows[e.RowIndex].Cells[4].Value.ToString());
+                }
+
                 dataGridView2.Rows[e.RowIndex].Selected = true;
             }
             catch (Exception ex) { }
@@ -99,6 +119,11 @@ namespace Trabajo_de_campo
             listBox1.Items.Remove(listBox1.SelectedItem);
         }
 
+        private void listBox2_SelectedValueChanged(object sender, EventArgs e)
+        {
+            listBox2.Items.Remove(listBox2.SelectedItem);
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", $"Stock < MinStock AND ISBN LIKE '{textBox1.Text}%'");
@@ -107,8 +132,8 @@ namespace Trabajo_de_campo
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            //DataTable dt = negocios.ObtenerTabla("*", "Proveedor", $"CUIT LIKE '{textBox2.Text}%'");
-            //dataGridView1.DataSource = dt;
+            DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor", $"CUIT LIKE '{textBox2.Text}%'");
+            dataGridView2.DataSource = dt;
         }
 
         private void BTNGenerarSolicitud_Click(object sender, EventArgs e)

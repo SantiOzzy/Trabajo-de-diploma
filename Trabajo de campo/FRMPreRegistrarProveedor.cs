@@ -18,7 +18,7 @@ namespace Trabajo_de_campo
     public partial class FRMPreRegistrarProveedor : Form, IObserver
     {
         Negocios negocios = new Negocios();
-        //BLLProveedor NegociosProveedor = new BLLProveedor();
+        BLLProveedor NegociosProveedor = new BLLProveedor();
         BLLEvento NegociosEvento = new BLLEvento();
 
         public FRMPreRegistrarProveedor()
@@ -61,35 +61,42 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
             }
-            //VALIDAR CUIT
-            //else if (negocios.RevisarDisponibilidad(numericUpDown1.Value.ToString(), "DNI", "Cliente"))
-            //{
-            //    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.DNIOcupado"));
-            //}
+            else if (textBox1.Text.Length < 11)
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPreRegistrarProveedor.Etiquetas.11Digitos"));
+            }
+            else if (negocios.RevisarDisponibilidad(textBox1.Text, "CUIT", "Proveedor"))
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPreRegistrarProveedor.Etiquetas.CUITOcupado"));
+            }
+            else if (negocios.RevisarDisponibilidad(textBox2.Text, "RazonSocial", "Proveedor"))
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPreRegistrarProveedor.Etiquetas.RazonSocialOcupado"));
+            }
             else if (MailValido == false)
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.CorreoInvalido"));
             }
-            //VALIDAR MAIL
-            //else if (negocios.RevisarDisponibilidad(textBox4.Text, "Email", "Cliente"))
-            //{
-            //    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.CorreoOcupado"));
-            //}
+            else if (negocios.RevisarDisponibilidad(textBox4.Text, "Email", "Proveedor"))
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.CorreoOcupado"));
+            }
             else if (NumeroTelefonoValido == false)
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.NumTelInvalido"));
             }
             else
             {
-                //Cliente cliente = new Cliente(Convert.ToInt32(numericUpDown1.Value), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
+                Proveedor prov = new Proveedor(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
 
-                //NegociosCliente.RegistrarCliente(cliente);
+                NegociosProveedor.PreRegistrarProveedor(prov);
 
-                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Cliente", "Registro de cliente", 4));
-                //FRMUI parent = this.MdiParent as FRMUI;
-                //parent.FormBitacoraEventos.Actualizar();
+                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Proveedor", "Pre-registro de proveedor", 4));
+                FRMUI parent = this.MdiParent as FRMUI;
+                parent.FormBitacoraEventos.Actualizar();
+                parent.FormSolicitudCotizacion.RefrescarGrillas();
 
-                //MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.ClienteRegistrado"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPreRegistrarProveedor.Etiquetas.ProveedorPreRegistrado"));
 
                 this.Hide();
 

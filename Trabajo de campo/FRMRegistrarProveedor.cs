@@ -16,6 +16,9 @@ namespace Trabajo_de_campo
 {
     public partial class FRMRegistrarProveedor : Form, IObserver
     {
+        Negocios negocios = new Negocios();
+        BLLProveedor NegociosProveedor = new BLLProveedor();
+        BLLEvento NegociosEvento = new BLLEvento();
         public FRMRegistrarProveedor()
         {
             InitializeComponent();
@@ -38,14 +41,39 @@ namespace Trabajo_de_campo
 
         private void BTNRegistrarProveedor_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
             }
+            else if (negocios.RevisarDisponibilidad(textBox2.Text, "CuentaBancaria", "Proveedor"))
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarProveedor.Etiquetas.CuentaBancariaOcupado"));
+            }
             else
             {
+                Proveedor prov = new Proveedor(CBCuit.Text, textBox1.Text, textBox2.Text);
 
+                NegociosProveedor.RegistrarProveedor(prov);
+
+                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Proveedor", "Pre-registro de proveedor", 4));
+                FRMUI parent = this.MdiParent as FRMUI;
+                parent.FormBitacoraEventos.Actualizar();
+                parent.FormOrdenCompra.RefrescarGrillas();
+
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarProveedor.Etiquetas.ProveedorRegistrado"));
+
+                this.Hide();
+
+                textBox1.Text = "";
+                textBox2.Text = "";
             }
+        }
+
+        private void FRMRegistrarProveedor_VisibleChanged(object sender, EventArgs e)
+        {
+            CBCuit.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Direccion IS NULL");
+            CBCuit.DisplayMember = "CUIT";
+            CBCuit.ValueMember = "CUIT";
         }
     }
 }

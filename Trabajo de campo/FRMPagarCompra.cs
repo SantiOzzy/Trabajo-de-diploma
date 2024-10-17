@@ -46,5 +46,10 @@ namespace Trabajo_de_campo
 
             }
         }
+
+        private void FRMPagarCompra_VisibleChanged(object sender, EventArgs e)
+        {
+            textBox2.Text = "";
+        }
     }
 }

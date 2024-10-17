@@ -33,19 +33,19 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CBProveedor = new System.Windows.Forms.ComboBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.ISBN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Autor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cotizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.BTNRegistrarOrden = new System.Windows.Forms.Button();
             this.BTNRegistrarProveedor = new System.Windows.Forms.Button();
             this.BTNRegistrarPago = new System.Windows.Forms.Button();
-            this.ISBN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Autor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cotizacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -87,13 +87,14 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "Proveedor:";
             // 
-            // comboBox1
+            // CBProveedor
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(597, 319);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(179, 21);
-            this.comboBox1.TabIndex = 19;
+            this.CBProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBProveedor.FormattingEnabled = true;
+            this.CBProveedor.Location = new System.Drawing.Point(597, 319);
+            this.CBProveedor.Name = "CBProveedor";
+            this.CBProveedor.Size = new System.Drawing.Size(179, 21);
+            this.CBProveedor.TabIndex = 19;
             // 
             // dataGridView2
             // 
@@ -112,6 +113,36 @@
             this.dataGridView2.Size = new System.Drawing.Size(545, 207);
             this.dataGridView2.TabIndex = 22;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
+            // 
+            // ISBN
+            // 
+            this.ISBN.HeaderText = "ISBN";
+            this.ISBN.Name = "ISBN";
+            this.ISBN.ReadOnly = true;
+            // 
+            // Autor
+            // 
+            this.Autor.HeaderText = "Autor";
+            this.Autor.Name = "Autor";
+            this.Autor.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Cotizacion
+            // 
+            this.Cotizacion.HeaderText = "Cotización";
+            this.Cotizacion.Name = "Cotizacion";
+            this.Cotizacion.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
             // 
             // label3
             // 
@@ -153,6 +184,7 @@
             this.BTNRegistrarOrden.TabIndex = 23;
             this.BTNRegistrarOrden.Text = "Generar orden de compra";
             this.BTNRegistrarOrden.UseVisualStyleBackColor = true;
+            this.BTNRegistrarOrden.Click += new System.EventHandler(this.BTNRegistrarOrden_Click);
             // 
             // BTNRegistrarProveedor
             // 
@@ -173,36 +205,6 @@
             this.BTNRegistrarPago.Text = "Registrar pago";
             this.BTNRegistrarPago.UseVisualStyleBackColor = true;
             this.BTNRegistrarPago.Click += new System.EventHandler(this.BTNRegistrarPago_Click);
-            // 
-            // ISBN
-            // 
-            this.ISBN.HeaderText = "ISBN";
-            this.ISBN.Name = "ISBN";
-            this.ISBN.ReadOnly = true;
-            // 
-            // Autor
-            // 
-            this.Autor.HeaderText = "Autor";
-            this.Autor.Name = "Autor";
-            this.Autor.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Cotizacion
-            // 
-            this.Cotizacion.HeaderText = "Cotización";
-            this.Cotizacion.Name = "Cotizacion";
-            this.Cotizacion.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
             // 
             // label6
             // 
@@ -228,7 +230,7 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.CBProveedor);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
@@ -254,7 +256,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CBProveedor;
         public System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -267,6 +269,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cotizacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label6;
     }
 }

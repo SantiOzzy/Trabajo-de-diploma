@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.BTNPagar = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -56,7 +58,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 51);
+            this.label2.Location = new System.Drawing.Point(12, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 2;
@@ -64,14 +66,14 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(112, 48);
+            this.textBox2.Location = new System.Drawing.Point(112, 69);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(160, 20);
             this.textBox2.TabIndex = 3;
             // 
             // BTNPagar
             // 
-            this.BTNPagar.Location = new System.Drawing.Point(84, 74);
+            this.BTNPagar.Location = new System.Drawing.Point(84, 95);
             this.BTNPagar.Name = "BTNPagar";
             this.BTNPagar.Size = new System.Drawing.Size(111, 23);
             this.BTNPagar.TabIndex = 4;
@@ -79,12 +81,31 @@
             this.BTNPagar.UseVisualStyleBackColor = true;
             this.BTNPagar.Click += new System.EventHandler(this.BTNPagar_Click);
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(112, 43);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(160, 20);
+            this.textBox3.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Monto pagado:";
+            // 
             // FRMPagarCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(279, 102);
+            this.ClientSize = new System.Drawing.Size(279, 124);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.BTNPagar);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
@@ -96,6 +117,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pagar producto";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMPagarCompra_FormClosing);
+            this.VisibleChanged += new System.EventHandler(this.FRMPagarCompra_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,5 +130,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button BTNPagar;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox textBox3;
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="Perfil.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor.cs" />
     <Compile Include="TipoPermiso.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>

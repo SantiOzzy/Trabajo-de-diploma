@@ -325,8 +325,18 @@
     "FRMRespaldos.Etiquetas.RestoreError": "No se pudo restaurar la base de datos",
     "FRMRespaldos.Etiquetas.RestoreVacio": "Por favor seleccione la ruta del archivo .bak que se quiere restaurar",
 
+    "FRMSolicitudCotizacion.Etiquetas.ProveedorYaSeleccionado": "El proveedor seleccionado ya está elegido",
+    "FRMSolicitudCotizacion.Etiquetas.RazonSocialOcupado": "La razón social no se puede repetir",
+
+    "FRMPreRegistrarProveedor.Etiquetas.CUITOcupado": "El CUIT ingresado ya está en uso",
+    "FRMPreRegistrarProveedor.Etiquetas.ProveedorPreRegistrado": "Se pre-registró el proveedor correctamente",
+    "FRMPreRegistrarProveedor.Etiquetas.11Digitos": "El CUIT debe tener 11 dígitos",
+
     "FRMOrdenCompra.Etiquetas.SuperaMaxStock": "La cantidad ingresada para solicitar supera el stock máximo del producto",
     "FRMOrdenCompra.Etiquetas.IngresarCotizacion": "Ingrese la cotización recibida para este producto",
+
+    "FRMRegistrarProveedor.Etiquetas.CuentaBancariaOcupado": "La cuenta bancaria ingresada ya está en uso",
+    "FRMRegistrarProveedor.Etiquetas.ProveedorRegistrado": "Se registró el proveedor correctamente",
 
     "Etiquetas.ModoAñadir": "Modo añadir",
     "Etiquetas.ModoModificar": "Modo modificar",
@@ -368,6 +378,9 @@
     "dgv.Criticidad": "Criticidad",
     "dgv.Activo": "Activo",
     "dgv.Cotizacion": "Cotización",
+    "dgv.CUIT": "CUIT",
+    "dgv.RazonSocial": "Razón social",
+    "dgv.CuentaBancaria": "Cuenta bancaria",
 
     "Modulos.Sesiones": "Sesiones",
     "Modulos.Usuarios": "Usuarios",

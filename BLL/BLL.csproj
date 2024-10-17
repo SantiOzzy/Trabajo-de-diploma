@@ -49,6 +49,7 @@
     <Compile Include="BLLFamilia.cs" />
     <Compile Include="BLLLibro_C.cs" />
     <Compile Include="BLLPermiso.cs" />
+    <Compile Include="BLLProveedor.cs" />
     <Compile Include="BLLRespaldo.cs" />
     <Compile Include="BLLUsuario.cs" />
     <Compile Include="Negocios.cs" />

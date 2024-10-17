@@ -65,14 +65,25 @@ namespace Trabajo_de_campo
 
         private void BTNRegistrarPago_Click(object sender, EventArgs e)
         {
+            //if proveedor seleccionado en combobox = false -> no avanzar
+            //else cargar en textbox cuenta bancaria (en FRMPagarProducto) la cuenta bancaria del proveedor seleccionado
             parent.FormPagarCompra.Show();
         }
 
         private void FRMOrdenCompra_VisibleChanged(object sender, EventArgs e)
         {
+            RefrescarGrillas();
+        }
+
+        public void RefrescarGrillas()
+        {
             DataTable dt = negocios.ObtenerTabla("*", "Libro", "Activo = 1");
             dt = TraducirTabla(dt);
             dataGridView1.DataSource = dt;
+
+            CBProveedor.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Direccion IS NOT NULL");
+            CBProveedor.DisplayMember = "CUIT";
+            CBProveedor.ValueMember = "CUIT";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -161,6 +172,7 @@ namespace Trabajo_de_campo
             }
 
             label6.Text = "$" + PrecioTotal.ToString();
+            parent.FormPagarCompra.textBox3.Text = "$" + PrecioTotal.ToString();
         }
 
         DataTable TraducirTabla(DataTable dt)
@@ -187,6 +199,11 @@ namespace Trabajo_de_campo
         {
             DataTable dt = negocios.ObtenerTabla("*", "Libro", $"Activo = 1 AND ISBN LIKE '{textBox1.Text}%'");
             dataGridView1.DataSource = dt;
+        }
+
+        private void BTNRegistrarOrden_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -107,6 +107,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(338, 199);
             this.listBox2.TabIndex = 5;
+            this.listBox2.SelectedValueChanged += new System.EventHandler(this.listBox2_SelectedValueChanged);
             // 
             // label3
             // 
