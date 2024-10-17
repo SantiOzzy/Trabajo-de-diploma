@@ -134,6 +134,7 @@
             this.BTNGenerarSolicitud.TabIndex = 8;
             this.BTNGenerarSolicitud.Text = "Generar solicitud de cotización";
             this.BTNGenerarSolicitud.UseVisualStyleBackColor = true;
+            this.BTNGenerarSolicitud.Click += new System.EventHandler(this.BTNGenerarSolicitud_Click);
             // 
             // BTNPreRegistrar
             // 

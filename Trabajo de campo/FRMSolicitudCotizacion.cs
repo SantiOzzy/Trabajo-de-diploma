@@ -110,5 +110,10 @@ namespace Trabajo_de_campo
             //DataTable dt = negocios.ObtenerTabla("*", "Proveedor", $"CUIT LIKE '{textBox2.Text}%'");
             //dataGridView1.DataSource = dt;
         }
+
+        private void BTNGenerarSolicitud_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
