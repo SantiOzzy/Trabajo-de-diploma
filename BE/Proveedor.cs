@@ -31,5 +31,11 @@ namespace BE
             Direccion = direccion;
             CuentaBancaria = cuentaBancaria;
         }
+
+        public Proveedor(string cUIT, string razonSocial, string nombre, string email, string numTelefono, string direccion, string cuentaBancaria) : this(cUIT, razonSocial, nombre, email, numTelefono)
+        {
+            Direccion = direccion;
+            CuentaBancaria = cuentaBancaria;
+        }
     }
 }

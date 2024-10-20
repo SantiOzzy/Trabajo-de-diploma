@@ -17,6 +17,7 @@ namespace Trabajo_de_campo
     public partial class FRMOrdenCompra : Form, IObserver
     {
         Negocios negocios = new Negocios();
+        BLLProveedor NegociosProveedor = new BLLProveedor();
         FRMUI parent;
         public FRMOrdenCompra()
         {
@@ -67,12 +68,24 @@ namespace Trabajo_de_campo
         {
             //if proveedor seleccionado en combobox = false -> no avanzar
             //else cargar en textbox cuenta bancaria (en FRMPagarProducto) la cuenta bancaria del proveedor seleccionado
-            parent.FormPagarCompra.Show();
+
+            if (CBProveedor.Text == "")
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.SeleccionarProveedor"));
+            }
+            else
+            {
+                parent.FormPagarCompra.textBox1.Text = NegociosProveedor.ObtenerProveedor(CBProveedor.Text).CuentaBancaria;
+                parent.FormPagarCompra.Show();
+            }
         }
 
         private void FRMOrdenCompra_VisibleChanged(object sender, EventArgs e)
         {
             RefrescarGrillas();
+
+            parent.FormPagarCompra.textBox1.Text = "";
+            parent.FormPagarCompra.textBox3.Text = "";
         }
 
         public void RefrescarGrillas()
@@ -84,6 +97,8 @@ namespace Trabajo_de_campo
             CBProveedor.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Direccion IS NOT NULL");
             CBProveedor.DisplayMember = "CUIT";
             CBProveedor.ValueMember = "CUIT";
+
+            CBProveedor.SelectedItem = null;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

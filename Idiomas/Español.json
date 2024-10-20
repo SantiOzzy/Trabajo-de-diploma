@@ -334,6 +334,7 @@
 
     "FRMOrdenCompra.Etiquetas.SuperaMaxStock": "La cantidad ingresada para solicitar supera el stock máximo del producto",
     "FRMOrdenCompra.Etiquetas.IngresarCotizacion": "Ingrese la cotización recibida para este producto",
+    "FRMOrdenCompra.Etiquetas.SeleccionarProveedor": "Para pagar se debe seleccionar un proveedor",
 
     "FRMRegistrarProveedor.Etiquetas.CuentaBancariaOcupado": "La cuenta bancaria ingresada ya está en uso",
     "FRMRegistrarProveedor.Etiquetas.ProveedorRegistrado": "Se registró el proveedor correctamente",

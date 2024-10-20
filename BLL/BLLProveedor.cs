@@ -20,5 +20,10 @@ namespace BLL
         {
             Data.EjecutarComando("RegistrarProveedor", $"{prov.CUIT}, '{prov.Direccion}', '{prov.CuentaBancaria}'");
         }
+
+        public Proveedor ObtenerProveedor(string CUIT)
+        {
+            return DataProveedor.ObtenerProveedor(CUIT);
+        }
     }
 }

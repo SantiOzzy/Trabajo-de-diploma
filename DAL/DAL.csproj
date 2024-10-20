@@ -50,6 +50,7 @@
     <Compile Include="DALLibro.cs" />
     <Compile Include="DALLibro_C.cs" />
     <Compile Include="DALPermiso.cs" />
+    <Compile Include="DALProveedor.cs" />
     <Compile Include="DALRespaldo.cs" />
     <Compile Include="DALUsuario.cs" />
     <Compile Include="Datos.cs" />
