@@ -52,6 +52,7 @@
     <Compile Include="DALPermiso.cs" />
     <Compile Include="DALProveedor.cs" />
     <Compile Include="DALRespaldo.cs" />
+    <Compile Include="DALSolicitudCotizacion.cs" />
     <Compile Include="DALUsuario.cs" />
     <Compile Include="Datos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

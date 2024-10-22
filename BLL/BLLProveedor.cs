@@ -11,6 +11,7 @@ namespace BLL
     public class BLLProveedor
     {
         Datos Data = new Datos();
+        DALProveedor DataProveedor = new DALProveedor();
         public void PreRegistrarProveedor(Proveedor prov)
         {
             Data.EjecutarComando("PreRegistrarProveedor", $"{prov.CUIT}, '{prov.RazonSocial}', '{prov.Nombre}', '{prov.Email}', '{prov.NumTelefono}'");

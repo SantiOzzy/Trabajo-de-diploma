@@ -129,7 +129,7 @@
             // 
             // BTNGenerarSolicitud
             // 
-            this.BTNGenerarSolicitud.Location = new System.Drawing.Point(386, 466);
+            this.BTNGenerarSolicitud.Location = new System.Drawing.Point(460, 466);
             this.BTNGenerarSolicitud.Name = "BTNGenerarSolicitud";
             this.BTNGenerarSolicitud.Size = new System.Drawing.Size(116, 49);
             this.BTNGenerarSolicitud.TabIndex = 8;
@@ -139,7 +139,7 @@
             // 
             // BTNPreRegistrar
             // 
-            this.BTNPreRegistrar.Location = new System.Drawing.Point(201, 466);
+            this.BTNPreRegistrar.Location = new System.Drawing.Point(275, 466);
             this.BTNPreRegistrar.Name = "BTNPreRegistrar";
             this.BTNPreRegistrar.Size = new System.Drawing.Size(116, 49);
             this.BTNPreRegistrar.TabIndex = 9;

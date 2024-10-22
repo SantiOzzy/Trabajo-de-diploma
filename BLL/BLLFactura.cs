@@ -30,9 +30,12 @@ namespace BLL
             return DatosFactura.ObtenerCodFactura();
         }
 
-        public void RegistrarItem(int CodFactura, string ISBN, int Cantidad)
+        public void RegistrarItems(Factura fact)
         {
-            Data.EjecutarComando("RegistrarItem", $"{CodFactura}, '{ISBN}', {Cantidad}");
+            foreach (var item in fact.Items)
+            {
+                Data.EjecutarComando("RegistrarItem", $"{item.CodFactura}, '{item.ISBN}', {item.Cantidad}");
+            }
         }
     }
 }

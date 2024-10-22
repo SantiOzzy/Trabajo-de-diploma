@@ -103,8 +103,9 @@ namespace Trabajo_de_campo
 
                 foreach (DataRow dr in Productos.Rows)
                 {
-                    NegociosFactura.RegistrarItem(CodFact, dr.Field<string>(0), Convert.ToInt32(dr.Field<string>(4)));
+                    parent.fact.Items.Add(new Item(CodFact, dr[0].ToString(), Convert.ToInt32(dr.Field<string>(4))));
                 }
+                NegociosFactura.RegistrarItems(parent.fact);
 
                 NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de factura", 3));
                 parent.FormBitacoraEventos.Actualizar();

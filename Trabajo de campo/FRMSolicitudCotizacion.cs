@@ -17,6 +17,7 @@ namespace Trabajo_de_campo
     {
         FRMUI parent;
         Negocios negocios = new Negocios();
+        BLLSolicitudCotizacion NegociosSolicitud = new BLLSolicitudCotizacion();
 
         public FRMSolicitudCotizacion()
         {
@@ -138,7 +139,43 @@ namespace Trabajo_de_campo
 
         private void BTNGenerarSolicitud_Click(object sender, EventArgs e)
         {
+            if (listBox1.Items.Count == 0)
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSolicitudCotizacion.Etiquetas.SeleccioneProductos"));
+            }
+            else if (listBox2.Items.Count == 0)
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSolicitudCotizacion.Etiquetas.SeleccioneProveedores"));
+            }
+            else
+            {
+                SolicitudCotizacion sol = new SolicitudCotizacion(DateTime.Now);
 
+                NegociosSolicitud.RegistrarSolicitudCotizacion(new SolicitudCotizacion(DateTime.Now));
+
+                int CodSol = NegociosSolicitud.ObtenerCodSolicitudCotizacion();
+
+                foreach (DataGridViewRow dr in dataGridView1.Rows)
+                {
+                    sol.items.Add(new ItemSolicitud(dr.Cells[0].Value.ToString(), CodSol));
+                }
+                NegociosSolicitud.RegistrarItems(sol);
+
+                foreach (DataGridViewRow dr in dataGridView2.Rows)
+                {
+                    sol.proveedores.Add(new Proveedor(dr.Cells[0].Value.ToString(), dr.Cells[1].Value.ToString(), dr.Cells[2].Value.ToString(), dr.Cells[3].Value.ToString(), dr.Cells[4].Value.ToString()));
+                }
+                NegociosSolicitud.RegistrarProveedores(sol, CodSol);
+
+                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de factura", 3));
+                parent.FormBitacoraEventos.Actualizar();
+
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSolicitudCotizacion.Etiquetas.SolicitudGenerada"));
+
+                this.Hide();
+
+                //VaciarCampos();
+            }
         }
     }
 }

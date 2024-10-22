@@ -11,6 +11,7 @@ namespace BE
         public DateTime Fecha;
         public Cobro Cobro;
         public int DNI;
+        public List<Item> Items = new List<Item>();
 
         public Factura(DateTime fecha, Cobro cobro, int dNI)
         {

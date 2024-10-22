@@ -327,6 +327,9 @@
 
     "FRMSolicitudCotizacion.Etiquetas.ProveedorYaSeleccionado": "El proveedor seleccionado ya está elegido",
     "FRMSolicitudCotizacion.Etiquetas.RazonSocialOcupado": "La razón social no se puede repetir",
+    "FRMSolicitudCotizacion.Etiquetas.SeleccioneProductos": "No se seleccionaron productos para la solicitud",
+    "FRMSolicitudCotizacion.Etiquetas.SeleccioneProveedores": "No se seleccionaron proveedores para la solicitud",
+    "FRMSolicitudCotizacion.Etiquetas.SolicitudGenerada": "Se generó la solicitud de cotización",
 
     "FRMPreRegistrarProveedor.Etiquetas.CUITOcupado": "El CUIT ingresado ya está en uso",
     "FRMPreRegistrarProveedor.Etiquetas.ProveedorPreRegistrado": "Se pre-registró el proveedor correctamente",
