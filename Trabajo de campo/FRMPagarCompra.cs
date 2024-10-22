@@ -15,6 +15,7 @@ namespace Trabajo_de_campo
 {
     public partial class FRMPagarCompra : Form, IObserver
     {
+        Negocios negocios = new Negocios();
         public FRMPagarCompra()
         {
             InitializeComponent();
@@ -41,9 +42,18 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
             }
+            else if (negocios.RevisarDisponibilidad(textBox2.Text, "CodFactura", "OrdenCompra"))
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.FacturaEnUso"));
+            }
             else
             {
+                FRMUI parent = this.MdiParent as FRMUI;
+                parent.FormOrdenCompra.orden.CodFactura = textBox2.Text;
 
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.ConformacionPago"));
+
+                this.Hide();
             }
         }
 

@@ -41,7 +41,7 @@ namespace Trabajo_de_campo
 
         private void BTNRegistrarProveedor_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || textBox2.Text == "")
+            if (CBCuit.Text == "" || textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
             }

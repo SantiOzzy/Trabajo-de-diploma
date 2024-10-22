@@ -18,11 +18,15 @@ namespace Trabajo_de_campo
     {
         Negocios negocios = new Negocios();
         BLLProveedor NegociosProveedor = new BLLProveedor();
+        BLLOrdenCompra NegociosOrdenCompra = new BLLOrdenCompra();
         FRMUI parent;
+
+        public OrdenCompra orden;
         public FRMOrdenCompra()
         {
             InitializeComponent();
             LanguageManager.ObtenerInstancia().Agregar(this);
+            orden = new OrdenCompra();
         }
 
         public void ActualizarIdioma()
@@ -43,6 +47,8 @@ namespace Trabajo_de_campo
                 e.Cancel = true;
                 Hide();
             }
+
+            orden = new OrdenCompra();
 
             label5.Text = "0";
 
@@ -66,12 +72,13 @@ namespace Trabajo_de_campo
 
         private void BTNRegistrarPago_Click(object sender, EventArgs e)
         {
-            //if proveedor seleccionado en combobox = false -> no avanzar
-            //else cargar en textbox cuenta bancaria (en FRMPagarProducto) la cuenta bancaria del proveedor seleccionado
-
             if (CBProveedor.Text == "")
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.SeleccionarProveedor"));
+            }
+            else if(dataGridView2.Rows.Count == 0)
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.ElegirProductosParaVender"));
             }
             else
             {
@@ -86,6 +93,8 @@ namespace Trabajo_de_campo
 
             parent.FormPagarCompra.textBox1.Text = "";
             parent.FormPagarCompra.textBox3.Text = "";
+
+            orden = new OrdenCompra();
         }
 
         public void RefrescarGrillas()
@@ -186,8 +195,17 @@ namespace Trabajo_de_campo
 
             }
 
-            label6.Text = "$" + PrecioTotal.ToString();
+            label6.Text = PrecioTotal.ToString();
             parent.FormPagarCompra.textBox3.Text = "$" + PrecioTotal.ToString();
+        }
+
+        void VaciarCampos()
+        {
+            dataGridView2.Rows.Clear();
+            textBox1.Text = "";
+            CBProveedor.Text = "";
+
+            label6.Text = "0";
         }
 
         DataTable TraducirTabla(DataTable dt)
@@ -218,7 +236,49 @@ namespace Trabajo_de_campo
 
         private void BTNRegistrarOrden_Click(object sender, EventArgs e)
         {
+            if(CBProveedor.Text == "")
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.SeleccionarProveedorOrden"));
+            }
+            else if(orden.CodFactura == null || orden.CodFactura == "")
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.Pagar"));
+            }
+            else if (dataGridView2.RowCount == 0)
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.SeleccionarProductos"));
+            }
+            else
+            {
+                orden = new OrdenCompra(CBProveedor.Text, DateTime.Now, Convert.ToInt32(label6.Text), orden.CodFactura);
 
+                NegociosOrdenCompra.RegistrarOrdenCompra(orden);
+
+                int CodOrden = NegociosOrdenCompra.ObtenerCodOrdenCompra();
+
+                foreach (DataGridViewRow dr in dataGridView2.Rows)
+                {
+                    orden.Items.Add(new ItemOrden(dr.Cells[0].Value.ToString(), CodOrden, Convert.ToInt32(dr.Cells[3].Value), Convert.ToInt32(dr.Cells[4].Value)));
+                }
+                NegociosOrdenCompra.RegistrarItems(orden);
+
+                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de factura", 3));
+                parent.FormBitacoraEventos.Actualizar();
+
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.OrdenGenerada"));
+
+                this.Hide();
+
+                VaciarCampos();
+            }
+        }
+
+        private void CBProveedor_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (NegociosProveedor.ObtenerProveedor(CBProveedor.Text) != null)
+            {
+                parent.FormPagarCompra.textBox1.Text = NegociosProveedor.ObtenerProveedor(CBProveedor.Text).CuentaBancaria;
+            }
         }
     }
 }

@@ -95,6 +95,7 @@
             this.CBProveedor.Name = "CBProveedor";
             this.CBProveedor.Size = new System.Drawing.Size(179, 21);
             this.CBProveedor.TabIndex = 19;
+            this.CBProveedor.SelectedValueChanged += new System.EventHandler(this.CBProveedor_SelectedValueChanged);
             // 
             // dataGridView2
             // 
@@ -169,11 +170,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(608, 113);
+            this.label4.Location = new System.Drawing.Point(590, 113);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 29);
+            this.label4.Size = new System.Drawing.Size(159, 29);
             this.label4.TabIndex = 24;
-            this.label4.Text = "Precio total:";
+            this.label4.Text = "Precio total: $";
             // 
             // BTNRegistrarOrden
             // 
@@ -210,11 +211,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
-            this.label6.Location = new System.Drawing.Point(742, 113);
+            this.label6.Location = new System.Drawing.Point(741, 113);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(26, 29);
             this.label6.TabIndex = 27;
-            this.label6.Text = "$";
+            this.label6.Text = "0";
             // 
             // FRMOrdenCompra
             // 

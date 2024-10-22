@@ -24,7 +24,7 @@ namespace BLL
 
         public void RegistrarItems(SolicitudCotizacion sol)
         {
-            foreach (var item in sol.items)
+            foreach (var item in sol.Items)
             {
                 Data.EjecutarComando("RegistrarItemSolicitud", $"{item.CodSolicitud}, '{item.ISBN}'");
             }
@@ -32,7 +32,7 @@ namespace BLL
 
         public void RegistrarProveedores(SolicitudCotizacion sol, int CodSol)
         {
-            foreach (var prov in sol.proveedores)
+            foreach (var prov in sol.Proveedores)
             {
                 Data.EjecutarComando("RegistrarProveedorSolicitud", $"{CodSol}, '{prov.CUIT}'");
             }

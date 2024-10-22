@@ -42,8 +42,7 @@ namespace Trabajo_de_campo
                 e.Cancel = true;
                 Hide();
             }
-            textBox1.Text = "";
-            textBox2.Text = "";
+            VaciarCampos();
 
             parent.FormPreRegistrarProveedor.Hide();
         }
@@ -55,6 +54,8 @@ namespace Trabajo_de_campo
 
         private void FRMSolicitudCotizacion_VisibleChanged(object sender, EventArgs e)
         {
+            VaciarCampos();
+
             RefrescarGrillas();
         }
 
@@ -65,6 +66,15 @@ namespace Trabajo_de_campo
 
             dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor");
             dataGridView2.DataSource = dt;
+        }
+
+        void VaciarCampos()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -151,19 +161,19 @@ namespace Trabajo_de_campo
             {
                 SolicitudCotizacion sol = new SolicitudCotizacion(DateTime.Now);
 
-                NegociosSolicitud.RegistrarSolicitudCotizacion(new SolicitudCotizacion(DateTime.Now));
+                NegociosSolicitud.RegistrarSolicitudCotizacion(sol);
 
                 int CodSol = NegociosSolicitud.ObtenerCodSolicitudCotizacion();
 
                 foreach (DataGridViewRow dr in dataGridView1.Rows)
                 {
-                    sol.items.Add(new ItemSolicitud(dr.Cells[0].Value.ToString(), CodSol));
+                    sol.Items.Add(new ItemSolicitud(dr.Cells[0].Value.ToString(), CodSol));
                 }
                 NegociosSolicitud.RegistrarItems(sol);
 
                 foreach (DataGridViewRow dr in dataGridView2.Rows)
                 {
-                    sol.proveedores.Add(new Proveedor(dr.Cells[0].Value.ToString(), dr.Cells[1].Value.ToString(), dr.Cells[2].Value.ToString(), dr.Cells[3].Value.ToString(), dr.Cells[4].Value.ToString()));
+                    sol.Proveedores.Add(new Proveedor(dr.Cells[0].Value.ToString(), dr.Cells[1].Value.ToString(), dr.Cells[2].Value.ToString(), dr.Cells[3].Value.ToString(), dr.Cells[4].Value.ToString()));
                 }
                 NegociosSolicitud.RegistrarProveedores(sol, CodSol);
 
@@ -174,7 +184,7 @@ namespace Trabajo_de_campo
 
                 this.Hide();
 
-                //VaciarCampos();
+                VaciarCampos();
             }
         }
     }

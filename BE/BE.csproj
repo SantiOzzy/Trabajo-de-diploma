@@ -46,8 +46,10 @@
     <Compile Include="Factura.cs" />
     <Compile Include="Familia.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemOrden.cs" />
     <Compile Include="ItemSolicitud.cs" />
     <Compile Include="Libro.cs" />
+    <Compile Include="OrdenCompra.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

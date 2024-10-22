@@ -9,8 +9,8 @@ namespace BE
     public class SolicitudCotizacion
     {
         public DateTime FechaEmision;
-        public List<ItemSolicitud> items = new List<ItemSolicitud>();
-        public List<Proveedor> proveedores = new List<Proveedor>();
+        public List<ItemSolicitud> Items = new List<ItemSolicitud>();
+        public List<Proveedor> Proveedores = new List<Proveedor>();
 
         public SolicitudCotizacion(DateTime fechaEmision)
         {

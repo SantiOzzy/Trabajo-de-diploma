@@ -338,9 +338,17 @@
     "FRMOrdenCompra.Etiquetas.SuperaMaxStock": "La cantidad ingresada para solicitar supera el stock máximo del producto",
     "FRMOrdenCompra.Etiquetas.IngresarCotizacion": "Ingrese la cotización recibida para este producto",
     "FRMOrdenCompra.Etiquetas.SeleccionarProveedor": "Para pagar se debe seleccionar un proveedor",
+    "FRMOrdenCompra.Etiquetas.SeleccionarProveedorOrden": "Para generar la orden de compra se debe seleccionar un proveedor",
+    "FRMOrdenCompra.Etiquetas.Pagar": "Para generar la orden de compra se debe realizar el pago",
+    "FRMOrdenCompra.Etiquetas.SeleccionarProductos": "No se seleccionaron los productos a ordenar",
+    "FRMOrdenCompra.Etiquetas.OrdenGenerada": "Se generó la orden de compra",
+    "FRMOrdenCompra.Etiquetas.ElegirProductosParaVender": "Para pagar se tienen que seleccionar los productos que se ordenarán",
 
     "FRMRegistrarProveedor.Etiquetas.CuentaBancariaOcupado": "La cuenta bancaria ingresada ya está en uso",
     "FRMRegistrarProveedor.Etiquetas.ProveedorRegistrado": "Se registró el proveedor correctamente",
+
+    "FRMPagarCompra.Etiquetas.FacturaEnUso": "La factura ingresada ya existe",
+    "FRMPagarCompra.Etiquetas.ConformacionPago": "Pago conformado correctamente",
 
     "Etiquetas.ModoAñadir": "Modo añadir",
     "Etiquetas.ModoModificar": "Modo modificar",
