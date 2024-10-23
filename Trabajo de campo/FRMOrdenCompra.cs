@@ -127,7 +127,7 @@ namespace Trabajo_de_campo
                 if (LibroSeleccionado == false)
                 {
                     string cantidad = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.IngresarCantidad"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.Cantidad"));
-                    string cotizacion = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.IngresarCotizacion"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.Cotizacion"));
+                    string cotizacion = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.IngresarCotizacion"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.Cotizacion"));
 
                     bool ValidarNumero1 = cantidad.All(char.IsDigit);
                     bool ValidarNumero2 = cotizacion.All(char.IsDigit);
@@ -141,7 +141,7 @@ namespace Trabajo_de_campo
                         cotizacion = cotizacion.Substring(0, 11);
                     }
 
-                    if (ValidarNumero1 == false || ValidarNumero2 == false || cantidad == "" || Convert.ToInt64(cantidad) > 2147483647)
+                    if (ValidarNumero1 == false || ValidarNumero2 == false || cantidad == "" || cotizacion == "" || Convert.ToInt64(cantidad) > 2147483647)
                     {
                         MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.NumeroInvalido"));
                     }

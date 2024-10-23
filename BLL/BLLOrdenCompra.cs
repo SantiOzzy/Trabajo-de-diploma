@@ -29,5 +29,10 @@ namespace BLL
                 Data.EjecutarComando("RegistrarItemOrden", $"'{item.ISBN}', {item.CodOrdenCompra}, {item.Cotizacion}, {item.StockCompra}");
             }
         }
+
+        public void RecibirProducto(string ISBN, int StockRecepcion, string FechaEntrega)
+        {
+            Data.EjecutarComando("RecibirProducto", $"'{ISBN}', {StockRecepcion}, '{FechaEntrega}'");
+        }
     }
 }
