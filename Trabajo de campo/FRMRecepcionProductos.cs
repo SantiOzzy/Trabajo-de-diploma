@@ -43,7 +43,7 @@ namespace Trabajo_de_campo
             {
                 if (dr.Cells[4].Value.ToString().Length > 0)
                 {
-                    NegociosOrdenCompra.RecibirProducto(dr.Cells[0].Value.ToString(), Convert.ToInt32(dr.Cells[4].Value), dr.Cells[5].Value.ToString());
+                    NegociosOrdenCompra.RecibirProducto(dr.Cells[0].Value.ToString(), Convert.ToInt32(dr.Cells[4].Value), Convert.ToDateTime(dr.Cells[5].Value), dr.Cells[6].Value.ToString());
                 }
             }
 
@@ -70,10 +70,10 @@ namespace Trabajo_de_campo
         {
             if (negocios.RevisarDisponibilidad(CBOrdenCompra.Text, "CodOrdenCompra", "ItemOrden WHERE FechaEntrega IS NULL"))
             {
-                DataTable dt = negocios.ObtenerTabla("Libro.ISBN, Autor, Nombre, StockCompra, StockRecepcion, FechaEntrega", "ItemOrden INNER JOIN Libro ON Libro.ISBN = ItemOrden.ISBN", $"CodOrdenCompra = {CBOrdenCompra.Text} AND FechaEntrega IS NULL");
+                DataTable dt = negocios.ObtenerTabla("Libro.ISBN, Autor, Nombre, StockCompra, StockRecepcion, FechaEntrega, CodFactura", "ItemOrden INNER JOIN Libro ON Libro.ISBN = ItemOrden.ISBN", $"CodOrdenCompra = {CBOrdenCompra.Text} AND FechaEntrega IS NULL");
                 dataGridView1.DataSource = dt;
 
-                dt = negocios.ObtenerTabla("FechaCreacion, CodFactura, OrdenCompra.CUIT, Nombre", "OrdenCompra INNER JOIN Proveedor ON Proveedor.CUIT = OrdenCompra.CUIT", $"CodOrdenCompra = {CBOrdenCompra.Text}");
+                dt = negocios.ObtenerTabla("FechaCreacion, NumTransaccion, OrdenCompra.CUIT, Nombre", "OrdenCompra INNER JOIN Proveedor ON Proveedor.CUIT = OrdenCompra.CUIT", $"CodOrdenCompra = {CBOrdenCompra.Text}");
 
                 textBox1.Text = dt.Rows[0][0].ToString();
                 textBox2.Text = dt.Rows[0][1].ToString();
@@ -96,6 +96,7 @@ namespace Trabajo_de_campo
             try
             {
                 string cantidadRecibida = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.IngresarCantidadRecibida"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.CantidadRecibida"));
+                string codFactura = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.IngresarCodFactura"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.CodFactura"));
 
                 bool ValidarNumero = cantidadRecibida.All(char.IsDigit);
 
@@ -104,13 +105,21 @@ namespace Trabajo_de_campo
                     cantidadRecibida = cantidadRecibida.Substring(0, 11);
                 }
 
-                if (ValidarNumero == false || cantidadRecibida == "" || Convert.ToInt64(cantidadRecibida) > 2147483647)
+                if (codFactura.Length > 30)
+                {
+                    MessageBox.Show("La factura ingresada es demasiado larga");
+                    throw new Exception();
+                }
+
+                if (ValidarNumero == false || cantidadRecibida == "" || codFactura == "" || Convert.ToInt64(cantidadRecibida) > 2147483647)
                 {
                     MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.NumeroInvalido"));
+                    throw new Exception();
                 }
 
                 dataGridView1.Rows[e.RowIndex].Cells[4].Value = cantidadRecibida;
                 dataGridView1.Rows[e.RowIndex].Cells[5].Value = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff");
+                dataGridView1.Rows[e.RowIndex].Cells[6].Value = codFactura;
 
                 dataGridView1.Rows[e.RowIndex].Selected = true;
             }

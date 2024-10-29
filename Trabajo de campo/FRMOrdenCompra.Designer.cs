@@ -47,6 +47,8 @@
             this.BTNRegistrarProveedor = new System.Windows.Forms.Button();
             this.BTNRegistrarPago = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -217,12 +219,34 @@
             this.label6.TabIndex = 27;
             this.label6.Text = "0";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.label7.Location = new System.Drawing.Point(761, 159);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 29);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(590, 159);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(179, 29);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Impuesto IVA: $";
+            // 
             // FRMOrdenCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(833, 483);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.BTNRegistrarPago);
             this.Controls.Add(this.BTNRegistrarProveedor);
@@ -271,5 +295,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cotizacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -348,12 +348,14 @@
     "FRMRegistrarProveedor.Etiquetas.CuentaBancariaOcupado": "La cuenta bancaria ingresada ya está en uso",
     "FRMRegistrarProveedor.Etiquetas.ProveedorRegistrado": "Se registró el proveedor correctamente",
 
-    "FRMPagarCompra.Etiquetas.FacturaEnUso": "La factura ingresada ya existe",
+    "FRMPagarCompra.Etiquetas.NumTransaccionEnUso": "El número de transacción ingresado ya existe",
     "FRMPagarCompra.Etiquetas.ConformacionPago": "Pago conformado correctamente",
 
     "FRMRecepcionProductos.Etiquetas.IngresarCantidadRecibida": "Ingrese la cantidad de ejemplares que llegaron de este producto",
     "FRMRecepcionProductos.Etiquetas.CantidadRecibida": "Cantidad recibida",
     "FRMRecepcionProductos.Etiquetas.CambiosGuardados": "Se guardaron los cambios realizados a la orden de compra",
+    "FRMRecepcionProductos.Etiquetas.CodFactura": "Código de factura",
+    "FRMRecepcionProductos.Etiquetas.IngresarCodFactura": "Ingrese el código de factura correspondiente a este producto",
 
     "Etiquetas.ModoAñadir": "Modo añadir",
     "Etiquetas.ModoModificar": "Modo modificar",

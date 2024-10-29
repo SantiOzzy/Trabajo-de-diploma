@@ -108,9 +108,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(528, 132);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 13);
+            this.label4.Size = new System.Drawing.Size(120, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Código de factura:";
+            this.label4.Text = "Número de transacción:";
             // 
             // label5
             // 

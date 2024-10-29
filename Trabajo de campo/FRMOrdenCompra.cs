@@ -181,7 +181,8 @@ namespace Trabajo_de_campo
 
         private void ActualizarPrecioTotal()
         {
-            int PrecioTotal = 0;
+            double PrecioTotal = 0;
+            double PrecioIVA = 0;
 
             try
             {
@@ -195,8 +196,11 @@ namespace Trabajo_de_campo
 
             }
 
+            PrecioIVA = PrecioTotal * 1.21;
+
             label6.Text = PrecioTotal.ToString();
-            parent.FormPagarCompra.textBox3.Text = "$" + PrecioTotal.ToString();
+            label7.Text = PrecioIVA.ToString();
+            parent.FormPagarCompra.textBox3.Text = "$" + PrecioIVA.ToString();
         }
 
         void VaciarCampos()

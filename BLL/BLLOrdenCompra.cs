@@ -30,9 +30,9 @@ namespace BLL
             }
         }
 
-        public void RecibirProducto(string ISBN, int StockRecepcion, string FechaEntrega)
+        public void RecibirProducto(string ISBN, int StockRecepcion, DateTime FechaEntrega, string CodFactura)
         {
-            Data.EjecutarComando("RecibirProducto", $"'{ISBN}', {StockRecepcion}, '{FechaEntrega}'");
+            Data.EjecutarComando("RecibirProducto", $"'{ISBN}', {StockRecepcion}, '{FechaEntrega.ToString("yyyy-MM-ddTHH:mm:ss.fff")}', '{CodFactura}'");
         }
     }
 }

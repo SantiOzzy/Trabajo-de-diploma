@@ -42,9 +42,9 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
             }
-            else if (negocios.RevisarDisponibilidad(textBox2.Text, "CodFactura", "OrdenCompra"))
+            else if (negocios.RevisarDisponibilidad(textBox2.Text, "NumTransaccion", "OrdenCompra"))
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.FacturaEnUso"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.NumTransaccionEnUso"));
             }
             else
             {

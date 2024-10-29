@@ -60,16 +60,16 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.Size = new System.Drawing.Size(120, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Código de factura:";
+            this.label2.Text = "Número de transacción:";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(112, 69);
+            this.textBox2.Location = new System.Drawing.Point(138, 69);
             this.textBox2.MaxLength = 30;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(160, 20);
+            this.textBox2.Size = new System.Drawing.Size(134, 20);
             this.textBox2.TabIndex = 3;
             // 
             // BTNPagar
@@ -84,10 +84,10 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(112, 43);
+            this.textBox3.Location = new System.Drawing.Point(138, 43);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(160, 20);
+            this.textBox3.Size = new System.Drawing.Size(134, 20);
             this.textBox3.TabIndex = 6;
             // 
             // label3
