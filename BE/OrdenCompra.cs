@@ -10,25 +10,25 @@ namespace BE
     {
         public string CUIT;
         public DateTime FechaCreacion;
-        public int PrecioTotal;
-        public string CodFactura;
+        public double PrecioTotal;
+        public string NumTransaccion;
         public List<ItemOrden> Items = new List<ItemOrden>();
 
         public OrdenCompra()
         {
         }
 
-        public OrdenCompra(string codFactura)
+        public OrdenCompra(string numTransaccion)
         {
-            CodFactura = codFactura;
+            NumTransaccion = numTransaccion;
         }
 
-        public OrdenCompra(string cUIT, DateTime fechaCreacion, int precioTotal, string codFactura)
+        public OrdenCompra(string cUIT, DateTime fechaCreacion, double precioTotal, string numTransaccion)
         {
             CUIT = cUIT;
             FechaCreacion = fechaCreacion;
             PrecioTotal = precioTotal;
-            CodFactura = codFactura;
+            NumTransaccion = numTransaccion;
         }
     }
 }

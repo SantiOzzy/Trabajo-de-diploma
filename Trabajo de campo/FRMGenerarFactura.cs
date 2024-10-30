@@ -257,7 +257,7 @@ namespace Trabajo_de_campo
                 FRMUI parent = this.MdiParent as FRMUI;
                 parent.FormBitacoraEventos.Actualizar();
 
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.Etiquetas.ReporteGenerado"));
             }
         }
     }

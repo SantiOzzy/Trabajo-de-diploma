@@ -10,12 +10,12 @@ namespace BE
     {
         public string ISBN;
         public int CodOrdenCompra;
-        public int Cotizacion;
+        public double Cotizacion;
         public int StockCompra;
         public int StockRecepcion;
         public DateTime FechaEntrega;
 
-        public ItemOrden(string iSBN, int codOrdenCompra, int cotizacion, int stockCompra)
+        public ItemOrden(string iSBN, int codOrdenCompra, double cotizacion, int stockCompra)
         {
             ISBN = iSBN;
             CodOrdenCompra = codOrdenCompra;
@@ -23,7 +23,7 @@ namespace BE
             StockCompra = stockCompra;
         }
 
-        public ItemOrden(string iSBN, int codOrdenCompra, int cotizacion, int stockCompra, int stockRecepcion, DateTime fechaEntrega)
+        public ItemOrden(string iSBN, int codOrdenCompra, double cotizacion, int stockCompra, int stockRecepcion, DateTime fechaEntrega)
         {
             ISBN = iSBN;
             CodOrdenCompra = codOrdenCompra;

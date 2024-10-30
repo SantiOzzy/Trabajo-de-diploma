@@ -245,10 +245,9 @@ namespace Trabajo_de_campo
                 case "Compras":
                     dt.Rows.Add("", "");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroSolicitudCotizacion"), "Registro de solicitud de cotización");
-                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.PreRegistroProveedor"), "Pre registro de proveedor");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroOrdenCompra"), "Registro de orden de compra");
-                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroProveedor"), "Registro de proveedor");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RecepcionProductos"), "Recepción de productos");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ReporteCompra"), "Generación de reporte de factura de compra");
                     break;
                 case "Base de datos":
                     dt.Rows.Add("", "");

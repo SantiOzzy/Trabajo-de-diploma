@@ -4,6 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
@@ -23,6 +27,7 @@ namespace Trabajo_de_campo
         FRMUI parent;
 
         public OrdenCompra orden;
+
         public FRMOrdenCompra()
         {
             InitializeComponent();
@@ -251,7 +256,7 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.SeleccionarProveedorOrden"));
             }
-            else if(orden.CodFactura == null || orden.CodFactura == "")
+            else if(orden.NumTransaccion == null || orden.NumTransaccion == "")
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.Pagar"));
             }
@@ -261,7 +266,7 @@ namespace Trabajo_de_campo
             }
             else
             {
-                orden = new OrdenCompra(CBProveedor.Text, DateTime.Now, Convert.ToInt32(label6.Text), orden.CodFactura);
+                orden = new OrdenCompra(CBProveedor.Text, DateTime.Now, Convert.ToDouble(label7.Text), orden.NumTransaccion);
 
                 NegociosOrdenCompra.RegistrarOrdenCompra(orden);
 
@@ -269,7 +274,7 @@ namespace Trabajo_de_campo
 
                 foreach (DataGridViewRow dr in dataGridView2.Rows)
                 {
-                    orden.Items.Add(new ItemOrden(dr.Cells[0].Value.ToString(), CodOrden, Convert.ToInt32(dr.Cells[3].Value), Convert.ToInt32(dr.Cells[4].Value)));
+                    orden.Items.Add(new ItemOrden(dr.Cells[0].Value.ToString(), CodOrden, Convert.ToDouble(dr.Cells[3].Value), Convert.ToInt32(dr.Cells[4].Value)));
                 }
                 NegociosOrdenCompra.RegistrarItems(orden);
 
@@ -278,6 +283,8 @@ namespace Trabajo_de_campo
                 parent.FormBitacoraEventos.Actualizar();
 
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.OrdenGenerada"));
+
+                GenerarReportePDF();
 
                 this.Hide();
 
@@ -290,6 +297,121 @@ namespace Trabajo_de_campo
             if (NegociosProveedor.ObtenerProveedor(CBProveedor.Text) != null)
             {
                 parent.FormPagarCompra.textBox1.Text = NegociosProveedor.ObtenerProveedor(CBProveedor.Text).CuentaBancaria;
+            }
+        }
+
+        void GenerarReportePDF()
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.FileName = string.Format("{0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
+
+            string PaginaHTML_Texto = Properties.Resources.ReporteOrdenCompra.ToString();
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            //DATOS DE PRODUCTOS
+
+            string filas = string.Empty;
+            decimal total = 0;
+
+            DataTable dt = negocios.ObtenerTabla("Libro.ISBN, Autor, Nombre, Cotizacion, StockCompra", "Libro INNER JOIN ItemOrden ON Libro.ISBN = ItemOrden.ISBN", $"CodOrdenCompra = {NegociosOrdenCompra.ObtenerCodOrdenCompra()}");
+
+            foreach (DataRow r in dt.Rows)
+            {
+                filas += "<tr>";
+                filas += "<td>" + r[0].ToString() + "</td>";
+                filas += "<td>" + r[1].ToString() + "</td>";
+                filas += "<td>" + r[2].ToString() + "</td>";
+                filas += "<td>" + r[3].ToString() + "</td>";
+                filas += "<td>" + r[4].ToString() + "</td>";
+                filas += "</tr>";
+                total += (decimal.Parse(r[3].ToString()) * decimal.Parse(r[4].ToString()));
+            }
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS1", filas);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total.ToString());
+
+            //DATOS DE VENTA
+
+            filas = string.Empty;
+
+            filas += "<tr>";
+            filas += "<td>" + NegociosOrdenCompra.ObtenerCodOrdenCompra() + "</td>";
+            filas += "<td>" + orden.FechaCreacion + "</td>";
+            filas += "<td>" + orden.PrecioTotal + "</td>";
+            filas += "<td>" + orden.NumTransaccion + "</td>";
+            filas += "</tr>";
+
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS2", filas);
+
+            //DATOS DE CLIENTE
+
+            dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono, Direccion, CuentaBancaria", "Proveedor", $"CUIT = {orden.CUIT}");
+
+            filas = string.Empty;
+
+            filas += "<tr>";
+            filas += "<td>" + dt.Rows[0][0].ToString() + "</td>";
+            filas += "<td>" + dt.Rows[0][1].ToString() + "</td>";
+            filas += "<td>" + dt.Rows[0][2].ToString() + "</td>";
+            filas += "<td>" + dt.Rows[0][3].ToString() + "</td>";
+            filas += "<td>" + dt.Rows[0][4].ToString() + "</td>";
+            filas += "<td>" + dt.Rows[0][5].ToString() + "</td>";
+            filas += "<td>" + dt.Rows[0][6].ToString() + "</td>";
+            filas += "</tr>";
+
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS3", filas);
+
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTECOMPRA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteVenta"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IMPRESIONFECHA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.FechaImpresion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PRECIOTOTAL", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.Total"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ISBN", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@LIBRO", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@AUTOR", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Autor"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@COTIZACION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Cotizacion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CANTIDAD", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.StockCompra"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CODORDEN", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CodOrdenCompra"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CREACION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.FechaCreacion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PRECIO", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Precio"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMTRANSACCION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTransaccion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CUIT", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CUIT"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@RAZONSOCIAL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.RazonSocial"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NOMBRE", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@EMAIL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Email"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMTEL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTelefono"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DIRECCION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Direccion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CUENTABANCARIA", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CuentaBancaria"));
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
+                {
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    pdfDoc.Add(new Phrase(LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteCompra")));
+
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.uai, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(150, 150);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+
+                    img.SetAbsolutePosition(pdfDoc.Right - 150, pdfDoc.Top - 60);
+                    pdfDoc.Add(img);
+
+
+                    using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+
+                    pdfDoc.Close();
+                    stream.Close();
+                }
+
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Compras", "Generación de reporte de factura de compra", 5));
+                FRMUI parent = this.MdiParent as FRMUI;
+                parent.FormBitacoraEventos.Actualizar();
+
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.ReporteGenerado"));
             }
         }
     }

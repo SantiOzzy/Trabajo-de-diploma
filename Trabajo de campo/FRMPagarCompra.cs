@@ -42,6 +42,10 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.LlenarCampos"));
             }
+            else if (textBox2.Text.All(char.IsDigit))
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.SoloNumeros"));
+            }
             else if (negocios.RevisarDisponibilidad(textBox2.Text, "NumTransaccion", "OrdenCompra"))
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.NumTransaccionEnUso"));
@@ -49,7 +53,7 @@ namespace Trabajo_de_campo
             else
             {
                 FRMUI parent = this.MdiParent as FRMUI;
-                parent.FormOrdenCompra.orden.CodFactura = textBox2.Text;
+                parent.FormOrdenCompra.orden.NumTransaccion = textBox2.Text;
 
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.ConformacionPago"));
 

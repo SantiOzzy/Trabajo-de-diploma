@@ -62,6 +62,24 @@ namespace Trabajo_de_campo
             }
         }
 
+        public void RefrescarGrilla()
+        {
+            if (ObtenerCondicionesQuery().Length > 5)
+            {
+                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro", ObtenerCondicionesQuery());
+                dt = TraducirTabla(dt);
+                dataGridView1.DataSource = dt;
+            }
+            else
+            {
+                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro");
+                dt = TraducirTabla(dt);
+                dataGridView1.DataSource = dt;
+            }
+
+            ContarLibros();
+        }
+
         private void FRMGestionDeLibros_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)

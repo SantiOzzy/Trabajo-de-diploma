@@ -341,6 +341,7 @@
     <None Include="Resources\uai.png" />
     <None Include="Resources\ReporteEvento.html" />
     <None Include="Resources\8316630.png" />
+    <None Include="Resources\ReporteOrdenCompra.html" />
     <Content Include="system_applications_thesource_thebook_13028.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

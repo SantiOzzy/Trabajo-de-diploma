@@ -52,6 +52,8 @@ namespace Trabajo_de_campo
 
             MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.CambiosGuardados"));
 
+            FRMUI parent = this.MdiParent as FRMUI;
+            parent.FormGestionLibros.RefrescarGrilla();
             CargarCB();
         }
 

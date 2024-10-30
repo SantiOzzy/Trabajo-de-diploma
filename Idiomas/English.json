@@ -1,5 +1,4 @@
 ﻿{
-
     "FRMUI.Text": "UAI Library",
     "FRMUI.nombreToolStripMenuItem": "No session started",
     "FRMUI.usuarioToolStripMenuItem": "User",
@@ -15,6 +14,7 @@
     "FRMUI.maestrosToolStripMenuItem": "Masters",
     "FRMUI.gestionDeLibrosToolStripMenuItem": "Book management",
     "FRMUI.gestionDeClientesToolStripMenuItem": "Client management",
+    "FRMUI.gestionDeProveedoresToolStripMenuItem": "Supplier management",
     "FRMUI.ventaToolStripMenuItem": "Sales",
     "FRMUI.facturarToolStripMenuItem": "Bill",
     "FRMUI.comprasToolStripMenuItem": "Purchases",
@@ -213,7 +213,7 @@
     "FRMGestionDeProveedores.Etiquetas.SoloNumeros": "CUIT can only contain numbers",
     "FRMGestionDeProveedores.Etiquetas.11Digitos": "CUIT must be 11 digits",
     "FRMGestionDeProveedores.Etiquetas.YaRegistrado": "CUIT is already registered",
-    "FRMGestionDeProveedores.Etiquetas.ErrorConteo": "Provider count error"
+    "FRMGestionDeProveedores.Etiquetas.ErrorConteo": "Provider count error",
 
     "FRMGestionDePerfiles.Text": "Role Management",
     "FRMGestionDePerfiles.label1": "Profiles",
@@ -309,6 +309,7 @@
     "FRMGenerarFactura.Etiquetas.SeleccioneProductos": "No products selected for sale",
     "FRMGenerarFactura.Etiquetas.CobreVenta": "Sale not collected",
     "FRMGenerarFactura.Etiquetas.FacturaGenerada": "Invoice generated for the sale",
+    "FRMGenerarFactura.Etiquetas.ReporteGenerado": "Report generated successfully",
 
     "FRMCambiarIdioma.Text": "Change Language",
     "FRMCambiarIdioma.BTNCambiarIdioma": "Change Language",
@@ -410,6 +411,7 @@
     "FRMOrdenCompra.Etiquetas.ElegirProductosParaVender": "Select products to order for payment",
     "FRMOrdenCompra.Etiquetas.NumeroInvalido": "The entered number is invalid",
     "FRMOrdenCompra.Etiquetas.LibroEliminado": "The book has been removed",
+    "FRMOrdenCompra.Etiquetas.ReporteGenerado": "Report generated successfully",
 
     "FRMRegistrarProveedor.Text": "Register supplier",
     "FRMRegistrarProveedor.label1": "CUIT",
@@ -426,6 +428,7 @@
     "FRMPagarCompra.label3": "Amount paid:",
     "FRMPagarCompra.BTNPagar": "Register payment",
     "FRMPagarCompra.Etiquetas.LlenarCampos": "Please fill in all fields",
+    "FRMPagarCompra.Etiquetas.SoloNumeros": "Transaction number cannot contain non numeric characters",
     "FRMPagarCompra.Etiquetas.NumTransaccionEnUso": "Entered transaction number already exists",
     "FRMPagarCompra.Etiquetas.ConformacionPago": "Payment confirmed successfully",
 
@@ -491,7 +494,9 @@
     "dgv.StockCompra": "Purchased stock",
     "dgv.StockRecepcion": "Received stock",
     "dgv.FechaEntrega": "Delivery date",
-
+    "dgv.CodOrdenCompra": "Purchase order code",
+    "dgv.FechaCreacion": "Creation date",
+    "dgv.NumTransaccion": "Transaction number",
 
     "Modulos.Sesiones": "Sessions",
     "Modulos.Usuarios": "Users",
@@ -541,9 +546,9 @@
     "Eventos.GeneracionFactura": "Invoice generation",
 
     "Eventos.RegistroSolicitudCotizacion": "Quotation request registration",
-
     "Eventos.RegistroOrdenCompra": "Purchase order registration",
     "Eventos.RecepcionProductos": "Product reception",
+    "Eventos.ReporteCompra": "Purchase invoice report generation",
 
     "Eventos.PreRegistroProveedor": "Pre-registration of supplier",
     "Eventos.RegistroProveedor": "Supplier registration",
@@ -555,8 +560,8 @@
     "Eventos.Respaldo": "Backup",
     "Eventos.Restauracion": "Restoration",
 
-
     "Reporte.ReporteFactura": "INVOICE REPORT",
+    "Reporte.ReporteCompra": "PURCHASE REPORT",
     "Reporte.ReporteVenta": "SALE REPORT",
     "Reporte.FechaImpresion": "Date of printing:",
     "Reporte.Total": "Total:",
