@@ -160,7 +160,6 @@ namespace Trabajo_de_campo
             this.Name = "FRMGenerarFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generar factura";
-            this.Activated += new System.EventHandler(this.FRMGenerarFactura_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMGenerarFactura_FormClosing);
             this.Load += new System.EventHandler(this.FRMGenerarFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

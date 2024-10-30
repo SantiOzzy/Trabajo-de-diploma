@@ -61,7 +61,7 @@ namespace Trabajo_de_campo
             }
             else if (comboBox1.Text == "")
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCobrarVenta.Etiquetas.ElegirMetodoPago"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCobrarVenta.Etiquetas.ElegirMedioPago"));
             }
             else if (comboBox1.Text != "Efectivo" && (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == ""))
             {
