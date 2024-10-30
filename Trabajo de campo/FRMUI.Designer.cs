@@ -41,6 +41,7 @@ namespace Trabajo_de_campo
             this.gestionDeLibrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionDeClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitacoraDeCambiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDeProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,6 @@ namespace Trabajo_de_campo
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generarReporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionDeProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -158,6 +158,13 @@ namespace Trabajo_de_campo
             this.bitacoraDeCambiosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.bitacoraDeCambiosToolStripMenuItem.Text = "Bitácora de cambios";
             this.bitacoraDeCambiosToolStripMenuItem.Click += new System.EventHandler(this.bitacoraDeCambiosToolStripMenuItem_Click);
+            // 
+            // gestionDeProveedoresToolStripMenuItem
+            // 
+            this.gestionDeProveedoresToolStripMenuItem.Name = "gestionDeProveedoresToolStripMenuItem";
+            this.gestionDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.gestionDeProveedoresToolStripMenuItem.Text = "Gestión de proveedores";
+            this.gestionDeProveedoresToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeProveedoresToolStripMenuItem_Click);
             // 
             // usuarioToolStripMenuItem
             // 
@@ -274,13 +281,6 @@ namespace Trabajo_de_campo
             this.ayudaToolStripMenuItem.Text = "Ayuda";
             this.ayudaToolStripMenuItem.Click += new System.EventHandler(this.ayudaToolStripMenuItem_Click);
             // 
-            // gestionDeProveedoresToolStripMenuItem
-            // 
-            this.gestionDeProveedoresToolStripMenuItem.Name = "gestionDeProveedoresToolStripMenuItem";
-            this.gestionDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.gestionDeProveedoresToolStripMenuItem.Text = "Gestión de proveedores";
-            this.gestionDeProveedoresToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeProveedoresToolStripMenuItem_Click);
-            // 
             // FRMUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,9 +327,9 @@ namespace Trabajo_de_campo
         public System.Windows.Forms.ToolStripMenuItem gestionDeClientesToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem bitacoraDeCambiosToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem respaldosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generarOrdenDeCompraToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verificarRecepciónDeProductosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gestionDeProveedoresToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem gestionDeProveedoresToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem generarOrdenDeCompraToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem verificarRecepciónDeProductosToolStripMenuItem;
     }
 }
 

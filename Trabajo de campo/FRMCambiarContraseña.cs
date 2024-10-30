@@ -184,12 +184,15 @@ namespace Trabajo_de_campo
             parent.gestionDeLibrosToolStripMenuItem.Visible = false;
             parent.gestionDeClientesToolStripMenuItem.Visible = false;
             parent.bitacoraDeCambiosToolStripMenuItem.Visible = false;
+            parent.gestionDeProveedoresToolStripMenuItem.Visible = false;
 
             parent.ventaToolStripMenuItem.Visible = false;
             parent.facturarToolStripMenuItem.Visible = false;
 
             parent.comprasToolStripMenuItem.Visible = false;
             parent.generarSolicitudDeCotizacionToolStripMenuItem.Visible = false;
+            parent.generarOrdenDeCompraToolStripMenuItem.Visible = false;
+            parent.verificarRecepciónDeProductosToolStripMenuItem.Visible = false;
 
             parent.reportesToolStripMenuItem.Visible = false;
             parent.generarReporteToolStripMenuItem.Visible = false;
@@ -213,6 +216,10 @@ namespace Trabajo_de_campo
             parent.FormRegistrarCliente.Hide();
             parent.FormRespaldos.Hide();
             parent.FormSeleccionarLibros.Hide();
+            parent.FormOrdenCompra.Hide();
+            parent.FormSolicitudCotizacion.Hide();
+            parent.FormRecepcionProductos.Hide();
+            parent.FormGestionProveedores.Hide();
         }
 
         private void FRMCambiarContraseña_VisibleChanged(object sender, EventArgs e)
