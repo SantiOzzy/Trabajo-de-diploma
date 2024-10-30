@@ -55,6 +55,7 @@ namespace Trabajo_de_campo
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generarReporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDeProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,7 +129,8 @@ namespace Trabajo_de_campo
             this.maestrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestionDeLibrosToolStripMenuItem,
             this.gestionDeClientesToolStripMenuItem,
-            this.bitacoraDeCambiosToolStripMenuItem});
+            this.bitacoraDeCambiosToolStripMenuItem,
+            this.gestionDeProveedoresToolStripMenuItem});
             this.maestrosToolStripMenuItem.Name = "maestrosToolStripMenuItem";
             this.maestrosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.maestrosToolStripMenuItem.Text = "Maestros";
@@ -137,7 +139,7 @@ namespace Trabajo_de_campo
             // gestionDeLibrosToolStripMenuItem
             // 
             this.gestionDeLibrosToolStripMenuItem.Name = "gestionDeLibrosToolStripMenuItem";
-            this.gestionDeLibrosToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.gestionDeLibrosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.gestionDeLibrosToolStripMenuItem.Text = "Gestión de libros";
             this.gestionDeLibrosToolStripMenuItem.Visible = false;
             this.gestionDeLibrosToolStripMenuItem.Click += new System.EventHandler(this.gestionDeLibrosToolStripMenuItem_Click);
@@ -145,7 +147,7 @@ namespace Trabajo_de_campo
             // gestionDeClientesToolStripMenuItem
             // 
             this.gestionDeClientesToolStripMenuItem.Name = "gestionDeClientesToolStripMenuItem";
-            this.gestionDeClientesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.gestionDeClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.gestionDeClientesToolStripMenuItem.Text = "Gestión de clientes";
             this.gestionDeClientesToolStripMenuItem.Visible = false;
             this.gestionDeClientesToolStripMenuItem.Click += new System.EventHandler(this.gestionDeClientesToolStripMenuItem_Click);
@@ -153,7 +155,7 @@ namespace Trabajo_de_campo
             // bitacoraDeCambiosToolStripMenuItem
             // 
             this.bitacoraDeCambiosToolStripMenuItem.Name = "bitacoraDeCambiosToolStripMenuItem";
-            this.bitacoraDeCambiosToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.bitacoraDeCambiosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.bitacoraDeCambiosToolStripMenuItem.Text = "Bitácora de cambios";
             this.bitacoraDeCambiosToolStripMenuItem.Click += new System.EventHandler(this.bitacoraDeCambiosToolStripMenuItem_Click);
             // 
@@ -203,7 +205,7 @@ namespace Trabajo_de_campo
             this.ventaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.facturarToolStripMenuItem});
             this.ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
-            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.ventaToolStripMenuItem.Text = "Ventas";
             this.ventaToolStripMenuItem.Visible = false;
             // 
@@ -229,7 +231,7 @@ namespace Trabajo_de_campo
             // generarSolicitudDeCotizacionToolStripMenuItem
             // 
             this.generarSolicitudDeCotizacionToolStripMenuItem.Name = "generarSolicitudDeCotizacionToolStripMenuItem";
-            this.generarSolicitudDeCotizacionToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.generarSolicitudDeCotizacionToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.generarSolicitudDeCotizacionToolStripMenuItem.Text = "Generar solicitud de cotización";
             this.generarSolicitudDeCotizacionToolStripMenuItem.Visible = false;
             this.generarSolicitudDeCotizacionToolStripMenuItem.Click += new System.EventHandler(this.generarSolicitudDeCotizacionToolStripMenuItem_Click);
@@ -237,14 +239,14 @@ namespace Trabajo_de_campo
             // generarOrdenDeCompraToolStripMenuItem
             // 
             this.generarOrdenDeCompraToolStripMenuItem.Name = "generarOrdenDeCompraToolStripMenuItem";
-            this.generarOrdenDeCompraToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.generarOrdenDeCompraToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.generarOrdenDeCompraToolStripMenuItem.Text = "Generar orden de compra";
             this.generarOrdenDeCompraToolStripMenuItem.Click += new System.EventHandler(this.generarOrdenDeCompraToolStripMenuItem_Click);
             // 
             // verificarRecepciónDeProductosToolStripMenuItem
             // 
             this.verificarRecepciónDeProductosToolStripMenuItem.Name = "verificarRecepciónDeProductosToolStripMenuItem";
-            this.verificarRecepciónDeProductosToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.verificarRecepciónDeProductosToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.verificarRecepciónDeProductosToolStripMenuItem.Text = "Verificar recepción de productos";
             this.verificarRecepciónDeProductosToolStripMenuItem.Click += new System.EventHandler(this.verificarRecepciónDeProductosToolStripMenuItem_Click);
             // 
@@ -271,6 +273,13 @@ namespace Trabajo_de_campo
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
             this.ayudaToolStripMenuItem.Click += new System.EventHandler(this.ayudaToolStripMenuItem_Click);
+            // 
+            // gestionDeProveedoresToolStripMenuItem
+            // 
+            this.gestionDeProveedoresToolStripMenuItem.Name = "gestionDeProveedoresToolStripMenuItem";
+            this.gestionDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.gestionDeProveedoresToolStripMenuItem.Text = "Gestión de proveedores";
+            this.gestionDeProveedoresToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeProveedoresToolStripMenuItem_Click);
             // 
             // FRMUI
             // 
@@ -320,6 +329,7 @@ namespace Trabajo_de_campo
         public System.Windows.Forms.ToolStripMenuItem respaldosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generarOrdenDeCompraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verificarRecepciónDeProductosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionDeProveedoresToolStripMenuItem;
     }
 }
 

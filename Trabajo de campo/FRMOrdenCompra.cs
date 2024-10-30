@@ -104,7 +104,7 @@ namespace Trabajo_de_campo
             dt = TraducirTabla(dt);
             dataGridView1.DataSource = dt;
 
-            CBProveedor.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Direccion IS NOT NULL");
+            CBProveedor.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Direccion IS NOT NULL AND CuentaBancaria IS NOT NULL");
             CBProveedor.DisplayMember = "CUIT";
             CBProveedor.ValueMember = "CUIT";
 

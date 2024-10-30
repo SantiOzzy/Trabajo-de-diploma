@@ -233,6 +233,10 @@ namespace Trabajo_de_campo
                     dt.Rows.Add("", "");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.PreRegistroProveedor"), "Pre registro de proveedor");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroProveedor"), "Registro de proveedor");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ModificacionProveedor"), "Modificación de proveedor");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.BorradoProveedor"), "Borrado lógico de proveedor");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RestauracionProveedor"), "Restauración de proveedor");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ConsultaProveedor"), "Consulta de proveedores");
                     break;
                 case "Ventas":
                     dt.Rows.Add("", "");

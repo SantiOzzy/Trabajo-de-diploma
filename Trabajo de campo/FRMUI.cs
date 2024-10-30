@@ -37,6 +37,7 @@ namespace Trabajo_de_campo
         public FRMRegistrarProveedor FormRegistrarProveedor = new FRMRegistrarProveedor();
         public FRMPagarCompra FormPagarCompra = new FRMPagarCompra();
         public FRMRecepcionProductos FormRecepcionProductos = new FRMRecepcionProductos();
+        public FRMGestionDeProveedores FormGestionProveedores = new FRMGestionDeProveedores();
 
         public Factura fact = new Factura();
         public Cobro cobro = new Cobro();
@@ -131,6 +132,12 @@ namespace Trabajo_de_campo
         {
             FormBitacoraCambios.MdiParent = this;
             FormBitacoraCambios.Show();
+        }
+
+        private void gestiónDeProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormGestionProveedores.MdiParent = this;
+            FormGestionProveedores.Show();
         }
 
         private void registrarVentaToolStripMenuItem_Click(object sender, EventArgs e)

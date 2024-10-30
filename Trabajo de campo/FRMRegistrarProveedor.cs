@@ -45,7 +45,7 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarProveedor.Etiquetas.LlenarCampos"));
             }
-            else if (negocios.RevisarDisponibilidad(textBox2.Text, "CuentaBancaria", "Proveedor"))
+            else if (negocios.RevisarDisponibilidadConExcepcion(textBox2.Text, CBCuit.Text, "CUIT, CuentaBancaria", "Proveedor"))
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarProveedor.Etiquetas.CuentaBancariaOcupado"));
             }
@@ -60,6 +60,7 @@ namespace Trabajo_de_campo
                 FRMUI parent = this.MdiParent as FRMUI;
                 parent.FormBitacoraEventos.Actualizar();
                 parent.FormOrdenCompra.RefrescarGrillas();
+                parent.FormGestionProveedores.RefrescarGrilla();
 
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarProveedor.Etiquetas.ProveedorRegistrado"));
 
@@ -72,7 +73,7 @@ namespace Trabajo_de_campo
 
         private void FRMRegistrarProveedor_VisibleChanged(object sender, EventArgs e)
         {
-            CBCuit.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Direccion IS NULL");
+            CBCuit.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Direccion IS NULL OR CuentaBancaria IS NULL");
             CBCuit.DisplayMember = "CUIT";
             CBCuit.ValueMember = "CUIT";
         }
