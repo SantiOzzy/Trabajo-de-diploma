@@ -5,13 +5,55 @@ using System.Text;
 using System.Threading.Tasks;
 using BE;
 using DAL;
+using Services;
 
 namespace BLL
 {
     public class BLLUsuario
     {
         DALUsuario DataUsuario = new DALUsuario();
+        CryptoManager Encriptacion = new CryptoManager();
         Datos Data = new Datos();
+        BLLEvento NegociosEvento = new BLLEvento();
+
+        public void IniciarSesion(string username, string password)
+        {
+            if (username == "" || password == "")
+            {
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.LlenarCampos"));
+            }
+            else if (RevisarDesactivado(username))
+            {
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.UsuarioDesactivado"));
+            }
+            else if (RevisarBloqueado(username))
+            {
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.UsuarioBloqueado"));
+            }
+            else
+            {
+                Usuario user = RevisarLogIn(username, Encriptacion.GetSHA256(password));
+
+                if (user == null)
+                {
+                    if (IntentoFallido(username))
+                    {
+                        NegociosEvento.RegistrarEvento(new Evento(username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Bloqueo de usuario por contraseña incorrecta", 1));
+
+                        throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.TresFallos"));
+                    }
+                    throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.DatosIncorrectos"));
+                }
+                else
+                {
+                    SessionManager.ObtenerInstancia().IniciarSesion(user);
+
+                    ReiniciarIntentosFallidos(username);
+
+                    NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Inicio de sesión", 1));
+                }
+            }
+        }
 
         public void RegistrarUsuario(Usuario user)
         {

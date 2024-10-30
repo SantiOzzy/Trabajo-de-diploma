@@ -38,65 +38,43 @@ namespace Trabajo_de_campo
 
         private void FRMIniciarSesion_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+
+            VaciarCampos();
+        }
+
+        void VaciarCampos()
+        {
             textBox1.Text = "";
             textBox2.Text = "";
 
             pictureBox1.BackgroundImage = Properties.Resources._3844477_disable_eye_inactive_see_show_view_watch_110343;
             MostrarContraseña = false;
             textBox2.PasswordChar = '*';
-
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                e.Cancel = true;
-                Hide();
-            }
         }
 
         private void BTNIniciarSesion_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || textBox2.Text == "")
+            try
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.LlenarCampos"));
+                NegociosUsuario.IniciarSesion(textBox1.Text, textBox2.Text);
+
+                Usuario user = NegociosUsuario.ObtenerUsuario(textBox1.Text);
+
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.LogIn") + user.Rol);
+
+                ModificarMenu(user.Rol, user.Nombre + " " + user.Apellido);
+
+                this.Hide();
+                VaciarCampos();
             }
-            else if (NegociosUsuario.RevisarDesactivado(textBox1.Text))
+            catch(Exception ex)
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.UsuarioDesactivado"));
-            }
-            else if (NegociosUsuario.RevisarBloqueado(textBox1.Text))
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.UsuarioBloqueado"));
-            }
-            else
-            {
-                Usuario user = NegociosUsuario.RevisarLogIn(textBox1.Text, Encriptar.GetSHA256(textBox2.Text));
-
-                if (user == null)
-                {
-                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.DatosIncorrectos"));
-                    if (NegociosUsuario.IntentoFallido(textBox1.Text))
-                    {
-                        NegociosEvento.RegistrarEvento(new Evento(textBox1.Text, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Bloqueo de usuario por contraseña incorrecta", 1));
-
-                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.TresFallos"));
-                    }
-                }
-                else
-                {
-                    SessionManager.ObtenerInstancia().IniciarSesion(user);
-
-                    ModificarMenu(user.Rol, user.Nombre + " " + user.Apellido);
-
-                    NegociosUsuario.ReiniciarIntentosFallidos(textBox1.Text);
-
-                    this.Hide();
-
-                    NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Inicio de sesión", 1));
-
-                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMIniciarSesion.Etiquetas.LogIn") + user.Rol);
-
-                    textBox1.Text = "";
-                    textBox2.Text = "";
-                }
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -104,31 +82,20 @@ namespace Trabajo_de_campo
         {
             FRMUI parent = this.MdiParent as FRMUI;
 
+            foreach(ToolStripMenuItem itemMenu in parent.menuStrip1.Items)
+            {
+                foreach (ToolStripItem subItem in itemMenu.DropDownItems)
+                {
+                    if (subItem is ToolStripMenuItem)
+                    {
+                        subItem.Visible = false;
+                    }
+                }
+            }
+
+            parent.cambiarIdiomaToolStripMenuItem.Visible = true;
             parent.cerrarSesiónToolStripMenuItem.Visible = true;
             parent.cambiarContraseñaToolStripMenuItem.Visible = true;
-
-            parent.administradorToolStripMenuItem.Visible = false;
-            parent.gestionDeUsuariosToolStripMenuItem.Visible = false;
-            parent.gestionDePerfilesToolStripMenuItem.Visible = false;
-            parent.bitacoraDeEventosToolStripMenuItem.Visible = false;
-            parent.respaldosToolStripMenuItem.Visible = false;
-
-            parent.maestrosToolStripMenuItem.Visible = false;
-            parent.gestionDeLibrosToolStripMenuItem.Visible = false;
-            parent.gestionDeClientesToolStripMenuItem.Visible = false;
-            parent.bitacoraDeCambiosToolStripMenuItem.Visible = false;
-            parent.gestionDeProveedoresToolStripMenuItem.Visible = false;
-
-            parent.ventaToolStripMenuItem.Visible = false;
-            parent.facturarToolStripMenuItem.Visible = false;
-
-            parent.comprasToolStripMenuItem.Visible = false;
-            parent.generarSolicitudDeCotizacionToolStripMenuItem.Visible = false;
-            parent.generarOrdenDeCompraToolStripMenuItem.Visible = false;
-            parent.verificarRecepciónDeProductosToolStripMenuItem.Visible = false;
-
-            parent.reportesToolStripMenuItem.Visible = false;
-            parent.generarReporteToolStripMenuItem.Visible = false;
 
             foreach (DataRow dr in NegociosFamilia.ObtenerPermisosPorNombreFamilia(rol).Rows)
             {

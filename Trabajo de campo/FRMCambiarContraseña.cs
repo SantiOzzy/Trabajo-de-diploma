@@ -171,55 +171,35 @@ namespace Trabajo_de_campo
         {
             FRMUI parent = this.MdiParent as FRMUI;
 
-            parent.cerrarSesiónToolStripMenuItem.Visible = false;
-            parent.cambiarContraseñaToolStripMenuItem.Visible = false;
+            foreach (ToolStripMenuItem itemMenu in parent.menuStrip1.Items)
+            {
+                itemMenu.Visible = false;
 
-            parent.administradorToolStripMenuItem.Visible = false;
-            parent.gestionDeUsuariosToolStripMenuItem.Visible = false;
-            parent.gestionDePerfilesToolStripMenuItem.Visible = false;
-            parent.bitacoraDeEventosToolStripMenuItem.Visible = false;
-            parent.respaldosToolStripMenuItem.Visible = false;
+                foreach (ToolStripItem subItem in itemMenu.DropDownItems)
+                {
+                    if (subItem is ToolStripMenuItem)
+                    {
+                        subItem.Visible = false;
+                    }
+                }
+            }
 
-            parent.maestrosToolStripMenuItem.Visible = false;
-            parent.gestionDeLibrosToolStripMenuItem.Visible = false;
-            parent.gestionDeClientesToolStripMenuItem.Visible = false;
-            parent.bitacoraDeCambiosToolStripMenuItem.Visible = false;
-            parent.gestionDeProveedoresToolStripMenuItem.Visible = false;
+            parent.nombreToolStripMenuItem.Visible = true;
+            parent.usuarioToolStripMenuItem.Visible = true;
+            parent.ayudaToolStripMenuItem.Visible = true;
 
-            parent.ventaToolStripMenuItem.Visible = false;
-            parent.facturarToolStripMenuItem.Visible = false;
-
-            parent.comprasToolStripMenuItem.Visible = false;
-            parent.generarSolicitudDeCotizacionToolStripMenuItem.Visible = false;
-            parent.generarOrdenDeCompraToolStripMenuItem.Visible = false;
-            parent.verificarRecepciónDeProductosToolStripMenuItem.Visible = false;
-
-            parent.reportesToolStripMenuItem.Visible = false;
-            parent.generarReporteToolStripMenuItem.Visible = false;
+            parent.iniciarSesiónToolStripMenuItem.Visible = true;
+            parent.cambiarIdiomaToolStripMenuItem.Visible = true;
 
             parent.nombreToolStripMenuItem.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCambiarContraseña.Etiquetas.SinSesionIniciada");
 
-            parent.FormBitacoraCambios.Hide();
-            parent.FormBitacoraEventos.Hide();
-            parent.FormCambiarContraseña.Hide();
-            parent.FormCambiarIdioma.Hide();
-            parent.FormCerrarSesion.Hide();
-            parent.FormCobrarVenta.Hide();
-            parent.FormGenerarFactura.Hide();
-            parent.FormGenerarReporteFactura.Hide();
-            parent.FormGestionClientes.Hide();
-            parent.FormGestionFamilias.Hide();
-            parent.FormGestionLibros.Hide();
-            parent.FormGestionPerfiles.Hide();
-            parent.FormGestionUsuarios.Hide();
-            parent.FormIniciarSesion.Hide();
-            parent.FormRegistrarCliente.Hide();
-            parent.FormRespaldos.Hide();
-            parent.FormSeleccionarLibros.Hide();
-            parent.FormOrdenCompra.Hide();
-            parent.FormSolicitudCotizacion.Hide();
-            parent.FormRecepcionProductos.Hide();
-            parent.FormGestionProveedores.Hide();
+            foreach (Form frm in Application.OpenForms.Cast<Form>().ToArray())
+            {
+                if (!(frm is FRMUI))
+                {
+                    frm.Hide();
+                }
+            }
         }
 
         private void FRMCambiarContraseña_VisibleChanged(object sender, EventArgs e)

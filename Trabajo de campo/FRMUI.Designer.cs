@@ -320,7 +320,6 @@ namespace Trabajo_de_campo
         public System.Windows.Forms.ToolStripMenuItem gestionDeLibrosToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem generarSolicitudDeCotizacionToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem generarReporteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cambiarIdiomaToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem gestionDePerfilesToolStripMenuItem;
         public System.Windows.Forms.MenuStrip menuStrip1;
         public System.Windows.Forms.ToolStripMenuItem bitacoraDeEventosToolStripMenuItem;
@@ -330,6 +329,7 @@ namespace Trabajo_de_campo
         public System.Windows.Forms.ToolStripMenuItem gestionDeProveedoresToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem generarOrdenDeCompraToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem verificarRecepciónDeProductosToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem cambiarIdiomaToolStripMenuItem;
     }
 }
 
