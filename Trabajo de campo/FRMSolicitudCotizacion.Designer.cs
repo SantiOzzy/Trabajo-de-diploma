@@ -143,7 +143,7 @@
             this.BTNPreRegistrar.Name = "BTNPreRegistrar";
             this.BTNPreRegistrar.Size = new System.Drawing.Size(116, 49);
             this.BTNPreRegistrar.TabIndex = 9;
-            this.BTNPreRegistrar.Text = "Registrar proveedor";
+            this.BTNPreRegistrar.Text = "Pre-registrar proveedor";
             this.BTNPreRegistrar.UseVisualStyleBackColor = true;
             this.BTNPreRegistrar.Click += new System.EventHandler(this.BTNPreRegistrar_Click);
             // 

@@ -18,6 +18,7 @@ namespace Trabajo_de_campo
         FRMUI parent;
         Negocios negocios = new Negocios();
         BLLSolicitudCotizacion NegociosSolicitud = new BLLSolicitudCotizacion();
+        BLLEvento NegociosEvento = new BLLEvento();
 
         public FRMSolicitudCotizacion()
         {
@@ -62,9 +63,11 @@ namespace Trabajo_de_campo
         public void RefrescarGrillas()
         {
             DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", "Stock < MinStock");
+            dt = TraducirTablaProductos(dt);
             dataGridView1.DataSource = dt;
 
             dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor");
+            dt = TraducirTablaProveedores(dt);
             dataGridView2.DataSource = dt;
         }
 
@@ -86,7 +89,7 @@ namespace Trabajo_de_campo
                 {
                     if (item.ToString().Substring(0, item.ToString().IndexOf(' ')) == dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString())
                     {
-                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.LibroYaSeleccionado"));
+                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSolicitudCotizacion.Etiquetas.LibroYaSeleccionado"));
                         LibroSeleccionado = true;
                     }
                 }
@@ -138,12 +141,14 @@ namespace Trabajo_de_campo
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", $"Stock < MinStock AND ISBN LIKE '{textBox1.Text}%'");
+            dt = TraducirTablaProductos(dt);
             dataGridView1.DataSource = dt;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor", $"CUIT LIKE '{textBox2.Text}%'");
+            dt = TraducirTablaProveedores(dt);
             dataGridView2.DataSource = dt;
         }
 
@@ -177,7 +182,8 @@ namespace Trabajo_de_campo
                 }
                 NegociosSolicitud.RegistrarProveedores(sol, CodSol);
 
-                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de factura", 3));
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Compras", "Registro de solicitud de cotización", 3));
+                
                 parent.FormBitacoraEventos.Actualizar();
 
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSolicitudCotizacion.Etiquetas.SolicitudGenerada"));
@@ -186,6 +192,30 @@ namespace Trabajo_de_campo
 
                 VaciarCampos();
             }
+        }
+
+        DataTable TraducirTablaProductos(DataTable dt)
+        {
+            dt.Columns[0].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN");
+            dt.Columns[1].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Autor");
+            dt.Columns[2].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre");
+            dt.Columns[3].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Stock");
+            dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MaxStock");
+            dt.Columns[5].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MinStock");
+
+            return dt;
+        }
+
+        DataTable TraducirTablaProveedores(DataTable dt)
+        {
+
+            dt.Columns[0].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CUIT");
+            dt.Columns[1].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.RazonSocial");
+            dt.Columns[2].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre");
+            dt.Columns[3].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Email");
+            dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTelefono");
+
+            return dt;
         }
     }
 }

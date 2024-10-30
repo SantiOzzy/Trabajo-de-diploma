@@ -43,7 +43,7 @@ namespace Trabajo_de_campo
         {
             if (CBCuit.Text == "" || textBox1.Text == "" || textBox2.Text == "")
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarProveedor.Etiquetas.LlenarCampos"));
             }
             else if (negocios.RevisarDisponibilidad(textBox2.Text, "CuentaBancaria", "Proveedor"))
             {
@@ -55,7 +55,8 @@ namespace Trabajo_de_campo
 
                 NegociosProveedor.RegistrarProveedor(prov);
 
-                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Proveedor", "Pre-registro de proveedor", 4));
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Proveedor", "Registro de proveedor", 4));
+                
                 FRMUI parent = this.MdiParent as FRMUI;
                 parent.FormBitacoraEventos.Actualizar();
                 parent.FormOrdenCompra.RefrescarGrillas();

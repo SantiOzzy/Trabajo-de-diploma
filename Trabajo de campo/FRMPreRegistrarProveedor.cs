@@ -59,7 +59,7 @@ namespace Trabajo_de_campo
 
             if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "")
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.LlenarCampos"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPreRegistrarProveedor.Etiquetas.LlenarCampos"));
             }
             else if (textBox1.Text.Length < 11)
             {
@@ -75,15 +75,15 @@ namespace Trabajo_de_campo
             }
             else if (MailValido == false)
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.CorreoInvalido"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPreRegistrarProveedor.Etiquetas.CorreoInvalido"));
             }
             else if (negocios.RevisarDisponibilidad(textBox4.Text, "Email", "Proveedor"))
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.CorreoOcupado"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPreRegistrarProveedor.Etiquetas.CorreoOcupado"));
             }
             else if (NumeroTelefonoValido == false)
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRegistrarCliente.Etiquetas.NumTelInvalido"));
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPreRegistrarProveedor.Etiquetas.NumTelInvalido"));
             }
             else
             {
@@ -91,7 +91,8 @@ namespace Trabajo_de_campo
 
                 NegociosProveedor.PreRegistrarProveedor(prov);
 
-                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Proveedor", "Pre-registro de proveedor", 4));
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Proveedor", "Pre registro de proveedor", 4));
+                
                 FRMUI parent = this.MdiParent as FRMUI;
                 parent.FormBitacoraEventos.Actualizar();
                 parent.FormSolicitudCotizacion.RefrescarGrillas();

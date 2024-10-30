@@ -17,6 +17,7 @@ namespace Trabajo_de_campo
     {
         Negocios negocios = new Negocios();
         BLLOrdenCompra NegociosOrdenCompra = new BLLOrdenCompra();
+        BLLEvento NegociosEvento = new BLLEvento();
         public FRMRecepcionProductos()
         {
             InitializeComponent();
@@ -47,6 +48,8 @@ namespace Trabajo_de_campo
                 }
             }
 
+            NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Compra", "Recepción de productos", 3));
+
             MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.CambiosGuardados"));
 
             CargarCB();
@@ -71,6 +74,7 @@ namespace Trabajo_de_campo
             if (negocios.RevisarDisponibilidad(CBOrdenCompra.Text, "CodOrdenCompra", "ItemOrden WHERE FechaEntrega IS NULL"))
             {
                 DataTable dt = negocios.ObtenerTabla("Libro.ISBN, Autor, Nombre, StockCompra, StockRecepcion, FechaEntrega, CodFactura", "ItemOrden INNER JOIN Libro ON Libro.ISBN = ItemOrden.ISBN", $"CodOrdenCompra = {CBOrdenCompra.Text} AND FechaEntrega IS NULL");
+                dt = TraducirTabla(dt);
                 dataGridView1.DataSource = dt;
 
                 dt = negocios.ObtenerTabla("FechaCreacion, NumTransaccion, OrdenCompra.CUIT, Nombre", "OrdenCompra INNER JOIN Proveedor ON Proveedor.CUIT = OrdenCompra.CUIT", $"CodOrdenCompra = {CBOrdenCompra.Text}");
@@ -107,13 +111,13 @@ namespace Trabajo_de_campo
 
                 if (codFactura.Length > 30)
                 {
-                    MessageBox.Show("La factura ingresada es demasiado larga");
+                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.FacturaLarga"));
                     throw new Exception();
                 }
 
                 if (ValidarNumero == false || cantidadRecibida == "" || codFactura == "" || Convert.ToInt64(cantidadRecibida) > 2147483647)
                 {
-                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.NumeroInvalido"));
+                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.NumeroInvalido"));
                     throw new Exception();
                 }
 
@@ -124,6 +128,19 @@ namespace Trabajo_de_campo
                 dataGridView1.Rows[e.RowIndex].Selected = true;
             }
             catch(Exception ex) { }
+        }
+
+        DataTable TraducirTabla(DataTable dt)
+        {
+            dt.Columns[0].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN");
+            dt.Columns[1].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Autor");
+            dt.Columns[2].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre");
+            dt.Columns[3].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.StockCompra");
+            dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.StockRecepcion");
+            dt.Columns[5].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.FechaEntrega");
+            dt.Columns[6].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CodFactura");
+
+            return dt;
         }
     }
 }

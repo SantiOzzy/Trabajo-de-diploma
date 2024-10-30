@@ -185,7 +185,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRMRecepcionProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Recepcion de productos";
+            this.Text = "Recepción de productos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMRecepcionProductos_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.FRMRecepcionProductos_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

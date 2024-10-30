@@ -19,6 +19,7 @@ namespace Trabajo_de_campo
         Negocios negocios = new Negocios();
         BLLProveedor NegociosProveedor = new BLLProveedor();
         BLLOrdenCompra NegociosOrdenCompra = new BLLOrdenCompra();
+        BLLEvento NegociosEvento = new BLLEvento();
         FRMUI parent;
 
         public OrdenCompra orden;
@@ -119,14 +120,14 @@ namespace Trabajo_de_campo
                 {
                     if (dr.Cells[0].Value.ToString() == dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString())
                     {
-                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.LibroYaSeleccionado"));
+                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.LibroYaSeleccionado"));
                         LibroSeleccionado = true;
                     }
                 }
 
                 if (LibroSeleccionado == false)
                 {
-                    string cantidad = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.IngresarCantidad"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.Cantidad"));
+                    string cantidad = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.IngresarCantidad"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.Cantidad"));
                     string cotizacion = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.IngresarCotizacion"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.Cotizacion"));
 
                     bool ValidarNumero1 = cantidad.All(char.IsDigit);
@@ -143,7 +144,7 @@ namespace Trabajo_de_campo
 
                     if (ValidarNumero1 == false || ValidarNumero2 == false || cantidad == "" || cotizacion == "" || Convert.ToInt64(cantidad) > 2147483647)
                     {
-                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.NumeroInvalido"));
+                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.NumeroInvalido"));
                     }
                     else if (Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[6].Value) < Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[4].Value) + Convert.ToInt32(cantidad))
                     {
@@ -167,7 +168,7 @@ namespace Trabajo_de_campo
         {
             try
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.LibroEliminado") + dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString());
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.LibroEliminado") + dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString());
                 dataGridView2.Rows.Remove(dataGridView2.Rows[e.RowIndex]);
                 ActualizarPrecioTotal();
 
@@ -196,11 +197,17 @@ namespace Trabajo_de_campo
 
             }
 
+            parent = this.MdiParent as FRMUI;
+
             PrecioIVA = PrecioTotal * 1.21;
 
             label6.Text = PrecioTotal.ToString();
             label7.Text = PrecioIVA.ToString();
-            parent.FormPagarCompra.textBox3.Text = "$" + PrecioIVA.ToString();
+
+            if (parent != null)
+            {
+                parent.FormPagarCompra.textBox3.Text = "$" + PrecioIVA.ToString();
+            }
         }
 
         void VaciarCampos()
@@ -266,7 +273,8 @@ namespace Trabajo_de_campo
                 }
                 NegociosOrdenCompra.RegistrarItems(orden);
 
-                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de factura", 3));
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Compras", "Registro de orden de compra", 3));
+                
                 parent.FormBitacoraEventos.Actualizar();
 
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMOrdenCompra.Etiquetas.OrdenGenerada"));

@@ -144,7 +144,9 @@ namespace Trabajo_de_campo
             dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Perfiles"), "Perfiles");
             dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Libros"), "Libros");
             dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Clientes"), "Clientes");
+            dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Proveedores"), "Proveedores");
             dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Ventas"), "Ventas");
+            dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Compras"), "Compras");
             dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.BaseDeDatos"), "Base de datos");
 
             CBModulo.DataSource = dt;
@@ -227,9 +229,22 @@ namespace Trabajo_de_campo
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.SerializacionXMLClientes"), "Serialización XML de clientes");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.DeserializacionXMLClientes"), "Des-serialización XML de clientes");
                     break;
+                case "Proveedores":
+                    dt.Rows.Add("", "");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.PreRegistroProveedor"), "Pre registro de proveedor");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroProveedor"), "Registro de proveedor");
+                    break;
                 case "Ventas":
                     dt.Rows.Add("", "");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.GeneracionFactura"), "Generación de factura");
+                    break;
+                case "Compras":
+                    dt.Rows.Add("", "");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroSolicitudCotizacion"), "Registro de solicitud de cotización");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.PreRegistroProveedor"), "Pre registro de proveedor");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroOrdenCompra"), "Registro de orden de compra");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroProveedor"), "Registro de proveedor");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RecepcionProductos"), "Recepción de productos");
                     break;
                 case "Base de datos":
                     dt.Rows.Add("", "");
