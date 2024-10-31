@@ -23,6 +23,14 @@ namespace BE
             TipoTarjeta = tipoTarjeta;
         }
 
+        public Cobro(string metodoPago, string banco, string marcaTarjeta, string tipoTarjeta)
+        {
+            MetodoPago = metodoPago;
+            Banco = banco;
+            MarcaTarjeta = marcaTarjeta;
+            TipoTarjeta = tipoTarjeta;
+        }
+
         public Cobro()
         {
 
