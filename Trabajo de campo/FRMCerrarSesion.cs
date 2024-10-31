@@ -15,7 +15,7 @@ namespace Trabajo_de_campo
 {
     public partial class FRMCerrarSesion : Form, IObserver
     {
-        BLLEvento NegociosEvento = new BLLEvento();
+        BLLUsuario NegociosUsuario = new BLLUsuario();
         public FRMCerrarSesion()
         {
             InitializeComponent();
@@ -38,9 +38,7 @@ namespace Trabajo_de_campo
 
         private void BTNConfirmar_Click(object sender, EventArgs e)
         {
-            NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Cierre de sesión", 1));
-
-            SessionManager.ObtenerInstancia().CerrarSesion();
+            NegociosUsuario.CerrarSesion();
 
             ModificarMenu();
 

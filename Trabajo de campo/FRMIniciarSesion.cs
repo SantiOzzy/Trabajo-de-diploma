@@ -17,8 +17,6 @@ namespace Trabajo_de_campo
     {
         BLLUsuario NegociosUsuario = new BLLUsuario();
         BLLFamilia NegociosFamilia = new BLLFamilia();
-        BLLEvento NegociosEvento = new BLLEvento();
-        CryptoManager Encriptar = new CryptoManager();
 
         bool MostrarContraseña = false;
 

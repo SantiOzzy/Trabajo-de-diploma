@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using BE;
 using DAL;
 using Services;
@@ -52,6 +53,49 @@ namespace BLL
 
                     NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Inicio de sesión", 1));
                 }
+            }
+        }
+
+        public void CerrarSesion()
+        {
+            NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Cierre de sesión", 1));
+
+            SessionManager.ObtenerInstancia().CerrarSesion();
+        }
+
+        public void CambiarContraseñaPropia(string username, string passwordViejo, string passwordNuevo, string passwordRepetido)
+        {
+            //bool ContraseñaValida = Regex.IsMatch(passwordNuevo, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
+
+            if (username == "" || passwordViejo == "" || passwordNuevo == "" || passwordRepetido == "")
+            {
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCambiarContraseña.Etiquetas.LlenarCampos"));
+            }
+            else if (passwordNuevo != passwordRepetido)
+            {
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCambiarContraseña.Etiquetas.ContraseñaNoCoincide"));
+            }
+            else if (SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username != username || SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Contraseña != Encriptacion.GetSHA256(passwordViejo))
+            {
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCambiarContraseña.Etiquetas.DatosIncorrectos"));
+            }
+            else if (!Regex.IsMatch(passwordNuevo, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"))
+            {
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCambiarContraseña.Etiquetas.ContraseñaInvalida"));
+            }
+            else
+            {
+                Usuario user = SessionManager.ObtenerInstancia().ObtenerDatosUsuario();
+
+                user.Contraseña = Encriptacion.GetSHA256(passwordNuevo);
+
+                ModificarContraseña(user.DNI, Encriptacion.GetSHA256(passwordNuevo));
+
+                SessionManager.ObtenerInstancia().IniciarSesion(user);
+
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Cambio de contraseña", 1));
+
+                SessionManager.ObtenerInstancia().CerrarSesion();
             }
         }
 
