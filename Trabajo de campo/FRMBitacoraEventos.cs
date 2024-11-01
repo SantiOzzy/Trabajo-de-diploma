@@ -90,11 +90,10 @@ namespace Trabajo_de_campo
             catch (Exception) { }
         }
 
-        public void Actualizar()
+        private DataTable FiltrarDatos()
         {
             DataTable dt;
 
-            //FILTRADO DE DATOS
             if (dateTimePicker1.Value == dateTimePicker1.MinDate && dateTimePicker2.Value == dateTimePicker2.MinDate && CBCriticidad.Text == "" && CBEvento.Text == "" && CBLogin.Text == "" && CBModulo.Text == "")
             {
                 dt = negocios.ObtenerTabla("*", "Evento", $"CONVERT(date,Fecha) >= '{DateTime.Now.AddDays(-3).ToString("yyyy-MM-ddTHH:mm:ss.fff")}' ORDER BY CodEvento DESC");
@@ -112,6 +111,13 @@ namespace Trabajo_de_campo
             dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Modulo");
             dt.Columns[5].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Evento");
             dt.Columns[6].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Criticidad");
+
+            return dt;
+        }
+
+        public void Actualizar()
+        {
+            DataTable dt = FiltrarDatos();
 
             foreach(DataRow dr in dt.Rows)
             {
@@ -314,129 +320,23 @@ namespace Trabajo_de_campo
 
         private void BTNImprimir_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count == 0)
+            FRMUI parent = this.MdiParent as FRMUI;
+
+            try
             {
-                MessageBox.Show("No hay datos en la grilla para imprimir");
+                DataTable dt = negocios.ObtenerTabla("DNI, Username, (Nombre + ' ' + Apellido), Rol, FechaNac, Email, NumTelefono", "Usuario", $"Username = '{dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[1].Value}'");
+
+                ReportesPDF.ReporteEvento(dataGridView1.Rows.Count, FiltrarDatos(), dt);
+
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
+
+                Actualizar();
+
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
             }
-            else
+            catch(Exception ex)
             {
-                try
-                {
-                    SaveFileDialog savefile = new SaveFileDialog();
-                    savefile.FileName = string.Format("{0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
-
-                    string PaginaHTML_Texto = Properties.Resources.ReporteEvento.ToString();
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
-
-                    //DATOS DE EVENTO
-
-                    string filas = string.Empty;
-
-                    //
-
-                    DataTable dt;
-                    if (dateTimePicker1.Value == dateTimePicker1.MinDate && dateTimePicker2.Value == dateTimePicker2.MinDate && CBCriticidad.Text == "" && CBEvento.Text == "" && CBLogin.Text == "" && CBModulo.Text == "")
-                    {
-                        dt = negocios.ObtenerTabla("*", "Evento", $"CAST(Fecha AS date) >= '{DateTime.Now.AddDays(-3)}' ORDER BY CodEvento DESC");
-                    }
-                    else
-                    {
-                        dt = negocios.ObtenerTabla("*", "Evento", $"Login LIKE '{CBLogin.Text}%' AND CAST(Fecha AS date) >= '{dateTimePicker1.Value.ToString("yyyy-MM-dd")}' AND CAST(Fecha AS date) <= '{dateTimePicker2.Value.ToString("yyyy-MM-dd")}' AND Modulo LIKE '{CBModulo.Text}%' AND Evento LIKE '{CBEvento.Text}%' AND Criticidad LIKE '{CBCriticidad.Text}%' ORDER BY CodEvento DESC");
-                    }
-
-                    foreach (DataRow r in dt.Rows)
-                    {
-                        filas += "<tr>";
-                        filas += "<td>" + r[0].ToString() + "</td>";
-                        filas += "<td>" + r[1].ToString() + "</td>";
-                        filas += "<td>" + r[2].ToString() + "</td>";
-                        filas += "<td>" + r[3].ToString() + "</td>";
-                        filas += "<td>" + r[4].ToString() + "</td>";
-                        filas += "<td>" + r[5].ToString() + "</td>";
-                        filas += "<td>" + r[6].ToString() + "</td>";
-                        filas += "</tr>";
-                    }
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS1", filas);
-
-                    //DATOS DE USUARIO
-
-                    dt = negocios.ObtenerTabla("DNI, Username, (Nombre + ' ' + Apellido), Rol, FechaNac, Email, NumTelefono", "Usuario", $"Username = '{dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[1].Value}'");
-
-                    filas = string.Empty;
-
-                    filas += "<tr>";
-                    filas += "<td>" + dt.Rows[0][0].ToString() + "</td>";
-                    filas += "<td>" + dt.Rows[0][1].ToString() + "</td>";
-                    filas += "<td>" + dt.Rows[0][2].ToString() + "</td>";
-                    filas += "<td>" + dt.Rows[0][3].ToString() + "</td>";
-                    filas += "<td>" + dt.Rows[0][4].ToString() + "</td>";
-                    filas += "<td>" + dt.Rows[0][5].ToString() + "</td>";
-                    filas += "<td>" + dt.Rows[0][6].ToString() + "</td>";
-                    filas += "</tr>";
-
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS2", filas);
-
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTEEVENTO", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteEvento"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IMPRESIONFECHA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.FechaImpresion"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ISBN", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@LIBRO", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@AUTOR", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Autor"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PRECIO", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Precio"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CANTIDAD", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Cantidad"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CODEVENTO", dataGridView1.Columns[0].HeaderText);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@LOGIN", dataGridView1.Columns[1].HeaderText);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHEVENTO", dataGridView1.Columns[2].HeaderText);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@HORA", dataGridView1.Columns[3].HeaderText);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@MODULO", dataGridView1.Columns[4].HeaderText);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@EVENTO", dataGridView1.Columns[5].HeaderText);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CRITICIDAD", dataGridView1.Columns[6].HeaderText);
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DNI", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.DNI"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@USERNAME", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Username"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NOMBRE", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ROL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Rol"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NACIMIENTO", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.FechaNac"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@EMAIL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Email"));
-                    PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMTEL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTelefono"));
-
-                    if (savefile.ShowDialog() == DialogResult.OK)
-                    {
-                        using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
-                        {
-                            Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                            PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-                            pdfDoc.Open();
-                            pdfDoc.Add(new Phrase(LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteEvento")));
-
-                            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.uai, System.Drawing.Imaging.ImageFormat.Png);
-                            img.ScaleToFit(150, 150);
-                            img.Alignment = iTextSharp.text.Image.UNDERLYING;
-
-                            img.SetAbsolutePosition(pdfDoc.Right - 150, pdfDoc.Top - 60);
-                            pdfDoc.Add(img);
-
-
-                            using (StringReader sr = new StringReader(PaginaHTML_Texto))
-                            {
-                                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-                            }
-
-                            pdfDoc.Close();
-                            stream.Close();
-                        }
-
-                        NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Usuarios", "Generación de reporte de evento", 5));
-                        Actualizar();
-
-                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
-
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al imprimir: " + ex);
-                }
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -507,7 +407,7 @@ namespace Trabajo_de_campo
             dict.Add("Generación de factura", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.GeneracionFactura"));
 
             dict.Add("Respaldo", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.Respaldo"));
-            dict.Add("Restauración", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.Restauración"));
+            dict.Add("Restauración", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.Restauracion"));
         }
     }
 }

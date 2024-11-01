@@ -42,7 +42,7 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.LlenarCampos"));
             }
-            else if (textBox2.Text.All(char.IsDigit))
+            else if (!textBox2.Text.All(char.IsDigit))
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.SoloNumeros"));
             }
