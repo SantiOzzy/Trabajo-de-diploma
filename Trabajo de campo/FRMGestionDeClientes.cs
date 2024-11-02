@@ -39,32 +39,7 @@ namespace Trabajo_de_campo
         {
             LanguageManager.ObtenerInstancia().CambiarIdiomaControles(this);
 
-            if (ObtenerCondicionesQuery().Length > 5)
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente", ObtenerCondicionesQuery());
-                dt = TraducirTabla(dt);
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
-                }
-
-                dataGridView1.DataSource = dt;
-            }
-            else
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente");
-                dt = TraducirTabla(dt);
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
-                }
-
-                dataGridView1.DataSource = dt;
-            }
-
-            ContarClientes();
+            RefrescarGrilla();
 
             if (BTNAñadir.Enabled == false)
             {
@@ -93,47 +68,11 @@ namespace Trabajo_de_campo
             }
 
             LimpiarCampos();
-
-            if (ObtenerCondicionesQuery().Length > 5)
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente", ObtenerCondicionesQuery());
-                dt = TraducirTabla(dt);
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
-                }
-
-                dataGridView1.DataSource = dt;
-            }
-            else
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente");
-                dt = TraducirTabla(dt);
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
-                }
-
-                dataGridView1.DataSource = dt;
-            }
-
-            LimpiarCampos();
         }
 
         private void FRMGestionDeClientes_VisibleChanged(object sender, EventArgs e)
         {
-            DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente");
-            dt = TraducirTabla(dt);
-
-            foreach(DataRow dr in dt.Rows)
-            {
-                dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
-            }
-
-            dataGridView1.DataSource = dt;
-            ContarClientes();
+            RefrescarGrilla();
             LimpiarCampos();
         }
 
@@ -230,32 +169,7 @@ namespace Trabajo_de_campo
             FRMUI parent = this.MdiParent as FRMUI;
             parent.FormBitacoraEventos.Actualizar();
 
-            if (ObtenerCondicionesQuery().Length > 5)
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente", ObtenerCondicionesQuery());
-                dt = TraducirTabla(dt);
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
-                }
-
-                dataGridView1.DataSource = dt;
-            }
-            else
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente");
-                dt = TraducirTabla(dt);
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
-                }
-
-                dataGridView1.DataSource = dt;
-            }
-
-            ContarClientes();
+            RefrescarGrilla();
         }
 
         private void BTNCancelar_Click(object sender, EventArgs e)
@@ -428,6 +342,36 @@ namespace Trabajo_de_campo
             }
 
             return false;
+        }
+
+        public void RefrescarGrilla()
+        {
+            if (ObtenerCondicionesQuery().Length > 5)
+            {
+                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente", ObtenerCondicionesQuery());
+                dt = TraducirTabla(dt);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
+                }
+
+                dataGridView1.DataSource = dt;
+            }
+            else
+            {
+                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente");
+                dt = TraducirTabla(dt);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dr[3] = Encriptacion.DesencriptarAES256(dr[3].ToString());
+                }
+
+                dataGridView1.DataSource = dt;
+            }
+
+            ContarClientes();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

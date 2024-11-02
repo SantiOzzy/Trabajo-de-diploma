@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="DALCliente.cs" />
+    <Compile Include="DALDV.cs" />
     <Compile Include="DALFactura.cs" />
     <Compile Include="DALFamilia.cs" />
     <Compile Include="DALLibro.cs" />

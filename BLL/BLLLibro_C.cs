@@ -12,10 +12,13 @@ namespace BLL
     {
         Datos Data = new Datos();
         DALLibro_C DataLibro_C = new DALLibro_C();
+        BLLDV NegociosDV = new BLLDV();
 
         public void ActivarEstado(Libro_C lc)
         {
             Data.EjecutarComando("ActivarLibro_C", $"{lc.ISBN}, {lc.Fecha}, {lc.Hora}, {lc.Autor}, {lc.Nombre}, {lc.Precio}, {lc.Stock}");
+
+            NegociosDV.RecalcularDVTabla("Libro_C");
         }
     }
 }

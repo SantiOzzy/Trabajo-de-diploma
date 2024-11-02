@@ -12,9 +12,13 @@ namespace BLL
     {
         Datos Data = new Datos();
         DALSolicitudCotizacion DatosSolicitudCotizacion = new DALSolicitudCotizacion();
+        BLLDV NegociosDV = new BLLDV();
+
         public void RegistrarSolicitudCotizacion(SolicitudCotizacion sol)
         {
             Data.EjecutarComando("InsertarSolicitudCotizacion", $"'{sol.FechaEmision.ToString("yyyy-MM-ddTHH:mm:ss.fff")}'");
+
+            NegociosDV.RecalcularDVTabla("SolicitudCotizacion");
         }
 
         public int ObtenerCodSolicitudCotizacion()
@@ -28,6 +32,8 @@ namespace BLL
             {
                 Data.EjecutarComando("RegistrarItemSolicitud", $"{item.CodSolicitud}, '{item.ISBN}'");
             }
+
+            NegociosDV.RecalcularDVTabla("ItemSolicitud");
         }
 
         public void RegistrarProveedores(SolicitudCotizacion sol, int CodSol)
@@ -36,6 +42,8 @@ namespace BLL
             {
                 Data.EjecutarComando("RegistrarProveedorSolicitud", $"{CodSol}, '{prov.CUIT}'");
             }
+
+            NegociosDV.RecalcularDVTabla("ProveedorSolicitud");
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Trabajo_de_campo
     {
         BLLRespaldo NegociosRespaldo = new BLLRespaldo();
         BLLEvento NegociosEvento = new BLLEvento();
+        BLLDV NegociosDV = new BLLDV();
         public FRMRespaldos()
         {
             InitializeComponent();
@@ -113,20 +114,30 @@ namespace Trabajo_de_campo
                         NegociosRespaldo.Restaurar(textBox2.Text);
 
                         NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Base de datos", "Restauración", 1));
-                        
+
+                        NegociosDV.RecalcularBD();
+
                         FRMUI parent = this.MdiParent as FRMUI;
                         parent.FormBitacoraEventos.Actualizar();
                         parent.FormBitacoraCambios.Actualizar();
                         parent.FormGenerarReporteFactura.Actualizar();
-                        parent.FormGestionClientes.ActualizarIdioma();
+                        parent.FormGestionClientes.RefrescarGrilla();
                         parent.FormGestionFamilias.LlenarCombobox();
                         parent.FormGestionPerfiles.LlenarCombobox();
-                        parent.FormGestionLibros.ActualizarIdioma();
-                        parent.FormGestionUsuarios.ActualizarIdioma();
+                        parent.FormGestionLibros.RefrescarGrilla();
+                        parent.FormGestionProveedores.RefrescarGrilla();
+                        parent.FormGestionUsuarios.RefrescarGrilla();
+                        parent.FormSolicitudCotizacion.RefrescarGrillas();
+                        parent.FormOrdenCompra.RefrescarGrillas();
+                        parent.FormRecepcionProductos.CargarCB();
 
                         parent.FormSeleccionarLibros.Hide();
                         parent.FormCobrarVenta.Hide();
                         parent.FormGenerarFactura.Hide();
+                        parent.FormRegistrarCliente.Hide();
+                        parent.FormRegistrarProveedor.Hide();
+                        parent.FormPreRegistrarProveedor.Hide();
+                        parent.FormPagarCompra.Hide();
 
                         MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRespaldos.Etiquetas.RestoreExitoso"));
                         textBox2.Text = "";

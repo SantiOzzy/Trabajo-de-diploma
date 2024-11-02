@@ -72,7 +72,24 @@ namespace Trabajo_de_campo
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                if (ex is TaskCanceledException)
+                {
+                    if(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Rol == "Admin")
+                    {
+                        FRMUI parent = this.MdiParent as FRMUI;
+                        parent.FormReparacionBD.label3.Text = ex.Message;
+                        parent.FormReparacionBD.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El sistema no se encuentra disponible en estos momentos. Contacte al administrador");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

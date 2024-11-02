@@ -16,6 +16,7 @@ namespace BLL
         CryptoManager Encriptacion = new CryptoManager();
         Datos Data = new Datos();
         BLLEvento NegociosEvento = new BLLEvento();
+        BLLDV NegociosDV = new BLLDV();
 
         public void IniciarSesion(string username, string password)
         {
@@ -51,7 +52,10 @@ namespace BLL
 
                     ReiniciarIntentosFallidos(username);
 
+                    NegociosDV.ComprobarDV();
+
                     NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Inicio de sesión", 1));
+
                 }
             }
         }
@@ -65,8 +69,6 @@ namespace BLL
 
         public void CambiarContraseñaPropia(string username, string passwordViejo, string passwordNuevo, string passwordRepetido)
         {
-            //bool ContraseñaValida = Regex.IsMatch(passwordNuevo, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
-
             if (username == "" || passwordViejo == "" || passwordNuevo == "" || passwordRepetido == "")
             {
                 throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCambiarContraseña.Etiquetas.LlenarCampos"));

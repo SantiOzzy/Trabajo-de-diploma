@@ -82,14 +82,5 @@ namespace DAL
             com.ExecuteNonQuery();
             con.Close();
         }
-
-        public void EliminarRegistro(int ID, string Columna, string Tabla)
-        {
-            con.Open();
-            string query = $"DELETE FROM {Tabla} WHERE {Columna} = {ID}";
-            SqlCommand com = new SqlCommand(query, con);
-            com.ExecuteNonQuery();
-            con.Close();
-        }
     }
 }

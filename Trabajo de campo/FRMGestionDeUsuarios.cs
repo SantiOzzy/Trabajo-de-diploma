@@ -37,20 +37,7 @@ namespace Trabajo_de_campo
         {
             LanguageManager.ObtenerInstancia().CambiarIdiomaControles(this);
 
-            if (ObtenerCondicionesQuery().Length > 5)
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, FechaNac, Email, NumTelefono, Username, Rol, Bloqueado, Desactivado", "Usuario", ObtenerCondicionesQuery());
-                dt = TraducirTabla(dt);
-                dataGridView1.DataSource = dt;
-            }
-            else
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, FechaNac, Email, NumTelefono, Username, Rol, Bloqueado, Desactivado", "Usuario");
-                dt = TraducirTabla(dt);
-                dataGridView1.DataSource = dt;
-            }
-
-            ContarUsuarios();
+            RefrescarGrilla();
 
             if(BTNAñadir.Enabled == false)
             {
@@ -74,6 +61,24 @@ namespace Trabajo_de_campo
             }
         }
 
+        public void RefrescarGrilla()
+        {
+            if (ObtenerCondicionesQuery().Length > 5)
+            {
+                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, FechaNac, Email, NumTelefono, Username, Rol, Bloqueado, Desactivado", "Usuario", ObtenerCondicionesQuery());
+                dt = TraducirTabla(dt);
+                dataGridView1.DataSource = dt;
+            }
+            else
+            {
+                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, FechaNac, Email, NumTelefono, Username, Rol, Bloqueado, Desactivado", "Usuario");
+                dt = TraducirTabla(dt);
+                dataGridView1.DataSource = dt;
+            }
+
+            ContarUsuarios();
+        }
+
         private void FRMGestionDeUsuarios_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -81,20 +86,11 @@ namespace Trabajo_de_campo
                 e.Cancel = true;
                 Hide();
             }
-
-            LimpiarCampos();
-
-            DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, FechaNac, Email, NumTelefono, Username, Rol, Bloqueado, Desactivado", "Usuario");
-            dt = TraducirTabla(dt);
-            dataGridView1.DataSource = dt;
         }
 
         private void FRMGestionDeUsuarios_VisibleChanged(object sender, EventArgs e)
         {
-            DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, FechaNac, Email, NumTelefono, Username, Rol, Bloqueado, Desactivado", "Usuario");
-            dt = TraducirTabla(dt);
-            dataGridView1.DataSource = dt;
-
+            RefrescarGrilla();
             ContarUsuarios();
             LimpiarCampos();
 
@@ -245,20 +241,7 @@ namespace Trabajo_de_campo
             FRMUI parent = this.MdiParent as FRMUI;
             parent.FormBitacoraEventos.Actualizar();
 
-            if (ObtenerCondicionesQuery().Length > 5)
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, FechaNac, Email, NumTelefono, Username, Rol, Bloqueado, Desactivado", "Usuario", ObtenerCondicionesQuery());
-                dt = TraducirTabla(dt);
-                dataGridView1.DataSource = dt;
-            }
-            else
-            {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, FechaNac, Email, NumTelefono, Username, Rol, Bloqueado, Desactivado", "Usuario");
-                dt = TraducirTabla(dt);
-                dataGridView1.DataSource = dt;
-            }
-
-            ContarUsuarios();
+            RefrescarGrilla();
         }
 
         private void BTNCancelar_Click(object sender, EventArgs e)

@@ -57,7 +57,7 @@ namespace Trabajo_de_campo
             CargarCB();
         }
 
-        private void CargarCB()
+        public void CargarCB()
         {
             CBOrdenCompra.DataSource = negocios.ObtenerTabla("DISTINCT CodOrdenCompra", "ItemOrden", "FechaEntrega IS NULL");
             CBOrdenCompra.DisplayMember = "CodOrdenCompra";

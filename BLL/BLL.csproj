@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLCliente.cs" />
+    <Compile Include="BLLDV.cs" />
     <Compile Include="BLLEvento.cs" />
     <Compile Include="BLLFactura.cs" />
     <Compile Include="BLLLibro.cs" />

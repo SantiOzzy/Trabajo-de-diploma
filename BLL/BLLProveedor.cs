@@ -12,14 +12,20 @@ namespace BLL
     {
         Datos Data = new Datos();
         DALProveedor DataProveedor = new DALProveedor();
+        BLLDV NegociosDV = new BLLDV();
+
         public void PreRegistrarProveedor(Proveedor prov)
         {
             Data.EjecutarComando("PreRegistrarProveedor", $"'{prov.CUIT}', '{prov.RazonSocial}', '{prov.Nombre}', '{prov.Email}', '{prov.NumTelefono}'");
+
+            NegociosDV.RecalcularDVTabla("Proveedor");
         }
 
         public void RegistrarProveedor(Proveedor prov)
         {
             Data.EjecutarComando("RegistrarProveedor", $"'{prov.CUIT}', '{prov.Direccion}', '{prov.CuentaBancaria}'");
+
+            NegociosDV.RecalcularDVTabla("Proveedor");
         }
 
         public void RegistrarProveedorCompleto(Proveedor prov)
@@ -34,6 +40,8 @@ namespace BLL
             }
 
             Data.EjecutarComando("RegistrarProveedorCompleto", $"'{prov.CUIT}', '{prov.RazonSocial}', '{prov.Nombre}', '{prov.Email}', '{prov.NumTelefono}', '{prov.Direccion}', '{prov.CuentaBancaria}'");
+
+            NegociosDV.RecalcularDVTabla("Proveedor");
         }
 
         public Proveedor ObtenerProveedor(string CUIT)
@@ -61,16 +69,22 @@ namespace BLL
             }
 
             Data.EjecutarComando("ModificarProveedor", $"'{prov.CUIT}', '{prov.RazonSocial}', '{prov.Nombre}', '{prov.Email}', '{prov.NumTelefono}', {prov.Direccion}, {prov.CuentaBancaria}");
+
+            NegociosDV.RecalcularDVTabla("Proveedor");
         }
 
         public void DesactivarProveedor(string CUIT)
         {
             DataProveedor.DesactivacionProveedor(CUIT, 0);
+
+            NegociosDV.RecalcularDVTabla("Proveedor");
         }
 
         public void ActivarProveedor(string CUIT)
         {
             DataProveedor.DesactivacionProveedor(CUIT, 1);
+
+            NegociosDV.RecalcularDVTabla("Proveedor");
         }
 
         public bool RevisarDesactivado(string CUIT)

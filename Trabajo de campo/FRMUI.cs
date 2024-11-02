@@ -14,30 +14,31 @@ namespace Trabajo_de_campo
 {
     public partial class FRMUI : Form, IObserver
     {
-        public FRMCambiarContraseña FormCambiarContraseña = new FRMCambiarContraseña();
-        public FRMCerrarSesion FormCerrarSesion = new FRMCerrarSesion();
-        public FRMIniciarSesion FormIniciarSesion = new FRMIniciarSesion();
-        public FRMCambiarIdioma FormCambiarIdioma = new FRMCambiarIdioma();
-        public FRMSeleccionarLibros FormSeleccionarLibros = new FRMSeleccionarLibros();
-        public FRMRegistrarCliente FormRegistrarCliente = new FRMRegistrarCliente();
-        public FRMGestionDeUsuarios FormGestionUsuarios = new FRMGestionDeUsuarios();
-        public FRMGestionDePerfiles FormGestionPerfiles = new FRMGestionDePerfiles();
-        public FRMGestionDeFamilias FormGestionFamilias = new FRMGestionDeFamilias();
-        public FRMGestionDeLibros FormGestionLibros = new FRMGestionDeLibros();
-        public FRMGestionDeClientes FormGestionClientes = new FRMGestionDeClientes();
-        public FRMCobrarVenta FormCobrarVenta = new FRMCobrarVenta();
-        public FRMGenerarFactura FormGenerarFactura = new FRMGenerarFactura();
-        public FRMGenerarReporteFactura FormGenerarReporteFactura = new FRMGenerarReporteFactura();
-        public FRMBitacoraEventos FormBitacoraEventos = new FRMBitacoraEventos();
-        public FRMBitacoraCambios FormBitacoraCambios = new FRMBitacoraCambios();
-        public FRMRespaldos FormRespaldos = new FRMRespaldos();
-        public FRMSolicitudCotizacion FormSolicitudCotizacion = new FRMSolicitudCotizacion();
-        public FRMPreRegistrarProveedor FormPreRegistrarProveedor = new FRMPreRegistrarProveedor();
-        public FRMOrdenCompra FormOrdenCompra = new FRMOrdenCompra();
-        public FRMRegistrarProveedor FormRegistrarProveedor = new FRMRegistrarProveedor();
-        public FRMPagarCompra FormPagarCompra = new FRMPagarCompra();
-        public FRMRecepcionProductos FormRecepcionProductos = new FRMRecepcionProductos();
-        public FRMGestionDeProveedores FormGestionProveedores = new FRMGestionDeProveedores();
+        internal FRMCambiarContraseña FormCambiarContraseña = new FRMCambiarContraseña();
+        internal FRMCerrarSesion FormCerrarSesion = new FRMCerrarSesion();
+        internal FRMIniciarSesion FormIniciarSesion = new FRMIniciarSesion();
+        internal FRMCambiarIdioma FormCambiarIdioma = new FRMCambiarIdioma();
+        internal FRMSeleccionarLibros FormSeleccionarLibros = new FRMSeleccionarLibros();
+        internal FRMRegistrarCliente FormRegistrarCliente = new FRMRegistrarCliente();
+        internal FRMGestionDeUsuarios FormGestionUsuarios = new FRMGestionDeUsuarios();
+        internal FRMGestionDePerfiles FormGestionPerfiles = new FRMGestionDePerfiles();
+        internal FRMGestionDeFamilias FormGestionFamilias = new FRMGestionDeFamilias();
+        internal FRMGestionDeLibros FormGestionLibros = new FRMGestionDeLibros();
+        internal FRMGestionDeClientes FormGestionClientes = new FRMGestionDeClientes();
+        internal FRMCobrarVenta FormCobrarVenta = new FRMCobrarVenta();
+        internal FRMGenerarFactura FormGenerarFactura = new FRMGenerarFactura();
+        internal FRMGenerarReporteFactura FormGenerarReporteFactura = new FRMGenerarReporteFactura();
+        internal FRMBitacoraEventos FormBitacoraEventos = new FRMBitacoraEventos();
+        internal FRMBitacoraCambios FormBitacoraCambios = new FRMBitacoraCambios();
+        internal FRMRespaldos FormRespaldos = new FRMRespaldos();
+        internal FRMSolicitudCotizacion FormSolicitudCotizacion = new FRMSolicitudCotizacion();
+        internal FRMPreRegistrarProveedor FormPreRegistrarProveedor = new FRMPreRegistrarProveedor();
+        internal FRMOrdenCompra FormOrdenCompra = new FRMOrdenCompra();
+        internal FRMRegistrarProveedor FormRegistrarProveedor = new FRMRegistrarProveedor();
+        internal FRMPagarCompra FormPagarCompra = new FRMPagarCompra();
+        internal FRMRecepcionProductos FormRecepcionProductos = new FRMRecepcionProductos();
+        internal FRMGestionDeProveedores FormGestionProveedores = new FRMGestionDeProveedores();
+        internal FRMReparacionBD FormReparacionBD = new FRMReparacionBD();
 
         public Factura fact = new Factura();
         public Cobro cobro = new Cobro();
@@ -62,6 +63,8 @@ namespace Trabajo_de_campo
             else
             {
                 FormIniciarSesion.MdiParent = this;
+                FormReparacionBD.MdiParent = this;
+                FormRespaldos.MdiParent = this;
                 FormIniciarSesion.Show();
             }
         }
