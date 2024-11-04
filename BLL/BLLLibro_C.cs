@@ -54,11 +54,11 @@ namespace BLL
         {
             if (FechaInicial > DateTime.Now)
             {
-                throw new Exception("FRMBitacoraCambios.Etiquetas.FechaMayorActual");
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMBitacoraCambios.Etiquetas.FechaMayorActual"));
             }
             else if (FechaInicial > FechaFinal)
             {
-                throw new Exception("FRMBitacoraCambios.Etiquetas.FechaMayorFinal");
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMBitacoraCambios.Etiquetas.FechaMayorFinal"));
             }
         }
 

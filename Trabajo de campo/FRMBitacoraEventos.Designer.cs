@@ -276,7 +276,6 @@ namespace Trabajo_de_campo
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bitácora de eventos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMBitacoraEventos_FormClosing);
-            this.Load += new System.EventHandler(this.FRMBitacoraEventos_Load);
             this.VisibleChanged += new System.EventHandler(this.FRMBitacoraEventos_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

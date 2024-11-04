@@ -14,6 +14,7 @@ namespace BE
         public int StockCompra;
         public int StockRecepcion;
         public DateTime FechaEntrega;
+        public string CodFactura;
 
         public ItemOrden(string iSBN, int codOrdenCompra, double cotizacion, int stockCompra)
         {
@@ -23,7 +24,7 @@ namespace BE
             StockCompra = stockCompra;
         }
 
-        public ItemOrden(string iSBN, int codOrdenCompra, double cotizacion, int stockCompra, int stockRecepcion, DateTime fechaEntrega)
+        public ItemOrden(string iSBN, int codOrdenCompra, double cotizacion, int stockCompra, int stockRecepcion, DateTime fechaEntrega, string codFactura)
         {
             ISBN = iSBN;
             CodOrdenCompra = codOrdenCompra;
@@ -31,6 +32,7 @@ namespace BE
             StockCompra = stockCompra;
             StockRecepcion = stockRecepcion;
             FechaEntrega = fechaEntrega;
+            CodFactura = codFactura;
         }
     }
 }

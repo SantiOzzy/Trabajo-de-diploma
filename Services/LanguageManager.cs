@@ -70,9 +70,18 @@ namespace Services
 
         public void CargarIdioma()
         {
-            var NombreArchivo = Path.Combine("..","..","..",$"Idiomas\\{SessionManager.ObtenerInstancia().idiomaActual}.json");
-            var jsonString = File.ReadAllText(NombreArchivo);
-            Diccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
+            try
+            {
+                var NombreArchivo = Path.Combine($"Idiomas\\{SessionManager.ObtenerInstancia().idiomaActual}.json");
+                var jsonString = File.ReadAllText(NombreArchivo);
+                Diccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
+            }
+            catch(Exception)
+            {
+                var NombreArchivo = Path.Combine("..", "..", "..", $"Idiomas\\{SessionManager.ObtenerInstancia().idiomaActual}.json");
+                var jsonString = File.ReadAllText(NombreArchivo);
+                Diccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
+            }
         }
 
         public string ObtenerTexto(string key)
