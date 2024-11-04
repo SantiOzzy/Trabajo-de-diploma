@@ -83,7 +83,7 @@ namespace Trabajo_de_campo
                     }
                     else
                     {
-                        MessageBox.Show("El sistema no se encuentra disponible en estos momentos. Contacte al administrador");
+                        MessageBox.Show("FRMIniciarSesion.Etiquetas.SistemaNoDisponible");
                     }
                 }
                 else

@@ -62,11 +62,11 @@ namespace Trabajo_de_campo
 
         public void RefrescarGrillas()
         {
-            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", "Stock < MinStock");
+            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", "Stock < MinStock AND Activo = 1");
             dt = TraducirTablaProductos(dt);
             dataGridView1.DataSource = dt;
 
-            dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor");
+            dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor", "Activo = 1");
             dt = TraducirTablaProveedores(dt);
             dataGridView2.DataSource = dt;
         }
@@ -140,14 +140,14 @@ namespace Trabajo_de_campo
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", $"Stock < MinStock AND ISBN LIKE '{textBox1.Text}%'");
+            DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Stock, MaxStock, MinStock", "Libro", $"Activo = 1 AND Stock < MinStock AND ISBN LIKE '{textBox1.Text}%'");
             dt = TraducirTablaProductos(dt);
             dataGridView1.DataSource = dt;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor", $"CUIT LIKE '{textBox2.Text}%'");
+            DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor", $"Activo = 1 AND CUIT LIKE '{textBox2.Text}%'");
             dt = TraducirTablaProveedores(dt);
             dataGridView2.DataSource = dt;
         }

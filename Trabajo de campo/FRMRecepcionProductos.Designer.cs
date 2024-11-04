@@ -187,6 +187,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recepción de productos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMRecepcionProductos_FormClosing);
+            this.Load += new System.EventHandler(this.FRMRecepcionProductos_Load);
             this.VisibleChanged += new System.EventHandler(this.FRMRecepcionProductos_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

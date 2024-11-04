@@ -52,7 +52,14 @@ namespace BLL
 
                     ReiniciarIntentosFallidos(username);
 
-                    NegociosDV.ComprobarDV();
+                    if (Data.LlenarTabla("DVH", "DV").Rows[0][0].ToString() == "")
+                    {
+                        NegociosDV.RecalcularBD();
+                    }
+                    else
+                    {
+                        NegociosDV.ComprobarDV();
+                    }
 
                     NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Sesiones", "Inicio de sesión", 1));
 

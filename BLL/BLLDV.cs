@@ -15,6 +15,7 @@ namespace BLL
         Datos datos = new Datos();
         DALDV DatosDV = new DALDV();
         CryptoManager Encriptacion = new CryptoManager();
+        List<Object_DV> DVTablas = new List<Object_DV>();
 
         public void RecalcularDVTabla(string Tabla)
         {
@@ -61,10 +62,13 @@ namespace BLL
         public void ComprobarDV()
         {
             DataTable dt = datos.LlenarTabla("*", "DV");
+            DVTablas.Clear();
 
             foreach(DataRow r in dt.Rows)
             {
                 Object_DV DV = new Object_DV(r[0].ToString(), RecalcularDVHTabla(r[0].ToString()), RecalcularDVVTabla(r[0].ToString()));
+
+                DVTablas.Add(DV);
 
                 DataTable DVTabla = DatosDV.ObtenerDV(DV.Tabla);
 
@@ -81,7 +85,17 @@ namespace BLL
 
             foreach (DataRow r in dt.Rows)
             {
-                RecalcularDVTabla(r[0].ToString());
+                if (DVTablas.Any(Object_DV => Object_DV.Tabla == r[0].ToString()))
+                {
+                    Object_DV o = DVTablas.FirstOrDefault(Object_DV => Object_DV.Tabla == r[0].ToString());
+
+                    DatosDV.RecalcularDVHTabla(o.Tabla, o.DVH);
+                    DatosDV.RecalcularDVVTabla(o.Tabla, o.DVV);
+                }
+                else
+                {
+                    RecalcularDVTabla(r[0].ToString());
+                }
             }
         }
     }

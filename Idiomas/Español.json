@@ -70,6 +70,7 @@
     "FRMIniciarSesion.Etiquetas.DatosIncorrectos": "El nombre de usuario y la contraseña no coinciden",
     "FRMIniciarSesion.Etiquetas.TresFallos": "Se ingresó la contraseña de manera incorrecta tres veces. El usuario ha sido bloqueado",
     "FRMIniciarSesion.Etiquetas.LogIn": "Sesión iniciada como ",
+    "FRMIniciarSesion.Etiquetas.SistemaNoDisponible": "El sistema no se encuentra disponible en estos momentos. Contacte al administrador.",
 
     "FRMGestionDeUsuarios.Text": "Gestión de usuarios",
     "FRMGestionDeUsuarios.label1": "GESTIÓN DE USUARIOS",

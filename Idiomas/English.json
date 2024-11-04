@@ -70,6 +70,7 @@
     "FRMIniciarSesion.Etiquetas.DatosIncorrectos": "The username and password do not match",
     "FRMIniciarSesion.Etiquetas.TresFallos": "The password was entered incorrectly three times. The user has been locked",
     "FRMIniciarSesion.Etiquetas.LogIn": "Logged in as ",
+    "FRMIniciarSesion.Etiquetas.SistemaNoDisponible": "System is not available right now. Contact the administrator.",
 
     "FRMGestionDeUsuarios.Text": "User management",
     "FRMGestionDeUsuarios.label1": "USER MANAGEMENT",

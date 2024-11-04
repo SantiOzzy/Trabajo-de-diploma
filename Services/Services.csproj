@@ -104,5 +104,8 @@
   <ItemGroup>
     <None Include="Resources\uai.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReporteRecepcion.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

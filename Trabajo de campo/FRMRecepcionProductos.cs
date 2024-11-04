@@ -18,6 +18,8 @@ namespace Trabajo_de_campo
         Negocios negocios = new Negocios();
         BLLOrdenCompra NegociosOrdenCompra = new BLLOrdenCompra();
         BLLEvento NegociosEvento = new BLLEvento();
+        FRMUI parent;
+
         public FRMRecepcionProductos()
         {
             InitializeComponent();
@@ -50,9 +52,10 @@ namespace Trabajo_de_campo
 
             NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Compra", "Recepción de productos", 3));
 
+            GenerarReportePDF();
+
             MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRecepcionProductos.Etiquetas.CambiosGuardados"));
 
-            FRMUI parent = this.MdiParent as FRMUI;
             parent.FormGestionLibros.RefrescarGrilla();
             CargarCB();
         }
@@ -64,6 +67,11 @@ namespace Trabajo_de_campo
             CBOrdenCompra.ValueMember = "CodOrdenCompra";
 
             CBOrdenCompra.SelectedItem = null;
+
+            if(CBOrdenCompra.Items.Count == 0)
+            {
+                CBOrdenCompra.Text = "";
+            }
         }
 
         private void FRMRecepcionProductos_VisibleChanged(object sender, EventArgs e)
@@ -143,6 +151,30 @@ namespace Trabajo_de_campo
             dt.Columns[6].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CodFactura");
 
             return dt;
+        }
+
+        void GenerarReportePDF()
+        {
+            DataTable ProductosCompra = negocios.ObtenerTabla("Libro.ISBN, Autor, Nombre, Cotizacion, StockCompra, FechaEntrega, StockRecepcion", "Libro INNER JOIN ItemOrden ON Libro.ISBN = ItemOrden.ISBN", $"CodOrdenCompra = {CBOrdenCompra.Text}");
+            
+            DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono, Direccion, CuentaBancaria", "Proveedor", $"CUIT = {textBox3.Text}");
+            Proveedor prov = new Proveedor(dt.Rows[0][0].ToString(), dt.Rows[0][1].ToString(), dt.Rows[0][2].ToString(), dt.Rows[0][3].ToString(), dt.Rows[0][4].ToString(), dt.Rows[0][5].ToString(), dt.Rows[0][6].ToString());
+
+            dt = negocios.ObtenerTabla("FechaCreacion, PrecioTotal, NumTransaccion", "OrdenCompra", $"CodOrdenCompra = {CBOrdenCompra.Text}");
+            OrdenCompra orden = new OrdenCompra(textBox3.Text, Convert.ToDateTime(dt.Rows[0][0]), Convert.ToDouble(dt.Rows[0][1].ToString()), dt.Rows[0][2].ToString());
+
+            ReportesPDF.ReporteRecepcion(ProductosCompra, CBOrdenCompra.Text, orden, prov);
+
+            NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
+
+            parent.FormBitacoraEventos.Actualizar();
+
+            MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+        }
+
+        private void FRMRecepcionProductos_Load(object sender, EventArgs e)
+        {
+            parent = this.MdiParent as FRMUI;
         }
     }
 }

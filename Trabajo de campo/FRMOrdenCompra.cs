@@ -109,7 +109,7 @@ namespace Trabajo_de_campo
             dt = TraducirTabla(dt);
             dataGridView1.DataSource = dt;
 
-            CBProveedor.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Direccion IS NOT NULL AND CuentaBancaria IS NOT NULL");
+            CBProveedor.DataSource = negocios.ObtenerTabla("CUIT", "Proveedor", "Activo = 1 AND Direccion IS NOT NULL AND CuentaBancaria IS NOT NULL");
             CBProveedor.DisplayMember = "CUIT";
             CBProveedor.ValueMember = "CUIT";
 
@@ -302,10 +302,9 @@ namespace Trabajo_de_campo
 
         void GenerarReportePDF()
         {
-            FRMUI parent = this.MdiParent as FRMUI;
-
             DataTable ProductosCompra = negocios.ObtenerTabla("Libro.ISBN, Autor, Nombre, Cotizacion, StockCompra", "Libro INNER JOIN ItemOrden ON Libro.ISBN = ItemOrden.ISBN", $"CodOrdenCompra = {NegociosOrdenCompra.ObtenerCodOrdenCompra()}");
             string codOrden = NegociosOrdenCompra.ObtenerCodOrdenCompra().ToString();
+
             DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono, Direccion, CuentaBancaria", "Proveedor", $"CUIT = {orden.CUIT}");
             Proveedor prov = new Proveedor(dt.Rows[0][0].ToString(), dt.Rows[0][1].ToString(), dt.Rows[0][2].ToString(), dt.Rows[0][3].ToString(), dt.Rows[0][4].ToString(), dt.Rows[0][5].ToString(), dt.Rows[0][6].ToString());
 

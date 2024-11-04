@@ -127,8 +127,6 @@ namespace Trabajo_de_campo
                         parent.FormGestionLibros.RefrescarGrilla();
                         parent.FormGestionProveedores.RefrescarGrilla();
                         parent.FormGestionUsuarios.RefrescarGrilla();
-                        parent.FormSolicitudCotizacion.RefrescarGrillas();
-                        parent.FormOrdenCompra.RefrescarGrillas();
                         parent.FormRecepcionProductos.CargarCB();
 
                         parent.FormSeleccionarLibros.Hide();
@@ -138,6 +136,10 @@ namespace Trabajo_de_campo
                         parent.FormRegistrarProveedor.Hide();
                         parent.FormPreRegistrarProveedor.Hide();
                         parent.FormPagarCompra.Hide();
+                        parent.FormOrdenCompra.Hide();
+                        parent.FormSolicitudCotizacion.Hide();
+                        parent.FormReparacionBD.Hide();
+                        this.Hide();
 
                         MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMRespaldos.Etiquetas.RestoreExitoso"));
                         textBox2.Text = "";
