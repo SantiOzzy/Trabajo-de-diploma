@@ -38,10 +38,6 @@ namespace Trabajo_de_campo
             }
         }
 
-        private void FRMCambiarIdioma_Load(object sender, EventArgs e)
-        {
-        }
-
         private void FRMCambiarIdioma_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -49,8 +45,6 @@ namespace Trabajo_de_campo
                 e.Cancel = true;
                 Hide();
             }
-
-            comboBox1.SelectedItem = null;
         }
 
         private void FRMCambiarIdioma_VisibleChanged(object sender, EventArgs e)

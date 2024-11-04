@@ -49,48 +49,21 @@ namespace Trabajo_de_campo
 
         private void BTNCobrarVenta_Click(object sender, EventArgs e)
         {
-            if (negocios.RevisarDisponibilidad(numericUpDown1.Value.ToString(), "DNI", "Cliente") == false)
+            try
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCobrarVenta.Etiquetas.DNINoExiste"));
-
-                parent.FormRegistrarCliente.Show();
-            }
-            else if (NegociosCliente.RevisarDesactivado(numericUpDown1.Value.ToString()) == false)
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCobrarVenta.Etiquetas.ClienteDesactivado"));
-            }
-            else if (comboBox1.Text == "")
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCobrarVenta.Etiquetas.ElegirMedioPago"));
-            }
-            else if (comboBox1.Text != "Efectivo" && (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == ""))
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCobrarVenta.Etiquetas.LlenarCampos"));
-            }
-            else
-            {
-                parent.fact.DNI = Convert.ToInt32(numericUpDown1.Value);
-                parent.cobro.MetodoPago = comboBox1.Text;
+                parent.fact = NegociosFactura.CobrarVenta(numericUpDown1.Value.ToString(), comboBox1.Text, textBox1.Text, textBox2.Text, textBox3.Text, parent.fact);
 
                 parent.FormGenerarFactura.label1.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.label1") + numericUpDown1.Value.ToString();
                 parent.FormGenerarFactura.label2.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.label2") + comboBox1.Text;
 
                 if (comboBox1.Text != "Efectivo")
                 {
-                    parent.cobro.Banco = textBox1.Text;
-                    parent.cobro.MarcaTarjeta = textBox2.Text;
-                    parent.cobro.TipoTarjeta = textBox3.Text;
-
                     parent.FormGenerarFactura.label3.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.label3") + textBox1.Text;
                     parent.FormGenerarFactura.label4.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.label4") + textBox2.Text;
                     parent.FormGenerarFactura.label5.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.label5") + textBox3.Text;
                 }
                 else
                 {
-                    parent.cobro.Banco = null;
-                    parent.cobro.MarcaTarjeta = null;
-                    parent.cobro.TipoTarjeta = null;
-
                     parent.FormGenerarFactura.label3.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.label3") + "-";
                     parent.FormGenerarFactura.label4.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.label4") + "-";
                     parent.FormGenerarFactura.label5.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.label5") + "-";
@@ -101,6 +74,10 @@ namespace Trabajo_de_campo
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCobrarVenta.Etiquetas.CobroRealizado"));
 
                 this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -140,6 +117,11 @@ namespace Trabajo_de_campo
                     tb.Enabled = true;
                 }
             }
+        }
+
+        private void BTNRegistrarCliente_Click(object sender, EventArgs e)
+        {
+            parent.FormRegistrarCliente.Show();
         }
     }
 }

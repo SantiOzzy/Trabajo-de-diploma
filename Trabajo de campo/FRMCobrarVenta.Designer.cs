@@ -41,6 +41,7 @@ namespace Trabajo_de_campo
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.BTNCobrarVenta = new System.Windows.Forms.Button();
+            this.BTNRegistrarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,12 +164,23 @@ namespace Trabajo_de_campo
             this.BTNCobrarVenta.UseVisualStyleBackColor = true;
             this.BTNCobrarVenta.Click += new System.EventHandler(this.BTNCobrarVenta_Click);
             // 
+            // BTNRegistrarCliente
+            // 
+            this.BTNRegistrarCliente.Location = new System.Drawing.Point(19, 156);
+            this.BTNRegistrarCliente.Name = "BTNRegistrarCliente";
+            this.BTNRegistrarCliente.Size = new System.Drawing.Size(121, 23);
+            this.BTNRegistrarCliente.TabIndex = 35;
+            this.BTNRegistrarCliente.Text = "Registrar cliente";
+            this.BTNRegistrarCliente.UseVisualStyleBackColor = true;
+            this.BTNRegistrarCliente.Click += new System.EventHandler(this.BTNRegistrarCliente_Click);
+            // 
             // FRMCobrarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(294, 187);
+            this.Controls.Add(this.BTNRegistrarCliente);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -206,5 +218,6 @@ namespace Trabajo_de_campo
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button BTNCobrarVenta;
+        private System.Windows.Forms.Button BTNRegistrarCliente;
     }
 }

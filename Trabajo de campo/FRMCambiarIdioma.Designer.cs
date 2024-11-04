@@ -81,7 +81,6 @@ namespace Trabajo_de_campo
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cambiar idioma";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMCambiarIdioma_FormClosing);
-            this.Load += new System.EventHandler(this.FRMCambiarIdioma_Load);
             this.VisibleChanged += new System.EventHandler(this.FRMCambiarIdioma_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -18,6 +18,7 @@ namespace Trabajo_de_campo
     {
         Negocios negocios = new Negocios();
         BLLFactura NegociosFactura = new BLLFactura();
+        BLLLibro NegociosLibro = new BLLLibro();
         CryptoManager Encriptar = new CryptoManager();
         FRMUI parent;
 
@@ -31,9 +32,7 @@ namespace Trabajo_de_campo
         {
             LanguageManager.ObtenerInstancia().CambiarIdiomaControles(this);
 
-            DataTable dt = negocios.ObtenerTabla("*", "Libro", "Activo = 1");
-            dt = TraducirTabla(dt);
-            dataGridView1.DataSource = dt;
+            ActualizarTabla();
 
             ActualizarPrecioTotal();
         }
@@ -67,9 +66,7 @@ namespace Trabajo_de_campo
 
         private void FRMRegistrarVenta_VisibleChanged(object sender, EventArgs e)
         {
-            DataTable dt = negocios.ObtenerTabla("*", "Libro", "Activo = 1");
-            dt = TraducirTabla(dt);
-            dataGridView1.DataSource = dt;
+            ActualizarTabla();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -88,27 +85,16 @@ namespace Trabajo_de_campo
 
                 if (LibroSeleccionado == false)
                 {
-                    string cantidad = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.IngresarCantidad"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.Cantidad"));
-
-                    bool ValidarNumero = cantidad.All(char.IsDigit);
-
-                    if (cantidad.Length >= 11)
+                    try
                     {
-                        cantidad = cantidad.Substring(0, 11);
-                    }
-
-                    if (ValidarNumero == false || cantidad == "" || Convert.ToInt64(cantidad) > 2147483647)
-                    {
-                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.NumeroInvalido"));
-                    }
-                    else if(Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[4].Value) < Convert.ToInt32(cantidad))
-                    {
-                        MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.SinStock"));
-                    }
-                    else
-                    {
+                        string cantidad = Microsoft.VisualBasic.Interaction.InputBox(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.IngresarCantidad"), LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.Cantidad"));
+                        NegociosLibro.ValidarLibroParaVenta(cantidad, Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[3].Value));
                         dataGridView2.Rows.Add(dataGridView1.Rows[e.RowIndex].Cells[0].Value, dataGridView1.Rows[e.RowIndex].Cells[1].Value, dataGridView1.Rows[e.RowIndex].Cells[2].Value, dataGridView1.Rows[e.RowIndex].Cells[3].Value, cantidad);
                         ActualizarPrecioTotal();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
 
@@ -189,7 +175,7 @@ namespace Trabajo_de_campo
 
                 parent.FormGenerarFactura.dataGridView1.DataSource = parent.FormGenerarFactura.Productos.Copy();
 
-                parent.cobro.PrecioTotal = Convert.ToInt32(label5.Text);
+                parent.fact.Cobro.PrecioTotal = Convert.ToInt32(label5.Text);
 
                 parent.FormGenerarFactura.label8.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSeleccionarLibros.Etiquetas.MontoTotal") + label5.Text;
 
@@ -204,24 +190,15 @@ namespace Trabajo_de_campo
             parent = this.MdiParent as FRMUI;
         }
 
-        DataTable TraducirTabla(DataTable dt)
+        void ActualizarTabla()
         {
-            dt.Columns[0].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN");
-            dt.Columns[1].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Autor");
-            dt.Columns[2].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre");
-            dt.Columns[3].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Precio");
-            dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Stock");
-            dt.Columns[5].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Activo");
-            dt.Columns[6].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MaxStock");
-            dt.Columns[7].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MinStock");
-
             dataGridView2.Columns[0].HeaderText = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN");
             dataGridView2.Columns[1].HeaderText = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Autor");
             dataGridView2.Columns[2].HeaderText = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre");
             dataGridView2.Columns[3].HeaderText = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Precio");
             dataGridView2.Columns[4].HeaderText = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Cantidad");
 
-            return dt;
+            dataGridView1.DataSource = NegociosLibro;
         }
     }
 }

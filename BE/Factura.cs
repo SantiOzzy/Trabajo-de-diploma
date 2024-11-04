@@ -22,7 +22,7 @@ namespace BE
 
         public Factura()
         {
-
+            Cobro = new Cobro();
         }
     }
 }

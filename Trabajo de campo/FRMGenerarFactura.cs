@@ -49,8 +49,6 @@ namespace Trabajo_de_campo
                 e.Cancel = true;
                 Hide();
             }
-
-            VaciarCampos();
         }
 
         private void BTNSeleccionarProductos_Click(object sender, EventArgs e)
@@ -72,7 +70,7 @@ namespace Trabajo_de_campo
 
         private void BTNCobrarVenta_Click(object sender, EventArgs e)
         {
-            if (parent.cobro.PrecioTotal == 0 || Productos.Rows.Count == 0)
+            if (parent.fact.Cobro.PrecioTotal == 0 || Productos.Rows.Count == 0)
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.Etiquetas.SeleccioneProductos"));
             }
@@ -84,31 +82,10 @@ namespace Trabajo_de_campo
 
         private void BTNGenerarFactura_Click(object sender, EventArgs e)
         {
-            if (parent.cobro.PrecioTotal == 0 || Productos.Rows.Count == 0)
+            try
             {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.Etiquetas.SeleccioneProductos"));
-            }
-            else if (parent.fact.DNI == 0 || parent.cobro.MetodoPago == null)
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarFactura.Etiquetas.CobreVenta"));
-            }
-            else
-            {
-                parent.fact.Fecha = DateTime.Now;
+                NegociosFactura.GenerarFactura(parent.fact, Productos);
 
-                parent.fact.Cobro = parent.cobro;
-
-                NegociosFactura.RegistrarFactura(parent.fact);
-
-                int CodFact = NegociosFactura.ObtenerCodFactura();
-
-                foreach (DataRow dr in Productos.Rows)
-                {
-                    parent.fact.Items.Add(new Item(CodFact, dr[0].ToString(), Convert.ToInt32(dr.Field<string>(4))));
-                }
-                NegociosFactura.RegistrarItems(parent.fact);
-
-                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de factura", 3));
                 parent.FormBitacoraEventos.Actualizar();
                 parent.FormBitacoraCambios.Actualizar();
 
@@ -119,6 +96,10 @@ namespace Trabajo_de_campo
                 this.Hide();
 
                 VaciarCampos();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -165,6 +146,11 @@ namespace Trabajo_de_campo
             parent.FormBitacoraEventos.Actualizar();
 
             MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+        }
+
+        private void FRMGenerarFactura_VisibleChanged(object sender, EventArgs e)
+        {
+            VaciarCampos();
         }
     }
 }

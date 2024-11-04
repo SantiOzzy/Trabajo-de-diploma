@@ -41,7 +41,6 @@ namespace Trabajo_de_campo
         internal FRMReparacionBD FormReparacionBD = new FRMReparacionBD();
 
         public Factura fact = new Factura();
-        public Cobro cobro = new Cobro();
 
         public FRMUI()
         {

@@ -197,6 +197,7 @@ namespace Trabajo_de_campo
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar cliente";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMRegistrarCliente_FormClosing);
+            this.VisibleChanged += new System.EventHandler(this.FRMRegistrarCliente_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
