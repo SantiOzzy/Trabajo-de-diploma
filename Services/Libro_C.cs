@@ -15,8 +15,11 @@ namespace Services
         public string Nombre;
         public int Precio;
         public int Stock;
+        public int MaxStock;
+        public int MinStock;
+        public bool Activo;
 
-        public Libro_C(string iSBN, string fecha, string hora, string autor, string nombre, int precio, int stock)
+        public Libro_C(string iSBN, string fecha, string hora, string autor, string nombre, int precio, int stock, int maxStock, int minStock, bool activo)
         {
             ISBN = iSBN;
             Fecha = fecha;
@@ -25,6 +28,9 @@ namespace Services
             Nombre = nombre;
             Precio = precio;
             Stock = stock;
+            MaxStock = maxStock;
+            MinStock = minStock;
+            Activo = activo;
         }
     }
 }

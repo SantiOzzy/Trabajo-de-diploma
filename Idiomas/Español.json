@@ -344,6 +344,9 @@
     "FRMBitacoraCambios.BTNActivar": "Activar",
     "FRMBitacoraCambios.Etiquetas.EstadoEnUso": "El estado seleccionado ya es el estado activo para el libro",
     "FRMBitacoraCambios.Etiquetas.EstadoActivado": "Se activó el estado seleccionado para el libro",
+    "FRMBitacoraCambios.Etiquetas.FechaMayorActual": "La fecha inicial no puede ser mayor a la fecha actual",
+    "FRMBitacoraCambios.Etiquetas.FechaMayorFinal": "La fecha inicial no puede ser mayor a la fecha final",
+    "FRMBitacoraCambios.Etiquetas.SeleccionarCambio": "Seleccione un cambio para activar",
 
     "FRMRespaldos.Text": "Respaldos",
     "FRMRespaldos.label1": "Respaldar",
@@ -498,6 +501,7 @@
     "dgv.CodOrdenCompra": "Código de orden de compra",
     "dgv.FechaCreacion": "Fecha de creacion",
     "dgv.NumTransaccion": "Número de transacción",
+    "dgv.EstadoActual": "Estado actual",
 
     "Modulos.Sesiones": "Sesiones",
     "Modulos.Usuarios": "Usuarios",

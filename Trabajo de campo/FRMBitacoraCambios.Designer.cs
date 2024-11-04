@@ -123,7 +123,6 @@ namespace Trabajo_de_campo
             this.dateTimePicker1.TabIndex = 7;
             this.dateTimePicker1.Value = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.CloseUp += new System.EventHandler(this.dateTimePicker1_CloseUp);
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
             // 
@@ -135,7 +134,6 @@ namespace Trabajo_de_campo
             this.dateTimePicker2.TabIndex = 8;
             this.dateTimePicker2.Value = new System.DateTime(2024, 1, 2, 0, 0, 0, 0);
             this.dateTimePicker2.CloseUp += new System.EventHandler(this.dateTimePicker2_CloseUp);
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // CBIsbn
             // 
@@ -179,6 +177,7 @@ namespace Trabajo_de_campo
             this.Text = "Bitácora de cambios";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMBitacoraCambios_FormClosing);
             this.Load += new System.EventHandler(this.FRMBitacoraCambios_Load);
+            this.VisibleChanged += new System.EventHandler(this.FRMBitacoraCambios_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

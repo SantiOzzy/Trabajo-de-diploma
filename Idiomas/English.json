@@ -344,6 +344,9 @@
     "FRMBitacoraCambios.BTNActivar": "Activate",
     "FRMBitacoraCambios.Etiquetas.EstadoEnUso": "Selected state is already the current state for the book",
     "FRMBitacoraCambios.Etiquetas.EstadoActivado": "Selected state was activated for the book",
+    "FRMBitacoraCambios.Etiquetas.FechaMayorActual": "Initial date can't be above current date",
+    "FRMBitacoraCambios.Etiquetas.FechaMayorFinal": "Initial date can't be above final date",
+    "FRMBitacoraCambios.Etiquetas.SeleccionarCambio": "Select a change to activate",
 
     "FRMRespaldos.Text": "Backups",
     "FRMRespaldos.label1": "Backup",
@@ -498,6 +501,7 @@
     "dgv.CodOrdenCompra": "Purchase order code",
     "dgv.FechaCreacion": "Creation date",
     "dgv.NumTransaccion": "Transaction number",
+    "dgv.EstadoActual": "Current state",
 
     "Modulos.Sesiones": "Sessions",
     "Modulos.Usuarios": "Users",
