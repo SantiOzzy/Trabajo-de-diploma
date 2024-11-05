@@ -266,7 +266,7 @@ namespace Trabajo_de_campo
             }
             else
             {
-                orden = new OrdenCompra(CBProveedor.Text, DateTime.Now, Convert.ToDouble(label7.Text), orden.NumTransaccion);
+                orden = new OrdenCompra(CBProveedor.Text, DateTime.Now, Convert.ToDouble(label7.Text), orden.NumTransaccion, orden.CodFactura);
 
                 NegociosOrdenCompra.RegistrarOrdenCompra(orden);
 
@@ -308,13 +308,18 @@ namespace Trabajo_de_campo
             DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono, Direccion, CuentaBancaria", "Proveedor", $"CUIT = {orden.CUIT}");
             Proveedor prov = new Proveedor(dt.Rows[0][0].ToString(), dt.Rows[0][1].ToString(), dt.Rows[0][2].ToString(), dt.Rows[0][3].ToString(), dt.Rows[0][4].ToString(), dt.Rows[0][5].ToString(), dt.Rows[0][6].ToString());
 
-            ReportesPDF.ReporteCompra(ProductosCompra, codOrden, orden, prov);
+            try
+            {
+                ReportesPDF.ReporteCompra(ProductosCompra, codOrden, orden, prov);
 
-            NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
 
-            parent.FormBitacoraEventos.Actualizar();
-
-            MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+                parent.FormBitacoraEventos.Actualizar();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -198,7 +198,7 @@ namespace Trabajo_de_campo
             dataGridView2.Columns[3].HeaderText = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Precio");
             dataGridView2.Columns[4].HeaderText = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Cantidad");
 
-            dataGridView1.DataSource = NegociosLibro;
+            dataGridView1.DataSource = NegociosLibro.ActualizarTablaSeleccion();
         }
     }
 }

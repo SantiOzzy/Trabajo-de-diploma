@@ -36,6 +36,8 @@
             this.BTNPagar = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -74,7 +76,7 @@
             // 
             // BTNPagar
             // 
-            this.BTNPagar.Location = new System.Drawing.Point(84, 95);
+            this.BTNPagar.Location = new System.Drawing.Point(81, 119);
             this.BTNPagar.Name = "BTNPagar";
             this.BTNPagar.Size = new System.Drawing.Size(111, 23);
             this.BTNPagar.TabIndex = 4;
@@ -99,12 +101,31 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Monto pagado:";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(138, 95);
+            this.textBox4.MaxLength = 30;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(134, 20);
+            this.textBox4.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Código de factura:";
+            // 
             // FRMPagarCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(279, 124);
+            this.ClientSize = new System.Drawing.Size(279, 154);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.BTNPagar);
@@ -133,5 +154,7 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox textBox3;
         public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label4;
     }
 }

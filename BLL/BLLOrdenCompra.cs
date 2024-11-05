@@ -16,7 +16,7 @@ namespace BLL
 
         public void RegistrarOrdenCompra(OrdenCompra orden)
         {
-            Data.EjecutarComando("InsertarOrdenCompra", $"'{orden.CUIT}', '{orden.FechaCreacion.ToString("yyyy-MM-ddTHH:mm:ss.fff")}', {orden.PrecioTotal.ToString(System.Globalization.CultureInfo.InvariantCulture)}, '{orden.NumTransaccion}'");
+            Data.EjecutarComando("InsertarOrdenCompra", $"'{orden.CUIT}', '{orden.FechaCreacion.ToString("yyyy-MM-ddTHH:mm:ss.fff")}', {orden.PrecioTotal.ToString(System.Globalization.CultureInfo.InvariantCulture)}, '{orden.NumTransaccion}', '{orden.CodFactura}'");
 
             NegociosDV.RecalcularDVTabla("OrdenCompra");
         }

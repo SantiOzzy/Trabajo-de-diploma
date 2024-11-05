@@ -139,13 +139,18 @@ namespace Trabajo_de_campo
             DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono", "Cliente", $"DNI = {parent.fact.DNI}");
             Cliente cl = new Cliente(Convert.ToInt32(dt.Rows[0][0]), dt.Rows[0][1].ToString() + ' ' + dt.Rows[0][2].ToString(), dt.Rows[0][2].ToString(), Encriptacion.DesencriptarAES256(dt.Rows[0][3].ToString()), dt.Rows[0][4].ToString(), dt.Rows[0][5].ToString());
 
-            ReportesPDF.ReporteVenta(ProductosVenta, codFact, c, cl);
+            try
+            {
+                ReportesPDF.ReporteVenta(ProductosVenta, codFact, c, cl);
 
-            NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
 
-            parent.FormBitacoraEventos.Actualizar();
-
-            MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+                parent.FormBitacoraEventos.Actualizar();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void FRMGenerarFactura_VisibleChanged(object sender, EventArgs e)

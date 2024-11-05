@@ -38,7 +38,7 @@ namespace Trabajo_de_campo
 
         private void BTNPagar_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text == "")
+            if (textBox2.Text == "" || textBox4.Text == "")
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.LlenarCampos"));
             }
@@ -50,10 +50,15 @@ namespace Trabajo_de_campo
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.NumTransaccionEnUso"));
             }
+            else if (negocios.RevisarDisponibilidad(textBox4.Text, "CodFactura", "OrdenCompra"))
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.CodFacturaEnUso"));
+            }
             else
             {
                 FRMUI parent = this.MdiParent as FRMUI;
                 parent.FormOrdenCompra.orden.NumTransaccion = textBox2.Text;
+                parent.FormOrdenCompra.orden.CodFactura = textBox4.Text;
 
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMPagarCompra.Etiquetas.ConformacionPago"));
 
@@ -64,6 +69,7 @@ namespace Trabajo_de_campo
         private void FRMPagarCompra_VisibleChanged(object sender, EventArgs e)
         {
             textBox2.Text = "";
+            textBox4.Text = "";
         }
     }
 }

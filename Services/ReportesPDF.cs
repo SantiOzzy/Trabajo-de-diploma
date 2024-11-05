@@ -116,7 +116,7 @@ namespace Services
                     stream.Close();
                 }
 
-                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
             }
         }
 
@@ -131,7 +131,7 @@ namespace Services
             //DATOS DE PRODUCTOS
 
             string filas = string.Empty;
-            decimal total = 0;
+            double total = 0;
 
             foreach (DataRow r in productosComprados.Rows)
             {
@@ -142,12 +142,12 @@ namespace Services
                 filas += "<td>" + r[3].ToString() + "</td>";
                 filas += "<td>" + r[4].ToString() + "</td>";
                 filas += "</tr>";
-                total += (decimal.Parse(r[3].ToString()) * decimal.Parse(r[4].ToString()));
+                total += (double.Parse(r[3].ToString()) * double.Parse(r[4].ToString()));
             }
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS1", filas);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total.ToString());
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", (total * 1.21).ToString());
 
-            //DATOS DE VENTA
+            //DATOS DE COMPRA
 
             filas = string.Empty;
 
@@ -156,6 +156,7 @@ namespace Services
             filas += "<td>" + orden.FechaCreacion + "</td>";
             filas += "<td>" + orden.PrecioTotal + "</td>";
             filas += "<td>" + orden.NumTransaccion + "</td>";
+            filas += "<td>" + orden.CodFactura + "</td>";
             filas += "</tr>";
 
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS2", filas);
@@ -176,7 +177,7 @@ namespace Services
 
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS3", filas);
 
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTECOMPRA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteVenta"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTECOMPRA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteCompra"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IMPRESIONFECHA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.FechaImpresion"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PRECIOTOTAL", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.Total"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ISBN", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN"));
@@ -188,6 +189,7 @@ namespace Services
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CREACION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.FechaCreacion"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PRECIO", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Precio"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMTRANSACCION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTransaccion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CODFACTURA", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CodFactura"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CUIT", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CUIT"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@RAZONSOCIAL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.RazonSocial"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NOMBRE", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre"));
@@ -223,7 +225,7 @@ namespace Services
                     stream.Close();
                 }
 
-                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Compras", "Generación de reporte de factura de compra", 5));
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
             }
         }
 
@@ -325,11 +327,12 @@ namespace Services
                             pdfDoc.Close();
                             stream.Close();
                         }
+                        throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error al imprimir: " + ex);
+                    throw ex;
                 }
             }
         }
@@ -345,7 +348,7 @@ namespace Services
             //DATOS DE PRODUCTOS
 
             string filas = string.Empty;
-            decimal total = 0;
+            double total = 0;
 
             foreach (DataRow r in productosRecibidos.Rows)
             {
@@ -358,10 +361,10 @@ namespace Services
                 filas += "<td>" + r[5].ToString() + "</td>";
                 filas += "<td>" + r[6].ToString() + "</td>";
                 filas += "</tr>";
-                total += (decimal.Parse(r[3].ToString()) * decimal.Parse(r[4].ToString()));
+                total += (double.Parse(r[3].ToString()) * double.Parse(r[4].ToString()));
             }
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS1", filas);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total.ToString());
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", (total * 1.21).ToString());
 
             //DATOS DE VENTA
 
@@ -372,6 +375,7 @@ namespace Services
             filas += "<td>" + orden.FechaCreacion + "</td>";
             filas += "<td>" + orden.PrecioTotal + "</td>";
             filas += "<td>" + orden.NumTransaccion + "</td>";
+            filas += "<td>" + orden.CodFactura + "</td>";
             filas += "</tr>";
 
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS2", filas);
@@ -392,7 +396,7 @@ namespace Services
 
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS3", filas);
 
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTECOMPRA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteVenta"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTECOMPRA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteCompra"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IMPRESIONFECHA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.FechaImpresion"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PRECIOTOTAL", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.Total"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ISBN", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN"));
@@ -406,6 +410,7 @@ namespace Services
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CREACION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.FechaCreacion"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PRECIO", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Precio"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMTRANSACCION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTransaccion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CODFACTURA", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CodFactura"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CUIT", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CUIT"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@RAZONSOCIAL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.RazonSocial"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NOMBRE", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre"));
@@ -441,7 +446,7 @@ namespace Services
                     stream.Close();
                 }
 
-                //NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Compras", "Generación de reporte de factura de compra", 5));
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
             }
         }
     }

@@ -87,12 +87,13 @@ namespace Trabajo_de_campo
                 dt = TraducirTabla(dt);
                 dataGridView1.DataSource = dt;
 
-                dt = negocios.ObtenerTabla("FechaCreacion, NumTransaccion, OrdenCompra.CUIT, Nombre", "OrdenCompra INNER JOIN Proveedor ON Proveedor.CUIT = OrdenCompra.CUIT", $"CodOrdenCompra = {CBOrdenCompra.Text}");
+                dt = negocios.ObtenerTabla("FechaCreacion, NumTransaccion, OrdenCompra.CUIT, Nombre, CodFactura", "OrdenCompra INNER JOIN Proveedor ON Proveedor.CUIT = OrdenCompra.CUIT", $"CodOrdenCompra = {CBOrdenCompra.Text}");
 
                 textBox1.Text = dt.Rows[0][0].ToString();
                 textBox2.Text = dt.Rows[0][1].ToString();
                 textBox3.Text = dt.Rows[0][2].ToString();
                 textBox4.Text = dt.Rows[0][3].ToString();
+                textBox5.Text = dt.Rows[0][4].ToString();
             }
             else
             {
@@ -102,6 +103,7 @@ namespace Trabajo_de_campo
                 textBox2.Text = "";
                 textBox3.Text = "";
                 textBox4.Text = "";
+                textBox5.Text = "";
             }
         }
 
@@ -160,16 +162,21 @@ namespace Trabajo_de_campo
             DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono, Direccion, CuentaBancaria", "Proveedor", $"CUIT = {textBox3.Text}");
             Proveedor prov = new Proveedor(dt.Rows[0][0].ToString(), dt.Rows[0][1].ToString(), dt.Rows[0][2].ToString(), dt.Rows[0][3].ToString(), dt.Rows[0][4].ToString(), dt.Rows[0][5].ToString(), dt.Rows[0][6].ToString());
 
-            dt = negocios.ObtenerTabla("FechaCreacion, PrecioTotal, NumTransaccion", "OrdenCompra", $"CodOrdenCompra = {CBOrdenCompra.Text}");
-            OrdenCompra orden = new OrdenCompra(textBox3.Text, Convert.ToDateTime(dt.Rows[0][0]), Convert.ToDouble(dt.Rows[0][1].ToString()), dt.Rows[0][2].ToString());
+            dt = negocios.ObtenerTabla("FechaCreacion, PrecioTotal, NumTransaccion, CodFactura", "OrdenCompra", $"CodOrdenCompra = {CBOrdenCompra.Text}");
+            OrdenCompra orden = new OrdenCompra(textBox3.Text, Convert.ToDateTime(dt.Rows[0][0]), Convert.ToDouble(dt.Rows[0][1].ToString()), dt.Rows[0][2].ToString(), dt.Rows[0][3].ToString());
 
-            ReportesPDF.ReporteRecepcion(ProductosCompra, CBOrdenCompra.Text, orden, prov);
+            try
+            {
+                ReportesPDF.ReporteRecepcion(ProductosCompra, CBOrdenCompra.Text, orden, prov);
 
-            NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
 
-            parent.FormBitacoraEventos.Actualizar();
-
-            MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+                parent.FormBitacoraEventos.Actualizar();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void FRMRecepcionProductos_Load(object sender, EventArgs e)
