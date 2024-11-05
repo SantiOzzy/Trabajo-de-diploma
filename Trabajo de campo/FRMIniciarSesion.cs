@@ -77,7 +77,7 @@ namespace Trabajo_de_campo
                     if(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Rol == "Admin")
                     {
                         FRMUI parent = this.MdiParent as FRMUI;
-                        parent.FormReparacionBD.label3.Text = ex.Message;
+                        parent.FormReparacionBD.TablaError = ex.Message;
                         parent.FormReparacionBD.Show();
                         this.Hide();
                     }

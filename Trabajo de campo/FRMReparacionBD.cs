@@ -12,12 +12,22 @@ using Services;
 
 namespace Trabajo_de_campo
 {
-    public partial class FRMReparacionBD : Form
+    public partial class FRMReparacionBD : Form, IObserver
     {
         BLLDV NegociosDV = new BLLDV();
+        public string TablaError;
+
         public FRMReparacionBD()
         {
             InitializeComponent();
+            LanguageManager.ObtenerInstancia().Agregar(this);
+        }
+
+        public void ActualizarIdioma()
+        {
+            LanguageManager.ObtenerInstancia().CambiarIdiomaControles(this);
+
+            label3.Text = TablaError;
         }
 
         private void BTNSalir_Click(object sender, EventArgs e)
@@ -28,10 +38,12 @@ namespace Trabajo_de_campo
         private void BTNRecalcular_Click(object sender, EventArgs e)
         {
             NegociosDV.RecalcularBD();
+
             this.Hide();
+
             SessionManager.ObtenerInstancia().CerrarSesion();
 
-            MessageBox.Show("Dígito verificador recalculado");
+            MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMReparacionBD.Etiquetas.DVRecalculado"));
         }
 
         private void BTNRestaurar_Click(object sender, EventArgs e)
@@ -49,6 +61,11 @@ namespace Trabajo_de_campo
             }
 
             SessionManager.ObtenerInstancia().CerrarSesion();
+        }
+
+        private void FRMReparacionBD_VisibleChanged(object sender, EventArgs e)
+        {
+            label3.Text = TablaError;
         }
     }
 }

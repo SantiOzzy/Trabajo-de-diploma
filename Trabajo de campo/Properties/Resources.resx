@@ -127,19 +127,10 @@
   <data name="3844477-disable-eye-inactive-see-show-view-watch_110343" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3844477-disable-eye-inactive-see-show-view-watch_110343.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Plantilla" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Plantilla.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="uai" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\uai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ReporteEvento" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ReporteEvento.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="_8316630" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8316630.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ReporteOrdenCompra" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ReporteOrdenCompra.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

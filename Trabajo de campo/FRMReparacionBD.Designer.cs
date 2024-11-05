@@ -119,6 +119,7 @@ namespace Trabajo_de_campo
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reparación de base de datos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMReparacionBD_FormClosing);
+            this.VisibleChanged += new System.EventHandler(this.FRMReparacionBD_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
