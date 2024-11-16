@@ -52,7 +52,9 @@ namespace BLL
             dict.Add("Perfiles", LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Perfiles"));
             dict.Add("Libros", LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Libros"));
             dict.Add("Clientes", LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Clientes"));
+            dict.Add("Proveedores", LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Proveedores"));
             dict.Add("Ventas", LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Ventas"));
+            dict.Add("Compras", LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.Compras"));
             dict.Add("Base de datos", LanguageManager.ObtenerInstancia().ObtenerTexto("Modulos.BaseDeDatos"));
 
             dict.Add("Inicio de sesión", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.LogIn"));
@@ -90,7 +92,21 @@ namespace BLL
             dict.Add("Serialización XML de clientes", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.SerializacionXMLClientes"));
             dict.Add("Des-serialización XML de clientes", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.DeserializacionXMLClientes"));
 
+            dict.Add("Pre registro de proveedor", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.PreRegistroProveedor"));
+            dict.Add("Registro de proveedor", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroProveedor"));
+            dict.Add("Modificación de proveedor", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ModificacionProveedor"));
+            dict.Add("Borrado lógico de proveedor", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.BorradoProveedor"));
+            dict.Add("Restauración de proveedor", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RestauracionProveedor"));
+            dict.Add("Consulta de proveedores", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ConsultaProveedor"));
+
             dict.Add("Generación de factura", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.GeneracionFactura"));
+
+            dict.Add("Registro de solicitud de cotización", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroSolicitudCotizacion"));
+            dict.Add("Registro de orden de compra", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroOrdenCompra"));
+            dict.Add("Recepción de productos", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RecepcionProductos"));
+            dict.Add("Generación de reporte de solicitud de cotización", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ReporteSolicitud"));
+            dict.Add("Generación de reporte de factura de compra", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ReporteCompra"));
+            dict.Add("Generación de reporte de recepción de productos", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ReporteRecepcion"));
 
             dict.Add("Respaldo", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.Respaldo"));
             dict.Add("Restauración", LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.Restauracion"));
@@ -189,7 +205,9 @@ namespace BLL
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroSolicitudCotizacion"), "Registro de solicitud de cotización");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RegistroOrdenCompra"), "Registro de orden de compra");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.RecepcionProductos"), "Recepción de productos");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ReporteSolicitud"), "Generación de reporte de solicitud de cotización");
                     dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ReporteCompra"), "Generación de reporte de factura de compra");
+                    dt.Rows.Add(LanguageManager.ObtenerInstancia().ObtenerTexto("Eventos.ReporteRecepcion"), "Generación de reporte de recepción de productos");
                     break;
                 case "Base de datos":
                     dt.Rows.Add("", "");

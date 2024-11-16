@@ -169,7 +169,7 @@ namespace Trabajo_de_campo
             {
                 ReportesPDF.ReporteRecepcion(ProductosCompra, CBOrdenCompra.Text, orden, prov);
 
-                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de recepción de productos", 5));
 
                 parent.FormBitacoraEventos.Actualizar();
             }

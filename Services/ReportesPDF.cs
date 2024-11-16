@@ -19,7 +19,7 @@ namespace Services
         public static void ReporteVenta(DataTable productosComprados, string CodFact, Cobro c, Cliente cl)
         {
             SaveFileDialog savefile = new SaveFileDialog();
-            savefile.FileName = string.Format("{0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
+            savefile.FileName = string.Format("Factura de venta {0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
 
             string PaginaHTML_Texto = Properties.Resources.Plantilla.ToString();
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
@@ -123,7 +123,7 @@ namespace Services
         public static void ReporteCompra(DataTable productosComprados, string CodOrden, OrdenCompra orden, Proveedor prov)
         {
             SaveFileDialog savefile = new SaveFileDialog();
-            savefile.FileName = string.Format("{0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
+            savefile.FileName = string.Format("Orden de compra {0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
 
             string PaginaHTML_Texto = Properties.Resources.ReporteOrdenCompra.ToString();
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
@@ -161,7 +161,7 @@ namespace Services
 
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS2", filas);
 
-            //DATOS DE CLIENTE
+            //DATOS DE PROVEEDOR
 
             filas = string.Empty;
 
@@ -240,7 +240,7 @@ namespace Services
                 try
                 {
                     SaveFileDialog savefile = new SaveFileDialog();
-                    savefile.FileName = string.Format("{0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
+                    savefile.FileName = string.Format("Eventos {0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
 
                     string PaginaHTML_Texto = Properties.Resources.ReporteEvento.ToString();
                     PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
@@ -340,7 +340,7 @@ namespace Services
         public static void ReporteRecepcion(DataTable productosRecibidos, string CodOrden, OrdenCompra orden, Proveedor prov)
         {
             SaveFileDialog savefile = new SaveFileDialog();
-            savefile.FileName = string.Format("{0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
+            savefile.FileName = string.Format("Recepcion de productos {0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
 
             string PaginaHTML_Texto = Properties.Resources.ReporteRecepcion.ToString();
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
@@ -380,7 +380,7 @@ namespace Services
 
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS2", filas);
 
-            //DATOS DE CLIENTE
+            //DATOS DE PROVEEDOR
 
             filas = string.Empty;
 
@@ -396,7 +396,7 @@ namespace Services
 
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS3", filas);
 
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTECOMPRA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteCompra"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTERECEPCION", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteRecepcion"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IMPRESIONFECHA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.FechaImpresion"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PRECIOTOTAL", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.Total"));
             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ISBN", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN"));
@@ -427,7 +427,98 @@ namespace Services
 
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
-                    pdfDoc.Add(new Phrase(LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteCompra")));
+                    pdfDoc.Add(new Phrase(LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteRecepcion")));
+
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.uai, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(150, 150);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+
+                    img.SetAbsolutePosition(pdfDoc.Right - 150, pdfDoc.Top - 60);
+                    pdfDoc.Add(img);
+
+
+                    using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+
+                    pdfDoc.Close();
+                    stream.Close();
+                }
+
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+            }
+        }
+
+        public static void ReporteSolicitud(DataTable productosSolicitados, string CodSolicitud, SolicitudCotizacion solicitud, Proveedor prov)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.FileName = string.Format("Solicitud de cotizacion {0} {1}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"), prov.Nombre);
+
+            string PaginaHTML_Texto = Properties.Resources.ReporteSolicitudCotizacion.ToString();
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            //DATOS DE PRODUCTOS
+
+            string filas = string.Empty;
+
+            foreach (DataRow r in productosSolicitados.Rows)
+            {
+                filas += "<tr>";
+                filas += "<td>" + r[0].ToString() + "</td>";
+                filas += "<td>" + r[1].ToString() + "</td>";
+                filas += "<td>" + r[2].ToString() + "</td>";
+                filas += "</tr>";
+            }
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS1", filas);
+
+            //DATOS DE COMPRA
+
+            filas = string.Empty;
+
+            filas += "<tr>";
+            filas += "<td>" + CodSolicitud + "</td>";
+            filas += "<td>" + solicitud.FechaEmision + "</td>";
+            filas += "</tr>";
+
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS2", filas);
+
+            //DATOS DE PROVEEDOR
+
+            filas = string.Empty;
+
+            filas += "<tr>";
+            filas += "<td>" + prov.CUIT + "</td>";
+            filas += "<td>" + prov.RazonSocial + "</td>";
+            filas += "<td>" + prov.Nombre + "</td>";
+            filas += "<td>" + prov.Email + "</td>";
+            filas += "<td>" + prov.NumTelefono + "</td>";
+            filas += "</tr>";
+
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS3", filas);
+
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@REPORTESOLICITUD", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteSolicitud"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@IMPRESIONFECHA", LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.FechaImpresion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ISBN", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.ISBN"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@LIBRO", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@AUTOR", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Autor"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CODSOLICITUD", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CodOrdenCompra"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CREACION", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.FechaCreacion"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CUIT", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CUIT"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@RAZONSOCIAL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.RazonSocial"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NOMBRE", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@EMAIL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Email"));
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@NUMTEL", LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTelefono"));
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
+                {
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    pdfDoc.Add(new Phrase(LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteSolicitud")));
 
                     iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.uai, System.Drawing.Imaging.ImageFormat.Png);
                     img.ScaleToFit(150, 150);

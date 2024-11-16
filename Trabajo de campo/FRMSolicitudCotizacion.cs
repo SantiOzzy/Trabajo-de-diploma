@@ -183,7 +183,9 @@ namespace Trabajo_de_campo
                 NegociosSolicitud.RegistrarProveedores(sol, CodSol);
 
                 NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Compras", "Registro de solicitud de cotización", 3));
-                
+
+                GenerarReportePDF();
+
                 parent.FormBitacoraEventos.Actualizar();
 
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMSolicitudCotizacion.Etiquetas.SolicitudGenerada"));
@@ -216,6 +218,31 @@ namespace Trabajo_de_campo
             dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTelefono");
 
             return dt;
+        }
+
+        void GenerarReportePDF()
+        {
+            DataTable ProductosSolicitud = negocios.ObtenerTabla("Libro.ISBN, Autor, Nombre", "Libro INNER JOIN ItemSolicitud ON Libro.ISBN = ItemSolicitud.ISBN", $"CodSolicitud = {NegociosSolicitud.ObtenerCodSolicitudCotizacion()}");
+            string codSolicitud = NegociosSolicitud.ObtenerCodSolicitudCotizacion().ToString();
+
+            foreach (DataGridViewRow dr in dataGridView2.Rows)
+            {
+                DataTable dt = negocios.ObtenerTabla("CUIT, RazonSocial, Nombre, Email, NumTelefono", "Proveedor", $"CUIT = {dr.Cells[0].Value}");
+                Proveedor prov = new Proveedor(dt.Rows[0][0].ToString(), dt.Rows[0][1].ToString(), dt.Rows[0][2].ToString(), dt.Rows[0][3].ToString(), dt.Rows[0][4].ToString());
+
+                try
+                {
+                    ReportesPDF.ReporteSolicitud(ProductosSolicitud, codSolicitud, new SolicitudCotizacion(DateTime.Now), prov);
+
+                    NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de solicitud de cotización", 5));
+
+                    parent.FormBitacoraEventos.Actualizar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

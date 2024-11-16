@@ -107,5 +107,8 @@
   <ItemGroup>
     <None Include="Resources\ReporteRecepcion.html" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReporteSolicitudCotizacion.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
