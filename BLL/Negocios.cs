@@ -33,5 +33,10 @@ namespace BLL
             DataTable dt = Data.LlenarTabla(columna, tabla, condicion);
             return dt;
         }
+
+        public DataTable ObtenerTablaConsulta(string query)
+        {
+            return Data.LlenarTablaConsulta(query);
+        }
     }
 }

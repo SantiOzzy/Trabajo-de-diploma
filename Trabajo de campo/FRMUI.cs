@@ -39,6 +39,7 @@ namespace Trabajo_de_campo
         internal FRMRecepcionProductos FormRecepcionProductos = new FRMRecepcionProductos();
         internal FRMGestionDeProveedores FormGestionProveedores = new FRMGestionDeProveedores();
         internal FRMReparacionBD FormReparacionBD = new FRMReparacionBD();
+        internal FRMReporteInteligente FormReporteInteligente = new FRMReporteInteligente();
 
         public Factura fact = new Factura();
 
@@ -188,6 +189,12 @@ namespace Trabajo_de_campo
         private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMUI.Etiquetas.Ayuda"));
+        }
+
+        private void generarReporteInteligenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormReporteInteligente.MdiParent = this;
+            FormReporteInteligente.Show();
         }
     }
 }

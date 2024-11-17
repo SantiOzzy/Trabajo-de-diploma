@@ -74,6 +74,17 @@ namespace DAL
             return dt;
         }
 
+        public DataTable LlenarTablaConsulta(string query)
+        {
+            con.Open();
+            SqlCommand com = new SqlCommand(query, con);
+            SqlDataAdapter adapter = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            con.Close();
+            return dt;
+        }
+
         public void EliminarRegistro(string ID, string Columna, string Tabla)
         {
             con.Open();

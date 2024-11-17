@@ -56,6 +56,7 @@ namespace Trabajo_de_campo
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generarReporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarReporteInteligenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -260,7 +261,8 @@ namespace Trabajo_de_campo
             // reportesToolStripMenuItem
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generarReporteToolStripMenuItem});
+            this.generarReporteToolStripMenuItem,
+            this.generarReporteInteligenteToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.reportesToolStripMenuItem.Text = "Reportes";
@@ -269,8 +271,8 @@ namespace Trabajo_de_campo
             // generarReporteToolStripMenuItem
             // 
             this.generarReporteToolStripMenuItem.Name = "generarReporteToolStripMenuItem";
-            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.generarReporteToolStripMenuItem.Text = "Generar reporte";
+            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.generarReporteToolStripMenuItem.Text = "Generar reporte de venta";
             this.generarReporteToolStripMenuItem.Visible = false;
             this.generarReporteToolStripMenuItem.Click += new System.EventHandler(this.generarReporteToolStripMenuItem_Click);
             // 
@@ -280,6 +282,13 @@ namespace Trabajo_de_campo
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
             this.ayudaToolStripMenuItem.Click += new System.EventHandler(this.ayudaToolStripMenuItem_Click);
+            // 
+            // generarReporteInteligenteToolStripMenuItem
+            // 
+            this.generarReporteInteligenteToolStripMenuItem.Name = "generarReporteInteligenteToolStripMenuItem";
+            this.generarReporteInteligenteToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.generarReporteInteligenteToolStripMenuItem.Text = "Generar reporte inteligente";
+            this.generarReporteInteligenteToolStripMenuItem.Click += new System.EventHandler(this.generarReporteInteligenteToolStripMenuItem_Click);
             // 
             // FRMUI
             // 
@@ -330,6 +339,7 @@ namespace Trabajo_de_campo
         public System.Windows.Forms.ToolStripMenuItem generarOrdenDeCompraToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem verificarRecepciónDeProductosToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem cambiarIdiomaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generarReporteInteligenteToolStripMenuItem;
     }
 }
 

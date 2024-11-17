@@ -124,6 +124,9 @@
   <data name="ReporteEvento" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ReporteEvento.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="ReporteInteligente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ReporteInteligente.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="ReporteOrdenCompra" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ReporteOrdenCompra.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>

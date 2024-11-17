@@ -540,5 +540,65 @@ namespace Services
                 throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
             }
         }
+
+        public static void ReporteInteligente(DataTable dt, string NombreReporte)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.FileName = string.Format("{1} {0}.pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"), NombreReporte);
+
+            string PaginaHTML_Texto = Properties.Resources.ReporteInteligente.ToString();
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            string tabla = "";
+            //COLUMNAS
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                tabla += "<th>" + dt.Columns[i].ColumnName + "</th>";
+            }
+            //FILAS
+            string filas = string.Empty;
+            foreach (DataRow r in dt.Rows)
+            {
+                filas += "<tr>";
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    filas += "<td>" + r[i].ToString() + "</td>";
+                }
+                filas += "</tr>";
+            }
+
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@COLUMNAS", tabla);
+            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
+                {
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    pdfDoc.Add(new Phrase(LanguageManager.ObtenerInstancia().ObtenerTexto("Reporte.ReporteInteligente")));
+
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.uai, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(150, 150);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+
+                    img.SetAbsolutePosition(pdfDoc.Right - 150, pdfDoc.Top - 60);
+                    pdfDoc.Add(img);
+
+
+                    using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+
+                    pdfDoc.Close();
+                    stream.Close();
+                }
+
+                throw new Exception(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+            }
+        }
     }
 }
