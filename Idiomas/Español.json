@@ -24,6 +24,7 @@
     "FRMUI.reportesToolStripMenuItem": "Reportes",
     "FRMUI.respaldosToolStripMenuItem": "Respaldos",
     "FRMUI.generarReporteToolStripMenuItem": "Generar reporte de venta",
+    "FRMUI.generarReporteInteligenteToolStripMenuItem": "Generar reporte inteligente",
     "FRMUI.ayudaToolStripMenuItem": "Ayuda",
     "FRMUI.Etiquetas.SesionOcupada": "Ya hay una sesión iniciada",
     "FRMUI.Etiquetas.CerrarVenta": "No se puede entrar al maestro de libros mientras se realiza una venta.",
@@ -324,6 +325,10 @@
     "FRMGenerarReporteFactura.BTNGenerarReporte": "Generar reporte",
     "FRMGenerarReporteFactura.Etiquetas.ReporteGenerado": "Reporte generado exitosamente",
 
+    "FRMReporteInteligente.Text": "Reporte inteligente",
+    "FRMReporteInteligente.label1": "Tipo de reporte",
+    "FRMReporteInteligente.BTNGenerarReporte": "Generar reporte",
+
     "FRMBitacoraEventos.Text": "Bitácora de eventos",
     "FRMBitacoraEventos.label1": "Nombre",
     "FRMBitacoraEventos.label2": "Apellido",
@@ -516,6 +521,14 @@
     "dgv.FechaCreacion": "Fecha de creacion",
     "dgv.NumTransaccion": "Número de transacción",
     "dgv.EstadoActual": "Estado actual",
+    "dgv.TotalLibrosVendidos": "Total de libros vendidos",
+    "dgv.TotalDineroGenerado": "Total de dinero generado",
+    "dgv.UltimaCompra": "Última compra",
+    "dgv.Libro": "Libro",
+    "dgv.TotalDineroGastado": "Total de dinero gastado",
+    "dgv.PromedioPrecio": "Promedio de precio",
+    "dgv.TotalSolicitudes": "Total de solicitudes",
+    "dgv.TotalOrdenes": "Total de órdenes",
 
     "Modulos.Sesiones": "Sesiones",
     "Modulos.Usuarios": "Usuarios",

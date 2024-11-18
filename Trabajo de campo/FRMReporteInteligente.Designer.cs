@@ -51,8 +51,15 @@ namespace Trabajo_de_campo
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Ventas por categoría de libros",
-            "Libros con stock crítico"});
+            "Ventas por autor de libros",
+            "Libros con stock crítico",
+            "Clientes inactivos en 6 meses",
+            "Libros ordenados por ventas",
+            "Clientes que más compraron",
+            "Promedio de precio de libros por orden de compra",
+            "Proveedores con más solicitudes de cotización",
+            "Proveedores con más órdenes de compra",
+            "Órdenes de compra sin entregar"});
             this.comboBox1.Location = new System.Drawing.Point(466, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(161, 21);

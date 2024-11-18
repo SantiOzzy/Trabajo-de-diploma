@@ -24,6 +24,7 @@
     "FRMUI.respaldosToolStripMenuItem": "Backups",
     "FRMUI.reportesToolStripMenuItem": "Reports",
     "FRMUI.generarReporteToolStripMenuItem": "Generate sale report",
+    "FRMUI.generarReporteInteligenteToolStripMenuItem": "Generate intelligent report",
     "FRMUI.ayudaToolStripMenuItem": "Help",
     "FRMUI.Etiquetas.SesionOcupada": "There is already a session started",
     "FRMUI.Etiquetas.CerrarVenta": "You can't enter book management while performing a sale.",
@@ -324,6 +325,10 @@
     "FRMGenerarReporteFactura.BTNGenerarReporte": "Generate report",
     "FRMGenerarReporteFactura.Etiquetas.ReporteGenerado": "Report generated successfully",
 
+    "FRMReporteInteligente.Text": "Intelligent report",
+    "FRMReporteInteligente.label1": "Report type",
+    "FRMReporteInteligente.BTNGenerarReporte": "Generate report",
+
     "FRMBitacoraEventos.Text": "Event binnacle",
     "FRMBitacoraEventos.label1": "Name",
     "FRMBitacoraEventos.label2": "Last name",
@@ -516,6 +521,14 @@
     "dgv.FechaCreacion": "Creation date",
     "dgv.NumTransaccion": "Transaction number",
     "dgv.EstadoActual": "Current state",
+    "dgv.TotalLibrosVendidos": "Total sold books count",
+    "dgv.TotalDineroGenerado": "Total income generated",
+    "dgv.UltimaCompra": "Last purchase",
+    "dgv.Libro": "Book",
+    "dgv.TotalDineroGastado": "Total spent money",
+    "dgv.PromedioPrecio": "Average price",
+    "dgv.TotalSolicitudes": "Total quotation requests",
+    "dgv.TotalOrdenes": "Total purchase orders",
 
     "Modulos.Sesiones": "Sessions",
     "Modulos.Usuarios": "Users",

@@ -72,13 +72,13 @@ namespace Services
         {
             try
             {
-                var NombreArchivo = Path.Combine($"Idiomas\\{SessionManager.ObtenerInstancia().idiomaActual}.json");
+                var NombreArchivo = Path.Combine("..", "..", "..", $"Idiomas\\{SessionManager.ObtenerInstancia().idiomaActual}.json");
                 var jsonString = File.ReadAllText(NombreArchivo);
                 Diccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
             }
             catch(Exception)
             {
-                var NombreArchivo = Path.Combine("..", "..", "..", $"Idiomas\\{SessionManager.ObtenerInstancia().idiomaActual}.json");
+                var NombreArchivo = Path.Combine($"Idiomas\\{SessionManager.ObtenerInstancia().idiomaActual}.json");
                 var jsonString = File.ReadAllText(NombreArchivo);
                 Diccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
             }
