@@ -66,8 +66,6 @@ namespace Trabajo_de_campo
                 e.Cancel = true;
                 Hide();
             }
-
-            LimpiarCampos();
         }
 
         private void FRMGestionDeClientes_VisibleChanged(object sender, EventArgs e)
@@ -93,137 +91,38 @@ namespace Trabajo_de_campo
 
         private void BTNAplicar_Click(object sender, EventArgs e)
         {
-            if (textBox8.Text == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoConsulta"))
+            try
             {
-                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Clientes", "Consulta de clientes", 6));
+                NegociosCliente.BotonAplicar(textBox8.Text, Convert.ToInt32(numericUpDown1.Value), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
             }
-
-            if (textBox8.Text == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoAñadir"))
+            catch(Exception ex)
             {
-                if (ValidarCampos() == true)
+                MessageBox.Show(ex.Message);
+
+                if(ex is ApplicationException)
                 {
-                    Cliente customer = new Cliente(Convert.ToInt32(numericUpDown1.Value), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
-
-                    NegociosCliente.RegistrarCliente(customer);
-
-                    NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Clientes", "Registro de cliente", 4));
-
-                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.ClienteRegistrado"));
-
                     ActivarBotones(BTNCancelar, LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoConsulta"));
 
+                    RefrescarGrilla();
+
                     LimpiarCampos();
+
+                    FRMUI parent = this.MdiParent as FRMUI;
+                    parent.FormBitacoraEventos.Actualizar();
+                }
+                if(ex is ArithmeticException)
+                {
+                    RefrescarGrilla();
+
+                    FRMUI parent = this.MdiParent as FRMUI;
+                    parent.FormBitacoraEventos.Actualizar();
                 }
             }
-
-            if (textBox8.Text == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoModificar"))
-            {
-                if (ValidarCampos() == true)
-                {
-                    Cliente customer = new Cliente(Convert.ToInt32(numericUpDown1.Value), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
-
-                    NegociosCliente.ModificarCliente(customer);
-
-                    NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Clientes", "Modificación de cliente", 4));
-
-                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.ClienteModificado"));
-
-                    ActivarBotones(BTNCancelar, LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoConsulta"));
-
-                    LimpiarCampos();
-                }
-            }
-
-            if (textBox8.Text == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoEliminar"))
-            {
-                if (negocios.RevisarDisponibilidad(numericUpDown1.Value.ToString(), "DNI", "Cliente") == false)
-                {
-                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.DNINoExiste"));
-                }
-                else if (NegociosCliente.RevisarDesactivado(numericUpDown1.Value.ToString()) == false)
-                {
-                    NegociosCliente.ActivarCliente(numericUpDown1.Value.ToString());
-
-                    NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Clientes", "Restauración de cliente", 4));
-
-                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.ClienteRestaurado"));
-
-                    ActivarBotones(BTNCancelar, LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoConsulta"));
-
-                    LimpiarCampos();
-                }
-                else
-                {
-                    NegociosCliente.DesactivarCliente(numericUpDown1.Value.ToString());
-
-                    NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Clientes", "Borrado lógico de cliente", 4));
-
-                    MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.ClienteEliminado"));
-
-                    ActivarBotones(BTNCancelar, LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoConsulta"));
-
-                    LimpiarCampos();
-                }
-            }
-
-            FRMUI parent = this.MdiParent as FRMUI;
-            parent.FormBitacoraEventos.Actualizar();
-
-            RefrescarGrilla();
         }
 
         private void BTNCancelar_Click(object sender, EventArgs e)
         {
             ActivarBotones(BTNCancelar, LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoConsulta"));
-        }
-
-        private string ObtenerCondicionesQuery()
-        {
-            //Esta función devuelve las condiciones para el WHERE de la consulta de clientes
-
-            string c = "";
-
-            if (checkBox1.Checked == true)
-            {
-                c += "DNI = " + numericUpDown1.Value.ToString() + " AND ";
-            }
-
-            if (checkBox2.Checked == true)
-            {
-                c += "Nombre = '" + textBox1.Text + "' AND ";
-            }
-
-            if (checkBox3.Checked == true)
-            {
-                c += "Apellido = '" + textBox2.Text + "' AND ";
-            }
-
-            if (checkBox4.Checked == true)
-            {
-                c += "Direccion = '" + textBox3.Text + "' AND ";
-            }
-
-            if (checkBox5.Checked == true)
-            {
-                c += "Email = '" + textBox4.Text + "' AND ";
-            }
-
-            if (checkBox6.Checked == true)
-            {
-                c += "NumTelefono = '" + textBox5.Text + "' AND ";
-            }
-
-            if (checkBox7.Checked == true)
-            {
-                c += "Activo = '" + checkBox12.Checked.ToString() + "' AND ";
-            }
-
-            if (c.Length > 5)
-            {
-                c = c.Substring(0, c.Length - 5);
-            }
-
-            return c;
         }
 
         private void ActivarBotones(Button b, string modo)
@@ -290,66 +189,12 @@ namespace Trabajo_de_campo
             }
         }
 
-        private bool ValidarCampos()
-        {
-            //Valida todos los campos para verificar que los datos ingresados son válidos (Se usa al añadir y modificar clientes)
-
-            MailAddress Correo;
-            bool MailValido = false;
-            bool NumeroTelefonoValido = Regex.IsMatch(textBox5.Text, @"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$");
-
-            if (textBox4.Text != "")
-            {
-                try
-                {
-                    Correo = new MailAddress(textBox4.Text);
-                    MailValido = true;
-                }
-                catch (FormatException) { }
-            }
-
-            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "")
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.LlenarCampos"));
-            }
-            else if (negocios.RevisarDisponibilidad(numericUpDown1.Value.ToString(), "DNI", "Cliente") && textBox8.Text == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoAñadir"))
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.DNIEnUso"));
-            }
-            else if (negocios.RevisarDisponibilidad(numericUpDown1.Value.ToString(), "DNI", "Cliente") == false && textBox8.Text != LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoAñadir"))
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.DNINoExiste"));
-            }
-            else if (MailValido == false)
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.CorreoInvalido"));
-            }
-            else if (negocios.RevisarDisponibilidad(textBox4.Text, "Email", "Cliente") && textBox8.Text == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoAñadir"))
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.CorreoEnUso"));
-            }
-            else if (negocios.RevisarDisponibilidadConExcepcion(textBox4.Text, numericUpDown1.Value.ToString(), "DNI, Email", "Cliente") && textBox8.Text == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoModificar"))
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.CorreoEnUso"));
-            }
-            else if (NumeroTelefonoValido == false)
-            {
-                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeClientes.Etiquetas.NumTelInvalido"));
-            }
-            else
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public void RefrescarGrilla()
         {
-            if (ObtenerCondicionesQuery().Length > 5)
+            if (NegociosCliente.ObtenerCondicionesQuery(numericUpDown1.Value.ToString(), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, checkBox12.ToString(), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked, checkBox7.Checked).Length > 5)
             {
-                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente", ObtenerCondicionesQuery());
-                dt = TraducirTabla(dt);
+                DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente", NegociosCliente.ObtenerCondicionesQuery(numericUpDown1.Value.ToString(), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, checkBox12.ToString(), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked, checkBox7.Checked));
+                dt = NegociosCliente.TraducirTablaClientes(dt);
 
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -361,7 +206,7 @@ namespace Trabajo_de_campo
             else
             {
                 DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente");
-                dt = TraducirTabla(dt);
+                dt = NegociosCliente.TraducirTablaClientes(dt);
 
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -414,19 +259,6 @@ namespace Trabajo_de_campo
             }
 
             label4.Text = cont.ToString();
-        }
-
-        DataTable TraducirTabla(DataTable dt)
-        {
-            dt.Columns[0].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.DNI");
-            dt.Columns[1].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Nombre");
-            dt.Columns[2].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Apellido");
-            dt.Columns[3].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Direccion");
-            dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Email");
-            dt.Columns[5].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTelefono");
-            dt.Columns[6].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Activo");
-
-            return dt;
         }
 
         private void BTNSerializar_Click(object sender, EventArgs e)
@@ -496,7 +328,7 @@ namespace Trabajo_de_campo
         private void BTNLimpiar_Click(object sender, EventArgs e)
         {
             DataTable dt = negocios.ObtenerTabla("DNI, Nombre, Apellido, Direccion, Email, NumTelefono, Activo", "Cliente");
-            dt = TraducirTabla(dt);
+            dt = NegociosCliente.TraducirTablaClientes(dt);
 
             foreach (DataRow dr in dt.Rows)
             {

@@ -99,7 +99,10 @@ namespace Services
                 {
                     if (c is Button || c is Label)
                     {
-                        c.Text = ObtenerInstancia().ObtenerTexto(frm.Name + "." + c.Name);
+                        if (c.Name != "labelAyuda")
+                        {
+                            c.Text = ObtenerInstancia().ObtenerTexto(frm.Name + "." + c.Name);
+                        }
                     }
 
                     if(c is MenuStrip m)

@@ -173,5 +173,10 @@ namespace Trabajo_de_campo
                 textBox2.PasswordChar = '*';
             }
         }
+
+        private void labelAyuda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Test");
+        }
     }
 }

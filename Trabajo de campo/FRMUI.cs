@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using Services;
 using BE;
+using System.IO;
 
 namespace Trabajo_de_campo
 {
@@ -188,7 +190,38 @@ namespace Trabajo_de_campo
 
         private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMUI.Etiquetas.Ayuda"));
+            try
+            {
+                if (SessionManager.ObtenerInstancia().ObtenerDatosUsuario() != null)
+                {
+                    if (SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Rol == "Admin")
+                    {
+                        string rutaTemporal = Path.Combine(Path.GetTempPath(), "Ayuda.pdf");
+
+                        File.WriteAllBytes(rutaTemporal, Properties.Resources.AyudaAdmin);
+
+                        Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+                    }
+                    else
+                    {
+                        string rutaTemporal = Path.Combine(Path.GetTempPath(), "Ayuda.pdf");
+
+                        File.WriteAllBytes(rutaTemporal, Properties.Resources.AyudaUser);
+
+                        Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+                    }
+                }
+            }
+            catch(Exception ex) { }
+
+            //try
+            //{
+            //    Process.Start(new ProcessStartInfo(Path.Combine("..", "..", "..", $"Idiomas\\")) { UseShellExecute = true });
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Error al abrir el archivo: " + ex.Message);
+            //}
         }
 
         private void generarReporteInteligenteToolStripMenuItem_Click(object sender, EventArgs e)

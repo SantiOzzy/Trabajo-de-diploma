@@ -321,6 +321,11 @@ namespace Trabajo_de_campo
                 numericUpDown3.Enabled = true;
                 numericUpDown4.Enabled = true;
             }
+
+            if (modo == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoModificar"))
+            {
+                numericUpDown2.Enabled = false;
+            }
         }
 
         private void LimpiarCampos()

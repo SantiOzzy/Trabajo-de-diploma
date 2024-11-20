@@ -389,6 +389,11 @@ namespace Trabajo_de_campo
                 dateTimePicker1.Enabled = true;
                 comboBox1.Enabled = true;
             }
+
+            if(modo == LanguageManager.ObtenerInstancia().ObtenerTexto("Etiquetas.ModoModificar"))
+            {
+                textBox5.Enabled = false;
+            }
         }
 
         private void LimpiarCampos()
@@ -451,6 +456,10 @@ namespace Trabajo_de_campo
             else if (dateTimePicker1.Value < DateTime.Now.AddYears(-110))
             {
                 MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeUsuarios.Etiquetas.FechaAntigua"));
+            }
+            else if(!Regex.IsMatch(textBox5.Text, @"^\S*$"))
+            {
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGestionDeUsuarios.Etiquetas.UsernameEspacios"));
             }
             else if (MailValido == false)
             {

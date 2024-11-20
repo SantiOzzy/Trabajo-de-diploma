@@ -29,7 +29,6 @@
     "FRMUI.Etiquetas.SesionOcupada": "Ya hay una sesión iniciada",
     "FRMUI.Etiquetas.CerrarVenta": "No se puede entrar al maestro de libros mientras se realiza una venta.",
     "FRMUI.Etiquetas.CerrarLibros": "No se puede realizar una venta mientras el maestro de libros está abierto.",
-    "FRMUI.Etiquetas.Ayuda": "Para iniciar sesión o idioma seleccione la opción Usuario\nPara alta, baja y modificación de usuarios dirijase a Gestión de usuarios\nPara alta, baja y modificación de libros dirijase a Gestión de libros\nPara alta, baja y modificación de clientes dirijase a Gestión de clientes\nPara crear, modificar o eliminar perfiles y familias dirijase a Gestión de perfiles\nPara cobrar ventas a los clientes dirijase a Registrar venta\nPara compra de productos dirijase a Registrar compra\nPara exportar los detalles de una factura en formato .PDF dirijase a Generar reporte\nPara más información dirijase a ayuda.",
 
     "FRMSeleccionarLibros.Text": "Seleccionar libros",
     "FRMSeleccionarLibros.BTNSeleccionarLibros": "Seleccionar libros",
@@ -111,6 +110,7 @@
     "FRMGestionDeUsuarios.Etiquetas.CorreoEnUso": "El correo ingresado ya se encuentra en uso",
     "FRMGestionDeUsuarios.Etiquetas.NumTelInvalido": "El número de teléfono ingresado no es válido",
     "FRMGestionDeUsuarios.Etiquetas.UsernameOcupado": "Nombre de usuario ya está en uso",
+    "FRMGestionDeUsuarios.Etiquetas.UsernameEspacios": "Nombre de usuario no puede contener espacios",
 
     "FRMGestionDeRoles.Text": "Gestión de roles",
     "FRMGestionDeRoles.label1": "Perfiles",
@@ -150,6 +150,7 @@
     "FRMGestionDeClientes.Etiquetas.ComprasRegistradas": "El cliente no se puede eliminar porque este tiene compras registradas a su nombre",
     "FRMGestionDeClientes.Etiquetas.ClienteRestaurado": "El cliente se ha restaurado",
     "FRMGestionDeClientes.Etiquetas.ClienteEliminado": "El cliente se ha eliminado (Borrado lógico)",
+    "FRMGestionDeClientes.Etiquetas.ClientesConsultados": "Clientes consultados con los filtros indicados",
     "FRMGestionDeClientes.Etiquetas.LlenarCampos": "Por favor llene todos los campos",
     "FRMGestionDeClientes.Etiquetas.DNIEnUso": "DNI ya se encuentra registrado",
     "FRMGestionDeClientes.Etiquetas.CorreoInvalido": "El correo ingresado no es válido",
@@ -529,6 +530,12 @@
     "dgv.PromedioPrecio": "Promedio de precio",
     "dgv.TotalSolicitudes": "Total de solicitudes",
     "dgv.TotalOrdenes": "Total de órdenes",
+    "dgv.StockEstimado": "Stock estimado",
+    "dgv.EstadoStock": "Estado de stock",
+    "dgv.PromedioMensual": "Promedio mensual",
+    "dgv.Prediccion": "Predicción",
+    "dgv.ProbabilidadUsoFuturo": "Probabilidad de uso futuro",
+    "dgv.Mes": "Mes",
 
     "Modulos.Sesiones": "Sesiones",
     "Modulos.Usuarios": "Usuarios",

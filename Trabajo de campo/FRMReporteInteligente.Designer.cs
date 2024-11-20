@@ -40,7 +40,7 @@ namespace Trabajo_de_campo
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(378, 15);
+            this.label1.Location = new System.Drawing.Point(205, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 0;
@@ -59,8 +59,12 @@ namespace Trabajo_de_campo
             "Promedio de precio de libros por orden de compra",
             "Proveedores con más solicitudes de cotización",
             "Proveedores con más órdenes de compra",
-            "Órdenes de compra sin entregar"});
-            this.comboBox1.Location = new System.Drawing.Point(466, 12);
+            "Órdenes de compra sin entregar",
+            "Predicción de libros con mayor probabilidad de stock crítico",
+            "Predicción de libros que probablemente serán más rentables",
+            "Métodos de pago más utilizados",
+            "Predicción de temporadas de alta demanda"});
+            this.comboBox1.Location = new System.Drawing.Point(293, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(161, 21);
             this.comboBox1.TabIndex = 1;
@@ -71,7 +75,7 @@ namespace Trabajo_de_campo
             this.BTNGenerarReporte.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BTNGenerarReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNGenerarReporte.ForeColor = System.Drawing.Color.Black;
-            this.BTNGenerarReporte.Location = new System.Drawing.Point(354, 320);
+            this.BTNGenerarReporte.Location = new System.Drawing.Point(183, 320);
             this.BTNGenerarReporte.Name = "BTNGenerarReporte";
             this.BTNGenerarReporte.Size = new System.Drawing.Size(312, 145);
             this.BTNGenerarReporte.TabIndex = 3;
@@ -87,7 +91,7 @@ namespace Trabajo_de_campo
             this.dataGridView1.Location = new System.Drawing.Point(12, 39);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(963, 275);
+            this.dataGridView1.Size = new System.Drawing.Size(652, 275);
             this.dataGridView1.TabIndex = 2;
             // 
             // FRMReporteInteligente
@@ -95,7 +99,7 @@ namespace Trabajo_de_campo
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(987, 471);
+            this.ClientSize = new System.Drawing.Size(676, 471);
             this.Controls.Add(this.BTNGenerarReporte);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox1);

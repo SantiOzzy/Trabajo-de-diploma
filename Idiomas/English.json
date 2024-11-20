@@ -29,7 +29,6 @@
     "FRMUI.Etiquetas.SesionOcupada": "There is already a session started",
     "FRMUI.Etiquetas.CerrarVenta": "You can't enter book management while performing a sale.",
     "FRMUI.Etiquetas.CerrarLibros": "You can't perform a sale while book management is open.",
-    "FRMUI.Etiquetas.Ayuda": "To log in or select the language option, go to User\nFor adding, removing, and modifying users, go to User Management\nFor adding, removing, and modifying books, go to Book Management\nFor adding, removing, and modifying clients, go to Client Management\nFor creating, modifying, or deleting profiles and families, go to Profile Management\nTo charge sales to clients, go to Register Sale\nTo purchase products, go to Register Purchase\nTo export invoice details in .PDF format, go to Generate Report\nFor more information, go to Help",
 
     "FRMSeleccionarLibros.Text": "Select books",
     "FRMSeleccionarLibros.BTNSeleccionarLibros": "Select books",
@@ -111,6 +110,7 @@
     "FRMGestionDeUsuarios.Etiquetas.CorreoEnUso": "The email entered is already in use",
     "FRMGestionDeUsuarios.Etiquetas.NumTelInvalido": "The phone number entered is not valid",
     "FRMGestionDeUsuarios.Etiquetas.UsernameOcupado": "Username is already in use",
+    "FRMGestionDeUsuarios.Etiquetas.UsernameEspacios": "Username can't contain spaces",
 
     "FRMGestionDeRoles.Text": "Role management",
     "FRMGestionDeRoles.label1": "Profiles",
@@ -150,6 +150,7 @@
     "FRMGestionDeClientes.Etiquetas.ComprasRegistradas": "The client cannot be deleted because they have purchases registered under their name",
     "FRMGestionDeClientes.Etiquetas.ClienteRestaurado": "The client has been restored",
     "FRMGestionDeClientes.Etiquetas.ClienteEliminado": "The client has been deleted (Logical deletion)",
+    "FRMGestionDeClientes.Etiquetas.ClientesConsultados": "Clients were consulted with the selected filters",
     "FRMGestionDeClientes.Etiquetas.LlenarCampos": "Please fill in all fields",
     "FRMGestionDeClientes.Etiquetas.DNIEnUso": "DNI is already registered",
     "FRMGestionDeClientes.Etiquetas.CorreoInvalido": "The entered email is not valid",
@@ -529,6 +530,12 @@
     "dgv.PromedioPrecio": "Average price",
     "dgv.TotalSolicitudes": "Total quotation requests",
     "dgv.TotalOrdenes": "Total purchase orders",
+    "dgv.StockEstimado": "Estimated stock",
+    "dgv.EstadoStock": "Stock state",
+    "dgv.PromedioMensual": "Monthly average",
+    "dgv.Prediccion": "Prediction",
+    "dgv.ProbabilidadUsoFuturo": "Future use probability",
+    "dgv.Mes": "Month",
 
     "Modulos.Sesiones": "Sessions",
     "Modulos.Usuarios": "Users",

@@ -80,6 +80,18 @@ namespace Trabajo_de_campo
                 case 8:
                     dt = negocios.ObtenerTablaConsulta("SELECT oc.CodOrdenCompra, p.CUIT, p.RazonSocial FROM OrdenCompra oc INNER JOIN ItemOrden io ON io.CodOrdenCompra = oc.CodOrdenCompra INNER JOIN Proveedor p ON p.CUIT = oc.CUIT WHERE io.FechaEntrega IS NULL GROUP BY oc.CodOrdenCompra, p.CUIT, p.RazonSocial");
                     break;
+                case 9:
+                    dt = negocios.ObtenerTablaConsulta("WITH VentasRecientes AS (SELECT i.ISBN, SUM(i.Cantidad) AS VentasUltimos3Meses FROM Factura f INNER JOIN Item i ON f.CodFactura = i.CodFactura WHERE f.Fecha >= DATEADD(MONTH, -3, GETDATE())GROUP BY i.ISBN), StockFuturo AS (SELECT l.ISBN, l.Nombre AS Libro, l.Stock - vr.VentasUltimos3Meses AS StockEstimado, l.MinStock FROM  Libro l LEFT JOIN VentasRecientes vr ON l.ISBN = vr.ISBN) SELECT Libro, StockEstimado, MinStock, CASE WHEN StockEstimado < MinStock THEN 'Crítico' ELSE 'Suficiente' END AS EstadoStock FROM StockFuturo ORDER BY StockEstimado ASC;");
+                    break;
+                case 10:
+                    dt = negocios.ObtenerTablaConsulta("WITH VentasRecientes AS ( SELECT l.ISBN, l.Nombre AS Libro, SUM(i.Cantidad) AS TotalVendidos, SUM(i.Cantidad * l.Precio) AS IngresoReciente FROM Libro l INNER JOIN Item i ON l.ISBN = i.ISBN INNER JOIN Factura f ON i.CodFactura = f.CodFactura WHERE f.Fecha >= DATEADD(MONTH, -6, GETDATE()) GROUP BY l.ISBN, l.Nombre, l.Precio ), PromedioVentas AS ( SELECT ISBN, Libro, IngresoReciente / 6 AS PromedioMensual FROM VentasRecientes ) SELECT Libro, PromedioMensual, CASE WHEN PromedioMensual > 5000 THEN 'Alta probabilidad de rentabilidad' ELSE 'Probabilidad moderada' END AS Prediccion FROM PromedioVentas ORDER BY PromedioMensual DESC;");
+                    break;
+                case 11:
+                    dt = negocios.ObtenerTablaConsulta("WITH MetodosPago AS ( SELECT f.MetodoPago, COUNT(f.CodFactura) AS TotalUsos, COUNT(f.CodFactura) * 1.0 / SUM(COUNT(f.CodFactura)) OVER () AS PorcentajeUso FROM Factura f WHERE f.Fecha >= DATEADD(MONTH, -6, GETDATE()) GROUP BY f.MetodoPago ) SELECT MetodoPago, PorcentajeUso * 100 AS ProbabilidadUsoFuturo FROM MetodosPago ORDER BY ProbabilidadUsoFuturo DESC;");
+                    break;
+                case 12:
+                    dt = negocios.ObtenerTablaConsulta("WITH VentasPorMes AS ( SELECT YEAR(f.Fecha) AS Anio, MONTH(f.Fecha) AS Mes, SUM(f.PrecioTotal) AS VentasTotales FROM Factura f GROUP BY YEAR(f.Fecha), MONTH(f.Fecha) ), PromedioVentasMensuales AS ( SELECT Mes, AVG(VentasTotales) AS PromedioMensual FROM VentasPorMes GROUP BY Mes ) SELECT Mes, PromedioMensual, CASE WHEN PromedioMensual > (SELECT AVG(PromedioMensual) FROM PromedioVentasMensuales) THEN 'Alta demanda' ELSE 'Demanda normal' END AS Prediccion FROM PromedioVentasMensuales ORDER BY PromedioMensual DESC;");
+                    break;
                 default:
                     dt = null;
                     dataGridView1.DataSource = null;

@@ -91,6 +91,26 @@ namespace Trabajo_de_campo.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] AyudaAdmin {
+            get {
+                object obj = ResourceManager.GetObject("AyudaAdmin", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] AyudaUser {
+            get {
+                object obj = ResourceManager.GetObject("AyudaUser", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap libros_usados_y_antiguos {

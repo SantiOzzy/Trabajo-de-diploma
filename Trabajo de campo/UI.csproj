@@ -346,6 +346,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\AyudaAdmin.pdf" />
+    <None Include="Resources\AyudaUser.pdf" />
     <None Include="Resources\libros-usados-y-antiguos.jpg" />
   </ItemGroup>
   <ItemGroup>
