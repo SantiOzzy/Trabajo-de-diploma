@@ -76,6 +76,10 @@ namespace Trabajo_de_campo
             parent.iniciarSesiónToolStripMenuItem.Visible = true;
             parent.cambiarIdiomaToolStripMenuItem.Visible = true;
 
+            parent.usuarioToolStripMenuItem1.Visible = true;
+            parent.iniciarSesionToolStripMenuItem.Visible = true;
+            parent.cambiarIdiomaToolStripMenuItem1.Visible = true;
+
             parent.nombreToolStripMenuItem.Text = LanguageManager.ObtenerInstancia().ObtenerTexto("FRMCerrarSesion.Etiquetas.SinSesionIniciada");
 
             foreach(Form frm in Application.OpenForms.Cast<Form>().ToArray())

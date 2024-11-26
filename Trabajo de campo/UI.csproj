@@ -327,6 +327,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Verificar recepción de productos.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -348,6 +349,19 @@
   <ItemGroup>
     <None Include="Resources\AyudaAdmin.pdf" />
     <None Include="Resources\AyudaUser.pdf" />
+    <None Include="Resources\Bitácora de cambios.pdf" />
+    <None Include="Resources\Bitácora de eventos.pdf" />
+    <None Include="Resources\Cambiar contraseña.pdf" />
+    <None Include="Resources\Cambiar idioma.pdf" />
+    <None Include="Resources\Cerrar sesión.pdf" />
+    <None Include="Resources\Facturar.pdf" />
+    <None Include="Resources\Generar orden de compra.pdf" />
+    <None Include="Resources\Generar reporte de venta.pdf" />
+    <None Include="Resources\Generar reporte inteligente.pdf" />
+    <None Include="Resources\Generar solicitud de cotización.pdf" />
+    <None Include="Resources\Gestión de perfiles.pdf" />
+    <None Include="Resources\Gestión de usuarios.pdf" />
+    <None Include="Resources\Iniciar sesión.pdf" />
     <None Include="Resources\libros-usados-y-antiguos.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -357,6 +371,8 @@
     <None Include="Resources\3844477-disable-eye-inactive-see-show-view-watch_110343.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Maestros negocio.pdf" />
+    <None Include="Resources\Respaldos.pdf" />
     <None Include="Resources\uai.png" />
     <None Include="Resources\8316630.png" />
     <Content Include="system_applications_thesource_thebook_13028.ico" />

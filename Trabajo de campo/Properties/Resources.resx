@@ -139,4 +139,52 @@
   <data name="AyudaUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AyudaUser.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Bitácora_de_cambios" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bitácora de cambios.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bitácora_de_eventos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bitácora de eventos.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cambiar_contraseña" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cambiar contraseña.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cambiar_idioma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cambiar idioma.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cerrar_sesión" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cerrar sesión.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Facturar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Facturar.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Generar_orden_de_compra" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Generar orden de compra.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Generar_reporte_de_venta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Generar reporte de venta.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Generar_reporte_inteligente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Generar reporte inteligente.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Generar_solicitud_de_cotización" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Generar solicitud de cotización.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Gestión_de_perfiles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gestión de perfiles.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Gestión_de_usuarios" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gestión de usuarios.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Iniciar_sesión" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Iniciar sesión.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Maestros_negocio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Maestros negocio.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Respaldos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Respaldos.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Verificar_recepción_de_productos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Verificar recepción de productos.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

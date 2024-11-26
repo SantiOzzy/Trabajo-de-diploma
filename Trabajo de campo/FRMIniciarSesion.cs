@@ -104,6 +104,16 @@ namespace Trabajo_de_campo
                     if (subItem is ToolStripMenuItem)
                     {
                         subItem.Visible = false;
+
+                        ToolStripMenuItem si = subItem as ToolStripMenuItem;
+
+                        foreach (ToolStripItem subSubItem in si.DropDownItems)
+                        {
+                            if (subSubItem is ToolStripMenuItem)
+                            {
+                                subSubItem.Visible = false;
+                            }
+                        }
                     }
                 }
             }
@@ -111,6 +121,13 @@ namespace Trabajo_de_campo
             parent.cambiarIdiomaToolStripMenuItem.Visible = true;
             parent.cerrarSesiónToolStripMenuItem.Visible = true;
             parent.cambiarContraseñaToolStripMenuItem.Visible = true;
+
+            parent.usuarioToolStripMenuItem1.Visible = true;
+            parent.iniciarSesionToolStripMenuItem.Visible = true;
+            parent.cambiarIdiomaToolStripMenuItem1.Visible = true;
+            parent.cerrarSesionToolStripMenuItem.Visible = true;
+            parent.cambiarContraseñaToolStripMenuItem1.Visible = true;
+            parent.manualDeUsuarioToolStripMenuItem.Visible = true;
 
             foreach (DataRow dr in NegociosFamilia.ObtenerPermisosPorNombreFamilia(rol).Rows)
             {
@@ -149,7 +166,7 @@ namespace Trabajo_de_campo
         {
             foreach (ToolStripMenuItem item in items)
             {
-                if (item.Name == (NombrePermiso + "ToolStripMenuItem"))
+                if (item.Name == (NombrePermiso + "ToolStripMenuItem") || item.Name == (NombrePermiso + "ToolStripMenuItem1"))
                 {
                     item.Visible = true;
                     item.OwnerItem.Visible = true;

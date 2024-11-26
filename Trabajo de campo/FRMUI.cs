@@ -188,7 +188,13 @@ namespace Trabajo_de_campo
             FormGenerarReporteFactura.Show();
         }
 
-        private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void generarReporteInteligenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormReporteInteligente.MdiParent = this;
+            FormReporteInteligente.Show();
+        }
+
+        private void manualDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -212,22 +218,169 @@ namespace Trabajo_de_campo
                     }
                 }
             }
-            catch(Exception ex) { }
-
-            //try
-            //{
-            //    Process.Start(new ProcessStartInfo(Path.Combine("..", "..", "..", $"Idiomas\\")) { UseShellExecute = true });
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("Error al abrir el archivo: " + ex.Message);
-            //}
+            catch (Exception ex) { }
         }
 
-        private void generarReporteInteligenteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void gestionDeUsuariosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormReporteInteligente.MdiParent = this;
-            FormReporteInteligente.Show();
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GDU.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Gestión_de_usuarios);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void gestionDePerfilesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GDP.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Gestión_de_perfiles);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void bitacoraDeEventosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "BDE.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Bitácora_de_eventos);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void respaldosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "R.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Respaldos);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void gestionDeLibrosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GDL.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Maestros_negocio);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void gestionDeClientesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GDC.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Maestros_negocio);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void bitacoraDeCambiosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "BDC.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Bitácora_de_cambios);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void gestionDeProveedoresToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GDP.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Maestros_negocio);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "IS.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Iniciar_sesión);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "CS.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Cerrar_sesión);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void cambiarContraseñaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "CC.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Cambiar_contraseña);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void cambiarIdiomaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "CI.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Cambiar_idioma);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void facturarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "F.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Facturar);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void generarSolicitudDeCotizacionToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GSDC.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Generar_solicitud_de_cotización);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void generarOrdenDeCompraToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GODC.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Generar_orden_de_compra);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void verificarRecepciónDeProductosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "VRDP.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Verificar_recepción_de_productos);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void generarReporteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GRV.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Generar_reporte_de_venta);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
+        }
+
+        private void generarReporteInteligenteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "GRI.pdf");
+
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.Generar_reporte_inteligente);
+
+            Process.Start(new ProcessStartInfo(rutaTemporal) { UseShellExecute = true });
         }
     }
 }
