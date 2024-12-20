@@ -18,6 +18,7 @@ namespace BLL
         BLLCliente NegociosCliente = new BLLCliente();
         BLLEvento NegociosEvento = new BLLEvento();
         BLLDV NegociosDV = new BLLDV();
+        CryptoManager Encriptacion = new CryptoManager();
 
         public void RegistrarFactura(Factura fact)
         {
@@ -116,6 +117,31 @@ namespace BLL
 
                 NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de factura", 3));
             }
+        }
+
+        public DataTable ObtenerTablaReporte()
+        {
+            DataTable dt = negocios.ObtenerTabla("CodFactura AS [Código de factura], Fecha, PrecioTotal AS [Precio total], MetodoPago AS [Método de pago], Banco, MarcaTarjeta AS [Marca de tarjeta], TipoTarjeta AS [Tipo de tarjeta], Factura.DNI, (Nombre + ' ' + Apellido) AS [Nombre de cliente], Direccion AS Dirección, Email, NumTelefono AS [Número de teléfono]", "Factura INNER JOIN Cliente ON Cliente.DNI = Factura.DNI");
+
+            dt.Columns[0].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CodFactura");
+            dt.Columns[1].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Fecha");
+            dt.Columns[2].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.PrecioTotal");
+            dt.Columns[3].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MetodoPago");
+            dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Banco");
+            dt.Columns[5].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MarcaTarjeta");
+            dt.Columns[6].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.TipoTarjeta");
+            dt.Columns[7].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.DNI");
+            dt.Columns[8].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NombreCliente");
+            dt.Columns[9].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Direccion");
+            dt.Columns[10].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Email");
+            dt.Columns[11].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTelefono");
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                dr[9] = Encriptacion.DesencriptarAES256(dr[9].ToString());
+            }
+
+            return dt;
         }
     }
 }

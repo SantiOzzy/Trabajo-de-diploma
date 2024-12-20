@@ -21,6 +21,7 @@ namespace Trabajo_de_campo
     {
         Negocios negocios = new Negocios();
         BLLEvento NegociosEvento = new BLLEvento();
+        BLLFactura NegociosFactura = new BLLFactura();
         CryptoManager Encriptacion = new CryptoManager();
 
         public FRMGenerarReporteFactura()
@@ -59,15 +60,7 @@ namespace Trabajo_de_campo
 
         public void Actualizar()
         {
-            DataTable dt = negocios.ObtenerTabla("CodFactura AS [Código de factura], Fecha, PrecioTotal AS [Precio total], MetodoPago AS [Método de pago], Banco, MarcaTarjeta AS [Marca de tarjeta], TipoTarjeta AS [Tipo de tarjeta], Factura.DNI, (Nombre + ' ' + Apellido) AS [Nombre de cliente], Direccion AS Dirección, Email, NumTelefono AS [Número de teléfono]", "Factura INNER JOIN Cliente ON Cliente.DNI = Factura.DNI");
-            dt = TraducirTabla(dt);
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                dr[9] = Encriptacion.DesencriptarAES256(dr[9].ToString());
-            }
-
-            dataGridView1.DataSource = dt;
+            dataGridView1.DataSource = NegociosFactura.ObtenerTablaReporte();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -81,37 +74,26 @@ namespace Trabajo_de_campo
 
         private void BTNGenerarReporte_Click(object sender, EventArgs e)
         {
-            DataTable ProductosVenta = negocios.ObtenerTabla("Libro.ISBN, Nombre, Autor, Precio, Cantidad", "Libro INNER JOIN Item ON Libro.ISBN = Item.ISBN", $"CodFactura = {dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value}");
-            string codFact = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString();
-            Cobro c = new Cobro(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[5].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[6].Value.ToString());
-            Cliente cl = new Cliente(Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[7].Value), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[8].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[8].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[9].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[10].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[11].Value.ToString());
+            try
+            {
+                DataTable ProductosVenta = negocios.ObtenerTabla("Libro.ISBN, Nombre, Autor, Precio, Cantidad", "Libro INNER JOIN Item ON Libro.ISBN = Item.ISBN", $"CodFactura = {dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value}");
+                string codFact = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                Cobro c = new Cobro(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[5].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[6].Value.ToString());
+                Cliente cl = new Cliente(Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[7].Value), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[8].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[8].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[9].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[10].Value.ToString(), dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[11].Value.ToString());
 
-            ReportesPDF.ReporteVenta(ProductosVenta, codFact, c, cl);
+                ReportesPDF.ReporteVenta(ProductosVenta, codFact, c, cl);
 
-            NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
-            
-            FRMUI parent = this.MdiParent as FRMUI;
-            parent.FormBitacoraEventos.Actualizar();
+                NegociosEvento.RegistrarEvento(new Evento(SessionManager.ObtenerInstancia().ObtenerDatosUsuario().Username, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm:ss"), "Ventas", "Generación de reporte de factura de venta", 5));
 
-            MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
-        }
+                FRMUI parent = this.MdiParent as FRMUI;
+                parent.FormBitacoraEventos.Actualizar();
 
-        DataTable TraducirTabla(DataTable dt)
-        {
-            dt.Columns[0].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.CodFactura");
-            dt.Columns[1].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Fecha");
-            dt.Columns[2].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.PrecioTotal");
-            dt.Columns[3].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MetodoPago");
-            dt.Columns[4].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Banco");
-            dt.Columns[5].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.MarcaTarjeta");
-            dt.Columns[6].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.TipoTarjeta");
-            dt.Columns[7].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.DNI");
-            dt.Columns[8].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NombreCliente");
-            dt.Columns[9].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Direccion");
-            dt.Columns[10].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.Email");
-            dt.Columns[11].ColumnName = LanguageManager.ObtenerInstancia().ObtenerTexto("dgv.NumTelefono");
-
-            return dt;
+                MessageBox.Show(LanguageManager.ObtenerInstancia().ObtenerTexto("FRMGenerarReporteFactura.Etiquetas.ReporteGenerado"));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

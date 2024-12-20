@@ -29,20 +29,7 @@ namespace Trabajo_de_campo
         {
             LanguageManager.ObtenerInstancia().CambiarIdiomaControles(this);
 
-            if (ObtenerCondicionesQuery().Length > 5)
-            {
-                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro", ObtenerCondicionesQuery());
-                dt = TraducirTabla(dt);
-                dataGridView1.DataSource = dt;
-            }
-            else
-            {
-                DataTable dt = negocios.ObtenerTabla("ISBN, Autor, Nombre, Precio, Stock, Activo, MaxStock, MinStock", "Libro");
-                dt = TraducirTabla(dt);
-                dataGridView1.DataSource = dt;
-            }
-
-            ContarLibros();
+            RefrescarGrilla();
 
             if (BTNAñadir.Enabled == false)
             {
